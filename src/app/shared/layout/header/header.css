@@ -1,0 +1,26 @@
+mat-toolbar {
+    display: flex;
+    flex-wrap: wrap;
+
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+}
+
+.flex-spacer {
+    flex: 1 1 auto;
+}
+
+.small-button.mat-mdc-button, 
+.small-button.mat-mdc-raised-button {
+  height: 28px;
+  line-height: 28px;
+  padding: 0 8px;
+  font-size: 12px;
+  min-width: unset !important;
+}
+
+button {
+    margin-left: 8px;
+}
+
