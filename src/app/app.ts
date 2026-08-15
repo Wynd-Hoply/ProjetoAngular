@@ -1,7 +1,7 @@
-import { Component } from '@angular/core';
+import { Component, inject } from '@angular/core';
 import { RouterOutlet, RouterLink } from '@angular/router';
 import { Header } from './shared/layout/header/header';
-
+import { ThemeService } from './services/theme'
 @Component({
   selector: 'app-root',
   imports: [RouterOutlet, RouterLink, Header],
@@ -9,7 +9,7 @@ import { Header } from './shared/layout/header/header';
   styleUrl: './app.css'
 })
 export class App {
- 
+  themeService = inject(ThemeService);
 }
 
 

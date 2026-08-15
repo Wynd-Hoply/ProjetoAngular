@@ -37,3 +37,23 @@ img {
     height: 40px;
     width: auto;
 }
+
+.theme-toggle-btn {
+  width: 40px;
+  min-width: 40px;
+  height: 40px;
+  padding: 0;
+  border-radius: 999px;
+  position: relative;
+}
+
+.theme-toggle-btn .icon {
+  position: absolute;
+  inset: 0;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 18px;
+  line-height: 1;
+  transform: translateY(-0.5px);
+}
