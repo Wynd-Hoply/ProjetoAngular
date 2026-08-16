@@ -1,1 +1,29 @@
-<p>lista-produtos works!</p>
+<div class="container-lista-produtos">
+  <h2>Computadores Pré-Montados (Pre-Builds)</h2>
+
+  <div class="cards-grid">
+    <div class="card-pc" *ngFor="let pc of listaPcs">
+      <span class="badge">{{ pc.categoria }}</span>
+      <img [src]="pc.imagemUrl" [alt]="pc.titulo" class="pc-image" />
+
+      <h3>{{ pc.titulo }}</h3>
+      <p class="descricao">{{ pc.descricao }}</p>
+
+      <ul class="specs-list">
+        <li><strong>Processador:</strong> {{ pc.especificacoes.processador }}</li>
+        <li><strong>Placa-Mãe:</strong> {{ pc.especificacoes.placaMae }}</li>
+        <li><strong>Memória RAM:</strong> {{ pc.especificacoes.ram }}</li>
+        <li *ngIf="pc.especificacoes.gpu"><strong>Placa de Vídeo:</strong> {{ pc.especificacoes.gpu }}</li>
+        <li><strong>Armazenamento:</strong> {{ pc.especificacoes.armazenamento }}</li>
+        <li><strong>Fonte:</strong> {{ pc.especificacoes.fonte }}</li>
+        <li><strong>Gabinete:</strong> {{ pc.especificacoes.gabinete }}</li>
+        <li *ngIf="pc.especificacoes.cooler"><strong>Cooler:</strong> {{ pc.especificacoes.cooler }}</li>
+      </ul>
+
+      <div class="card-footer">
+        <span class="preco">{{ pc.precoTotal | currency:'BRL':'symbol':'1.2-2' }}</span>
+        <button class="btn-detalhes">Ver Detalhes</button>
+      </div>
+    </div>
+  </div>
+</div>
