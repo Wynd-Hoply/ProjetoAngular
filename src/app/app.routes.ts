@@ -9,7 +9,7 @@ export const routes: Routes = [
   },
   {
     path: 'pre-builds',
-    loadComponent: () => import('./features/produtos/lista-produtos/lista-produtos').then((m) => m.ListaProdutosComponent)
+    loadComponent: () => import('./features/produtos/lista-produtos/lista-produtos').then((m) => m.ListaProdutos)
   },
   {
     path: 'build-up',
