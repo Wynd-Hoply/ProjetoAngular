@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, inject } from '@angular/core';
 import { RouterOutlet, RouterLink } from '@angular/router';
 import { Header } from './shared/layout/header/header';
 
@@ -9,7 +9,6 @@ import { Header } from './shared/layout/header/header';
   styleUrl: './app.css'
 })
 export class App {
- 
 }
 
 
