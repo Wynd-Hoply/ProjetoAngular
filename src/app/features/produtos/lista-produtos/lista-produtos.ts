@@ -1,9 +1,18 @@
-import { Component } from '@angular/core';
-
+import { Component, OnInit } from '@angular/core';
+import { CommonModule } from '@angular/common';
+import { PreBuildPC } from '../../../shared/layout/header/models/pre-build.model';
+import { PRE_BUILDS_DATA } from '../../../shared/layout/header/data/pre-build.data';
 @Component({
   selector: 'app-lista-produtos',
-  imports: [],
+  standalone: true,
+  imports: [CommonModule],
   templateUrl: './lista-produtos.html',
-  styleUrl: './lista-produtos.css',
+  styleUrls: ['./lista-produtos.css']
 })
-export class ListaProdutos {}
+export class ListaProdutosComponent implements OnInit {
+  listaPcs: PreBuildPC[] = [];
+
+  ngOnInit(): void {
+    this.listaPcs = PRE_BUILDS_DATA;
+  }
+}
