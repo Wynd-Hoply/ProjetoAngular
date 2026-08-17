@@ -8,6 +8,7 @@ import { Header } from './shared/layout/header/header';
   templateUrl: './app.html',
   styleUrl: './app.css'
 })
+// Componente raiz que monta o header fixo e o conteudo das rotas.
 export class App {
 }
 

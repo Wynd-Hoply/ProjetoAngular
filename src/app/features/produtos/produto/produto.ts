@@ -6,4 +6,5 @@ import { Component } from '@angular/core';
   templateUrl: './produto.html',
   styleUrl: './produto.css',
 })
+// Representa um card/item individual de produto.
 export class Produto {}

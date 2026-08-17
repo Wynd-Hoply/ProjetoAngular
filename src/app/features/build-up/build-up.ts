@@ -6,4 +6,5 @@ import { Component } from '@angular/core';
   templateUrl: './build-up.html',
   styleUrl: './build-up.css',
 })
+// Tela para o fluxo de montagem personalizada de produtos.
 export class BuildUp {}
