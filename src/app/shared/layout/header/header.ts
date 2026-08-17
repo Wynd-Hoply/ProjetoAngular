@@ -2,7 +2,7 @@ import { Component, inject } from '@angular/core';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatButtonModule } from '@angular/material/button';
 import { RouterLink } from '@angular/router';
-import { ThemeService } from '../../../services/theme';
+import { ThemeService } from '../../../core/services/theme';
 
 @Component({
   selector: 'app-header',
