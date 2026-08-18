@@ -7,6 +7,15 @@
   <button mat-button routerLink="/build-up">Monte seu PC</button>
 
   <button mat-button routerLink="/pre-builds">Pre Builds</button>
+
+  @if (authService.isAuthenticated()) {
+    <span class="auth-badge">{{ authService.displayName() }}</span>
+
+    <button mat-stroked-button routerLink="/auth/login" type="button" (click)="authService.logout()">Sair</button>
+  } @else {
+    <button mat-stroked-button routerLink="/auth/login" type="button">Entrar</button>
+    <button mat-button routerLink="/auth/register" type="button">Criar conta</button>
+  }
   
   <button
   mat-button

@@ -1,0 +1,72 @@
+<div class="auth-page auth-page--register">
+	<section class="auth-page__copy">
+		<p class="auth-page__eyebrow">Criar conta</p>
+		<h1>Cadastre-se e salve sua sessão no navegador</h1>
+		<p>
+			O cadastro fica gravado localmente para simular um fluxo de autenticação completo, sem precisar de API.
+		</p>
+
+		<ul>
+			<li>Email único por conta</li>
+			<li>Login automático após o cadastro</li>
+			<li>Proteção de páginas privadas</li>
+		</ul>
+	</section>
+
+	<section class="auth-card">
+		<h2>Criar conta</h2>
+
+		@if (statusMessage()) {
+			<p class="auth-feedback" [class.auth-feedback--success]="isSuccess()" [class.auth-feedback--error]="!isSuccess()">
+				{{ statusMessage() }}
+			</p>
+		}
+
+		<form class="auth-form" [formGroup]="form" (ngSubmit)="submit()">
+			<label>
+				<span>Nome</span>
+				<input type="text" formControlName="name" placeholder="Seu nome" autocomplete="name" />
+			</label>
+
+			@if (form.controls.name.invalid && (form.controls.name.dirty || form.controls.name.touched || submitted())) {
+				<small class="field-error">Informe pelo menos 3 caracteres.</small>
+			}
+
+			<label>
+				<span>Email</span>
+				<input type="email" formControlName="email" placeholder="voce@exemplo.com" autocomplete="email" />
+			</label>
+
+			@if (form.controls.email.invalid && (form.controls.email.dirty || form.controls.email.touched || submitted())) {
+				<small class="field-error">Informe um email válido.</small>
+			}
+
+			<label>
+				<span>Senha</span>
+				<input type="password" formControlName="password" placeholder="Crie uma senha" autocomplete="new-password" />
+			</label>
+
+			@if (form.controls.password.invalid && (form.controls.password.dirty || form.controls.password.touched || submitted())) {
+				<small class="field-error">A senha precisa ter pelo menos 6 caracteres.</small>
+			}
+
+			<label>
+				<span>Confirmar senha</span>
+				<input type="password" formControlName="confirmPassword" placeholder="Repita a senha" autocomplete="new-password" />
+			</label>
+
+			@if (form.controls.confirmPassword.invalid && (form.controls.confirmPassword.dirty || form.controls.confirmPassword.touched || submitted())) {
+				<small class="field-error">Confirme a senha para continuar.</small>
+			}
+
+			<button type="submit" class="auth-submit" [disabled]="loading()">
+				{{ loading() ? 'Criando...' : 'Criar conta' }}
+			</button>
+		</form>
+
+		<p class="auth-card__footer">
+			Já tem conta?
+			<a routerLink="/auth/login">Entrar</a>
+		</p>
+	</section>
+</div>

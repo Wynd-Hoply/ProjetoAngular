@@ -35,6 +35,18 @@ button {
     margin-left: 8px;
 }
 
+.auth-badge {
+  display: inline-flex;
+  align-items: center;
+  min-height: 36px;
+  padding: 0 0.85rem;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.16);
+  color: currentColor;
+  font-size: 0.9rem;
+  font-weight: 600;
+}
+
 img {
     height: 40px;
     width: auto;
