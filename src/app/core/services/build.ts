@@ -16,6 +16,10 @@ export class BuildService {
   readonly activeBuildId = signal<string | null>(null);
   readonly activeBuild = computed(() => this.buildsState().find((build) => build.id === this.activeBuildId()) ?? null);
 
+  getById(id: string): SavedBuild | null {
+    return this.buildsState().find((build) => build.id === id) ?? null;
+  }
+
   save(name: string, id?: string | null): SavedBuild | null {
     const normalizedName = name.trim();
     if (!normalizedName || this.builder.selectedComponents().length === 0) {

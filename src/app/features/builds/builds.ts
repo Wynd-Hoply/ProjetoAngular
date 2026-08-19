@@ -27,8 +27,8 @@ export class Builds {
   }
 
   openBuild(id: string): void {
-    if (this.builds.open(id)) {
-      void this.router.navigate(['/builder']);
+    if (this.builds.getById(id)) {
+      void this.router.navigate(['/builds', id]);
     }
   }
 

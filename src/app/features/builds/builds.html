@@ -14,7 +14,7 @@
         <article class="build-card">
           <div class="build-card__main"><span class="build-date">Salva em {{ formatDate(build.date) }}</span><h2>{{ build.name }}</h2><p>{{ componentCount(build) }} componentes selecionados</p></div>
           <strong class="build-price">{{ formatPrice(build.total) }}</strong>
-          <div class="build-actions"><button type="button" class="open-button" (click)="openBuild(build.id)">Abrir e editar</button><button type="button" class="delete-button" (click)="removeBuild(build.id)">Excluir</button></div>
+          <div class="build-actions"><button type="button" class="open-button" (click)="openBuild(build.id)">Ver resumo</button><button type="button" class="delete-button" (click)="removeBuild(build.id)">Excluir</button></div>
         </article>
       }
     </div>

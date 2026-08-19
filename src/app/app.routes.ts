@@ -35,6 +35,10 @@ export const routes: Routes = [
     loadComponent: () => import('./features/builds/builds').then((m) => m.Builds),
   },
   {
+    path: 'builds/:id',
+    loadComponent: () => import('./features/build-summary/build-summary').then((m) => m.BuildSummary),
+  },
+  {
     path: 'pre-builds',
     redirectTo: 'builds',
   },
