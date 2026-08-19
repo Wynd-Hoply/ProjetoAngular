@@ -1,0 +1,22 @@
+.builds-page { max-width: 1100px; margin: 0 auto; padding: 1.5rem clamp(1rem, 3vw, 3rem) 4rem; color: #18212f; }
+.breadcrumb { display: flex; gap: .55rem; margin-bottom: 1.5rem; color: #718096; font-size: .85rem; }
+.breadcrumb a { color: #1769d3; text-decoration: none; }
+.builds-header { display: flex; align-items: end; justify-content: space-between; gap: 1rem; margin-bottom: 1.5rem; }
+.eyebrow { margin: 0 0 .3rem; color: #1769d3; font-size: .72rem; font-weight: 800; letter-spacing: .12em; text-transform: uppercase; }
+h1, h2 { margin: 0; color: #14243b; }
+.builds-header h1 { font-size: clamp(1.7rem, 3vw, 2.3rem); }
+.builds-header p:not(.eyebrow) { margin: .5rem 0 0; color: #718096; }
+.new-build-button, .open-button { border: 1px solid #1769d3; border-radius: 5px; padding: .65rem .85rem; background: #1769d3; color: #fff; font-size: .82rem; font-weight: 800; text-decoration: none; cursor: pointer; }
+.build-list { display: grid; gap: .75rem; }
+.build-card { display: grid; grid-template-columns: minmax(0, 1fr) auto auto; align-items: center; gap: 1.25rem; padding: 1.1rem 1.2rem; border: 1px solid #dce3ec; border-radius: 8px; background: #fff; }
+.build-date { color: #718096; font-size: .72rem; }
+.build-card h2 { margin-top: .2rem; font-size: 1.05rem; }
+.build-card p { margin: .35rem 0 0; color: #718096; font-size: .8rem; }
+.build-price { color: #1d3557; white-space: nowrap; }
+.build-actions { display: flex; gap: .5rem; }
+.delete-button { border: 1px solid #e3b7b2; border-radius: 5px; padding: .65rem .85rem; background: #fff; color: #b42318; font-weight: 800; cursor: pointer; }
+.empty-state { padding: 3.5rem 1rem; border: 1px solid #dce3ec; text-align: center; }
+.empty-state h2 { font-size: 1.2rem; }
+.empty-state p { margin: .5rem 0 1rem; color: #718096; }
+.empty-state a { color: #1769d3; font-weight: 800; text-decoration: none; }
+@media (max-width: 700px) { .builds-header { align-items: start; flex-direction: column; } .build-card { grid-template-columns: 1fr auto; } .build-actions { grid-column: 1 / -1; } }

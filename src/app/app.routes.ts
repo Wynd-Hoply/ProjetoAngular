@@ -1,6 +1,7 @@
 import { Routes } from '@angular/router';
 
 import { authGuard } from './core/guards/auth.guard';
+import { BuildUp } from './features/build-up/build-up';
 
 
 
@@ -14,14 +15,36 @@ export const routes: Routes = [
     loadChildren: () => import('./features/auth/auth.routes').then((m) => m.authRoutes),
   },
   {
+    path: 'home',
+    loadComponent: () => import('./features/home/home/home').then((m) => m.Home),
+  },
+  {
+    path: 'components',
+    loadComponent: () => import('./features/produtos/lista-produtos/lista-produtos').then((m) => m.ListaProdutos),
+  },
+  {
+    path: 'components/:category',
+    loadComponent: () => import('./features/produtos/lista-produtos/lista-produtos').then((m) => m.ListaProdutos),
+  },
+  {
+    path: 'compare',
+    loadComponent: () => import('./features/compare/compare').then((m) => m.Compare),
+  },
+  {
+    path: 'builds',
+    loadComponent: () => import('./features/builds/builds').then((m) => m.Builds),
+  },
+  {
     path: 'pre-builds',
-    canActivate: [authGuard],
-    loadComponent: () => import('./features/produtos/lista-produtos/lista-produtos').then((m) => m.ListaProdutos)
+    redirectTo: 'builds',
+  },
+  {
+    path: 'builder',
+    component: BuildUp,
   },
   {
     path: 'build-up',
-    canActivate: [authGuard],
-    loadComponent: () => import('./features/build-up/build-up').then((m) => m.BuildUp)
+    redirectTo: 'builder',
   },
   {
     path: '**',

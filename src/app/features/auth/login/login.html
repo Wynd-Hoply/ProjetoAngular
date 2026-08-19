@@ -1,20 +1,8 @@
-<div class="auth-page">
-	<section class="auth-page__copy">
-		<p class="auth-page__eyebrow">Login local</p>
-		<h1>Entre sem backend e continue sua navegação</h1>
-		<p>
-			Este acesso usa apenas <strong>localStorage</strong> para manter a sessão no navegador, ideal para prototipação e demo.
-		</p>
-
-		<ul>
-			<li>Cadastro simples com email único</li>
-			<li>Sessão persistente até você sair</li>
-			<li>Rotas privadas protegidas no app</li>
-		</ul>
-	</section>
-
-	<section class="auth-card">
-		<h2>Entrar</h2>
+<section class="auth-card" role="dialog" aria-labelledby="login-title">
+		<header class="auth-card__header">
+			<h2 id="login-title">Entrar no PCraft</h2>
+			<button type="button" class="auth-close" aria-label="Fechar" (click)="close()">&times;</button>
+		</header>
 
 		@if (statusMessage()) {
 			<p class="auth-feedback" [class.auth-feedback--success]="isSuccess()" [class.auth-feedback--error]="!isSuccess()">
@@ -48,7 +36,6 @@
 
 		<p class="auth-card__footer">
 			Ainda não tem conta?
-			<a routerLink="/auth/register">Criar conta</a>
+			<a routerLink="/auth/register" (click)="close()">Criar conta</a>
 		</p>
-	</section>
-</div>
+</section>

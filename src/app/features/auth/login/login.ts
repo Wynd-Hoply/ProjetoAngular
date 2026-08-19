@@ -2,12 +2,13 @@ import { CommonModule } from '@angular/common';
 import { ChangeDetectionStrategy, Component, inject, signal } from '@angular/core';
 import { FormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
 import { ActivatedRoute, Router, RouterLink } from '@angular/router';
+import { MatDialogModule, MatDialogRef } from '@angular/material/dialog';
 
 import { AuthService } from '../../../core/services/auth';
 
 @Component({
   selector: 'app-login',
-  imports: [CommonModule, ReactiveFormsModule, RouterLink],
+  imports: [CommonModule, ReactiveFormsModule, RouterLink, MatDialogModule],
   templateUrl: './login.html',
   styleUrl: './login.css',
   changeDetection: ChangeDetectionStrategy.OnPush,
@@ -17,6 +18,7 @@ export class Login {
   private readonly authService = inject(AuthService);
   private readonly router = inject(Router);
   private readonly route = inject(ActivatedRoute);
+  private readonly dialogRef = inject(MatDialogRef<Login>, { optional: true });
 
   // Signals simples para controlar estado visual da tela.
   protected readonly loading = signal(false);
@@ -48,11 +50,16 @@ export class Login {
       this.isSuccess.set(result.success);
 
       if (result.success) {
+        this.dialogRef?.close();
         const returnUrl = this.route.snapshot.queryParamMap.get('returnUrl') ?? '/';
         await this.router.navigateByUrl(returnUrl);
       }
     } finally {
       this.loading.set(false);
     }
+  }
+
+  protected close(): void {
+    this.dialogRef?.close();
   }
 }

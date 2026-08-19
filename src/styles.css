@@ -37,6 +37,12 @@ body {
   padding: 2rem;
 }
 
+.login-dialog-panel .mat-mdc-dialog-surface {
+  padding: 0;
+  border-radius: 6px;
+  overflow: hidden;
+}
+
 .theme-toggle {
   padding: 0.6rem 1.2rem;
   border-radius: 8px;
