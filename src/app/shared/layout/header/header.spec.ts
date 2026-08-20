@@ -21,4 +21,23 @@ describe('Header', () => {
   it('should create', () => {
     expect(component).toBeTruthy();
   });
+
+  it('should toggle the pieces menu and close it from outside clicks', async () => {
+    const compiled = fixture.nativeElement as HTMLElement;
+    const trigger = compiled.querySelector('.pieces-menu__trigger') as HTMLButtonElement;
+
+    expect(compiled.querySelector('.pieces-menu__panel')).toBeNull();
+
+    trigger.click();
+    fixture.detectChanges();
+    await fixture.whenStable();
+
+    expect(compiled.querySelector('.pieces-menu__panel')).toBeTruthy();
+
+    document.body.dispatchEvent(new MouseEvent('click', { bubbles: true }));
+    fixture.detectChanges();
+    await fixture.whenStable();
+
+    expect(compiled.querySelector('.pieces-menu__panel')).toBeNull();
+  });
 });
