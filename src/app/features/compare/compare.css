@@ -1,0 +1,25 @@
+.compare-page { max-width: 1280px; margin: 0 auto; padding: 1.5rem clamp(1rem, 3vw, 3rem) 4rem; color: #18212f; }
+.breadcrumb { display: flex; gap: .55rem; margin-bottom: 1.5rem; color: #718096; font-size: .85rem; }
+.breadcrumb a, .empty-state a { color: #1769d3; text-decoration: none; }
+.compare-header { display: flex; justify-content: space-between; align-items: end; gap: 1rem; margin-bottom: 1.5rem; }
+.eyebrow { margin: 0 0 .3rem; color: #2764d8; font-size: .72rem; font-weight: 800; letter-spacing: .12em; text-transform: uppercase; }
+h1 { margin: 0; color: #14243b; }
+.compare-header p { color: #718096; }
+.compare-header button, .remove { border: 1px solid #cbd5e1; border-radius: 5px; padding: .6rem .8rem; background: #fff; color: #334155; cursor: pointer; }
+.compare-table-wrap { overflow-x: auto; border: 1px solid #dce3ec; border-radius: 7px; background: #fff; }
+.compare-table { min-width: calc(180px + var(--comparison-columns) * 220px); }
+.compare-row { display: grid; grid-template-columns: 180px repeat(var(--comparison-columns), minmax(200px, 1fr)); border-top: 1px solid #edf1f5; }
+.compare-row--products { border-top: 0; background: #f7f9fc; }
+.compare-label, .compare-value, .product-column { padding: .9rem 1rem; }
+.compare-label { color: #718096; font-size: .78rem; font-weight: 800; }
+.compare-value { color: #1d3557; font-size: .85rem; font-weight: 700; }
+.compare-row--different { background: #fff8e6; }
+.compare-row--different .compare-label { color: #a15c00; }
+.product-column { border-left: 1px solid #edf1f5; }
+.product-column img { width: 72px; height: 72px; object-fit: contain; background: #eef3f9; }
+.product-column p { margin: .8rem 0 .25rem; color: #2764d8; font-size: .72rem; text-transform: uppercase; }
+.product-column h2 { min-height: 3rem; margin: 0; font-size: .95rem; color: #1d3557; }
+.remove { margin-top: .8rem; width: 100%; border: 1px solid #cbd5e1; border-radius: 5px; padding: .55rem .7rem; background: #fff; color: #334155; cursor: pointer; }
+.empty-state { padding: 4rem 1rem; border: 1px solid #dce3ec; text-align: center; }
+.empty-state h2 { margin-bottom: .4rem; }
+@media (max-width: 650px) { .compare-header { align-items: start; flex-direction: column; } }

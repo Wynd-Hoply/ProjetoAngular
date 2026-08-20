@@ -4,19 +4,92 @@
   </button>
   <span class="flex-spacer"></span>
 
-  <button mat-button routerLink="/build-up">Monte seu PC</button>
+  <div class="header-actions">
+    <button mat-button routerLink="/home">Início</button>
 
-  <button mat-button routerLink="/pre-builds">Pre Builds</button>
-  
-  <button
-  mat-button
-  type="button"
-  class="theme-toggle-btn"
-  (click)="themeService.toggleTheme()"
-  [attr.aria-label]="themeService.isDarkMode() ? 'Ativar modo claro' : 'Ativar modo escuro'"
->
-  <span class="icon">
-      {{ themeService.isDarkMode() ? '☀' : '☾' }}
-  </span>
-</button>
+    <div class="pieces-menu" [class.pieces-menu--open]="piecesMenuOpen()">
+      <button
+        mat-button
+        type="button"
+        class="pieces-menu__trigger"
+        aria-haspopup="true"
+        [attr.aria-expanded]="piecesMenuOpen()"
+        aria-controls="pieces-menu-panel"
+        (click)="togglePiecesMenu()"
+      >
+        Peças
+      </button>
+
+      @if (piecesMenuOpen()) {
+        <div id="pieces-menu-panel" class="pieces-menu__panel" role="menu" aria-label="Menu de peças">
+          <div class="pieces-menu__section">
+            <p class="pieces-menu__section-title">Componentes de PC</p>
+
+            @for (item of pcComponents; track item.route) {
+              <a
+                class="pieces-menu__item"
+                [routerLink]="item.route"
+                role="menuitem"
+                (click)="closePiecesMenu()"
+              >
+                <span class="pieces-menu__icon" aria-hidden="true">{{ item.icon }}</span>
+                <span class="pieces-menu__label">{{ item.label }}</span>
+              </a>
+            }
+          </div>
+
+          <div class="pieces-menu__divider" aria-hidden="true"></div>
+
+          <div class="pieces-menu__section">
+            <p class="pieces-menu__section-title">Periféricos</p>
+
+            @for (item of peripherals; track item.label) {
+              <button
+                type="button"
+                class="pieces-menu__item pieces-menu__item--disabled"
+                role="menuitem"
+                (click)="closePiecesMenu()"
+              >
+                <span class="pieces-menu__icon" aria-hidden="true">{{ item.icon }}</span>
+                <span class="pieces-menu__label">{{ item.label }}</span>
+                <span class="pieces-menu__status">Em breve</span>
+              </button>
+            }
+          </div>
+        </div>
+      }
+    </div>
+
+    <button mat-button routerLink="/build-up">Montar PC</button>
+    <button mat-button routerLink="/builds">Minhas Builds</button>
+    <button mat-button routerLink="/compare">Comparar</button>
+
+    @if (authService.isAuthenticated()) {
+      <span class="auth-badge">{{ authService.displayName() }}</span>
+
+      <button
+        mat-stroked-button
+        routerLink="/auth/login"
+        type="button"
+        (click)="authService.logout()"
+      >
+        Sair
+      </button>
+    } @else {
+      <button mat-stroked-button type="button" (click)="openLogin()">Entrar</button>
+      <button mat-button routerLink="/auth/register" type="button">Criar conta</button>
+    }
+
+    <button
+      mat-button
+      type="button"
+      class="theme-toggle-btn"
+      (click)="themeService.toggleTheme()"
+      [attr.aria-label]="themeService.isDarkMode() ? 'Ativar modo claro' : 'Ativar modo escuro'"
+    >
+      <span class="icon">
+        {{ themeService.isDarkMode() ? '☀' : '☾' }}
+      </span>
+    </button>
+  </div>
 </mat-toolbar>

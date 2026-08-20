@@ -20,7 +20,9 @@ export class ThemeService {
     }
 
     const savedTheme = localStorage.getItem(this.THEME_KEY);
-    const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+    const prefersDark = typeof window.matchMedia === 'function'
+      ? window.matchMedia('(prefers-color-scheme: dark)').matches
+      : false;
 
     const isDark = savedTheme ? savedTheme === 'dark' : prefersDark;
     this.setDarkMode(isDark);

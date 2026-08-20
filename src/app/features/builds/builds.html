@@ -1,0 +1,22 @@
+<section class="builds-page" aria-labelledby="builds-title">
+  <nav class="breadcrumb" aria-label="Breadcrumb"><a routerLink="/home">Home</a><span>/</span><span>Minhas Builds</span></nav>
+
+  <header class="builds-header">
+    <div><p class="eyebrow">PC Builder</p><h1 id="builds-title">Minhas builds</h1><p>Salve configurações para continuar ou comparar suas escolhas depois.</p></div>
+    <a class="new-build-button" routerLink="/builder">+ Nova build</a>
+  </header>
+
+  @if (builds.builds().length === 0) {
+    <section class="empty-state"><h2>Nenhuma build salva</h2><p>Monte seu computador e salve a configuração para encontrá-la aqui.</p><a routerLink="/builder">Montar meu PC</a></section>
+  } @else {
+    <div class="build-list">
+      @for (build of builds.builds(); track build.id) {
+        <article class="build-card">
+          <div class="build-card__main"><span class="build-date">Salva em {{ formatDate(build.date) }}</span><h2>{{ build.name }}</h2><p>{{ componentCount(build) }} componentes selecionados</p></div>
+          <strong class="build-price">{{ formatPrice(build.total) }}</strong>
+          <div class="build-actions"><button type="button" class="open-button" (click)="openBuild(build.id)">Ver resumo</button><button type="button" class="delete-button" (click)="removeBuild(build.id)">Excluir</button></div>
+        </article>
+      }
+    </div>
+  }
+</section>

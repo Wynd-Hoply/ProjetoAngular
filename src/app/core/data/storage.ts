@@ -1,0 +1,50 @@
+import { Component } from '../models/component.model';
+
+const componentImage = 'assets/images/LogoWM.png';
+
+export const storage: Component[] = [
+  {
+    id: 501,
+    name: 'Kingston NV2 1TB NVMe',
+    category: 'storage',
+    brand: 'Kingston',
+    price: 399.9,
+    performanceScore: 68,
+    powerDrawWatts: 5,
+    image: componentImage,
+    specifications: { capacityGB: 1000, interface: 'PCIe 4.0 x4', readSpeedMBps: 3500, writeSpeedMBps: 2100 },
+  },
+  {
+    id: 502,
+    name: 'WD Black SN770 1TB NVMe',
+    category: 'storage',
+    brand: 'Western Digital',
+    price: 549.9,
+    performanceScore: 82,
+    powerDrawWatts: 5,
+    image: componentImage,
+    specifications: { capacityGB: 1000, interface: 'PCIe 4.0 x4', readSpeedMBps: 5150, writeSpeedMBps: 4900 },
+  },
+  {
+    id: 503,
+    name: 'Samsung 990 Pro 2TB NVMe',
+    category: 'storage',
+    brand: 'Samsung',
+    price: 1_199.9,
+    performanceScore: 98,
+    powerDrawWatts: 7,
+    image: componentImage,
+    specifications: { capacityGB: 2000, interface: 'PCIe 4.0 x4', readSpeedMBps: 7450, writeSpeedMBps: 6900 },
+  },
+  {
+    id: 504,
+    name: 'Seagate Barracuda 2TB',
+    category: 'storage',
+    brand: 'Seagate',
+    price: 429.9,
+    performanceScore: 48,
+    powerDrawWatts: 6,
+    image: componentImage,
+    specifications: { capacityGB: 2000, interface: 'SATA III', readSpeedMBps: 190, writeSpeedMBps: 190 },
+  },
+];
