@@ -1,5 +1,5 @@
 import { ChangeDetectionStrategy, Component, computed, inject, signal } from '@angular/core';
-import { ActivatedRoute, RouterLink } from '@angular/router';
+import { ActivatedRoute, Router, RouterLink } from '@angular/router';
 
 import { BuilderService } from '../../../core/services/builder';
 import { CatalogService } from '../../../core/services/catalog';
@@ -28,6 +28,7 @@ const categoryLabels: Record<ComponentCategory, string> = {
 export class ListaProdutos {
   private readonly catalog = inject(CatalogService);
   private readonly route = inject(ActivatedRoute);
+  private readonly router = inject(Router);
   readonly builder = inject(BuilderService);
   readonly comparison = inject(ComparisonService);
 
@@ -68,8 +69,9 @@ export class ListaProdutos {
     this.comparison.toggle(component);
   }
 
-  addToBuilder(component: CatalogComponent): void {
+  async addToBuilder(component: CatalogComponent): Promise<void> {
     this.builder.add(component);
+    await this.router.navigate(['/builder']);
   }
 
   clearFilters(): void {
