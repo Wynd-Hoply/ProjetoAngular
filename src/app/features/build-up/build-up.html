@@ -11,7 +11,10 @@
 		</div>
 		<div class="builder-header__actions">
 			<label for="build-name">Nome da build</label>
-			<div class="save-controls"><input id="build-name" type="text" [value]="buildName()" (input)="buildName.set($any($event.target).value)" maxlength="60" /><button type="button" class="save-button" (click)="saveBuild()">{{ builds.activeBuildId() ? 'Atualizar build' : 'Salvar build' }}</button></div>
+			<div class="save-controls">
+				<input id="build-name" type="text" [value]="buildName()" (input)="buildName.set($any($event.target).value)" maxlength="60" />
+				<button type="button" class="save-button" (click)="saveBuild()">{{ builds.activeBuildId() ? 'Atualizar build' : 'Salvar build' }}</button>
+			</div>
 			<button type="button" class="clear-button" (click)="builder.clear()" [disabled]="builder.selectedComponents().length === 0">Limpar montagem</button>
 			<p class="save-message" role="status">{{ saveMessage() }}</p>
 		</div>
@@ -28,7 +31,10 @@
 				@for (slot of slots; track slot.category) {
 					@let selected = builder.selected()[slot.category];
 					<div class="slot" [class.slot--selected]="selected">
-						<div class="slot__identity"><span class="slot__marker" aria-hidden="true">{{ selected ? '✓' : '+' }}</span><strong>{{ slot.label }}</strong></div>
+						<div class="slot__identity">
+							<span class="slot__marker" aria-hidden="true">{{ selected ? '✓' : '+' }}</span>
+							<strong>{{ slot.label }}</strong>
+						</div>
 						@if (selected) {
 							<span class="slot__price">{{ formatPrice(selected.price) }}</span>
 							<a class="slot__action" [routerLink]="['/components', slot.route]">Substituir</a>
@@ -41,9 +47,14 @@
 		</section>
 
 		<aside class="summary-panel" aria-labelledby="summary-title">
-			<div class="panel-heading"><div><p class="eyebrow">Etapa 2</p><h2 id="summary-title">Minha configuração</h2></div></div>
+			<div class="panel-heading">
+				<div><p class="eyebrow">Etapa 2</p><h2 id="summary-title">Minha configuração</h2></div>
+			</div>
 			@if (builder.selectedComponents().length === 0) {
-				<div class="summary-empty"><strong>Sua configuração está vazia</strong><p>Selecione componentes ao lado ou adicione peças pelo catálogo.</p></div>
+				<div class="summary-empty">
+					<strong>Sua configuração está vazia</strong>
+					<p>Selecione componentes ao lado ou adicione peças pelo catálogo.</p>
+				</div>
 			} @else {
 				<div class="selected-list">
 					@for (slot of slots; track slot.category) {
@@ -51,14 +62,21 @@
 						@if (selected) {
 							<article class="selected-item">
 								<img [src]="selected.image" [alt]="'Imagem de ' + selected.name" width="48" height="48" />
-								<div class="selected-item__info"><span>{{ slot.label }}</span><strong>{{ selected.name }}</strong><small>{{ formatPrice(selected.price) }}</small></div>
+								<div class="selected-item__info">
+									<span>{{ slot.label }}</span>
+									<strong>{{ selected.name }}</strong>
+									<small>{{ formatPrice(selected.price) }}</small>
+								</div>
 								<button type="button" class="remove-button" (click)="remove(slot.category)" [attr.aria-label]="'Remover ' + selected.name">×</button>
 							</article>
 						}
 					}
 				</div>
 			}
-			<div class="total-row"><span>Total estimado</span><strong>{{ formatPrice(builder.total()) }}</strong></div>
+			<div class="total-row">
+				<span>Total estimado</span>
+				<strong>{{ formatPrice(builder.total()) }}</strong>
+			</div>
 		</aside>
 	</div>
 
@@ -74,7 +92,11 @@
 	<section class="compatibility-panel" aria-labelledby="compatibility-title">
 		<div class="compatibility-heading">
 			<div><p class="eyebrow">Validação da montagem</p><h2 id="compatibility-title">Compatibilidade básica</h2></div>
-			<div class="power-summary"><span>Consumo estimado</span><strong>{{ compatibility.estimatedConsumption() }} W</strong><small>Recomendação: {{ compatibility.recommendedWattage() }} W</small></div>
+			<div class="power-summary">
+				<span>Consumo estimado</span>
+				<strong>{{ compatibility.estimatedConsumption() }} W</strong>
+				<small>Recomendação: {{ compatibility.recommendedWattage() }} W</small>
+			</div>
 		</div>
 		@if (compatibility.checks().length === 0) {
 			<p class="compatibility-empty">Selecione os componentes relacionados para verificar a compatibilidade.</p>
@@ -83,7 +105,10 @@
 				@for (check of compatibility.checks(); track check.key) {
 					<article class="compatibility-check" [class.compatibility-check--bad]="check.status === 'incompatible'">
 						<span class="compatibility-icon" aria-hidden="true">{{ check.status === 'compatible' ? '✓' : '⚠' }}</span>
-						<div><strong>{{ check.label }} · {{ statusLabel(check.status) }}</strong><p>{{ check.message }}</p></div>
+						<div>
+							<strong>{{ check.label }} · {{ statusLabel(check.status) }}</strong>
+							<p>{{ check.message }}</p>
+						</div>
 					</article>
 				}
 			</div>

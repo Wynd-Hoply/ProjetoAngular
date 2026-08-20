@@ -24,15 +24,16 @@ export class Header {
   private readonly dialog = inject(MatDialog);
   readonly piecesMenuOpen = signal(false);
 
+  // Atualizado com imagens de exemplo para cada categoria
   readonly pcComponents = [
-    { label: 'Processadores', icon: 'CPU', route: '/components/cpu' },
-    { label: 'Coolers de processador', icon: 'CLK', route: '/components/cooler' },
-    { label: 'Placas de vídeo', icon: 'GPU', route: '/components/gpu' },
-    { label: 'Placas-mãe', icon: 'MB', route: '/components/motherboard' },
-    { label: 'Memórias', icon: 'RAM', route: '/components/ram' },
-    { label: 'Armazenamentos', icon: 'SSD', route: '/components/storage' },
-    { label: 'Gabinetes', icon: 'CASE', route: '/components/case' },
-    { label: 'Fontes', icon: 'PSU', route: '/components/psu' },
+    { label: 'Processadores', icon: 'CPU', route: '/components/cpu', image: 'assets/images/LogoWM.png' },
+    { label: 'Coolers', icon: 'CLK', route: '/components/cooler', image: 'assets/images/LogoWM.png' },
+    { label: 'Placas de vídeo', icon: 'GPU', route: '/components/gpu', image: 'assets/images/LogoWM.png' },
+    { label: 'Placas-mãe', icon: 'MB', route: '/components/motherboard', image: 'assets/images/LogoWM.png' },
+    { label: 'Memórias RAM', icon: 'RAM', route: '/components/ram', image: 'assets/images/LogoWM.png' },
+    { label: 'Armazenamento', icon: 'SSD', route: '/components/storage', image: 'assets/images/LogoWM.png' },
+    { label: 'Gabinetes', icon: 'CASE', route: '/components/case', image: 'assets/images/LogoWM.png' },
+    { label: 'Fontes', icon: 'PSU', route: '/components/psu', image: 'assets/images/LogoWM.png' },
   ];
 
   readonly peripherals = [
@@ -40,8 +41,6 @@ export class Header {
     { label: 'Mouses', icon: 'MOU' },
     { label: 'Teclados', icon: 'KEY' },
     { label: 'Fones de ouvido', icon: 'AUDIO' },
-    { label: 'Mousepads', icon: 'PAD' },
-    { label: 'Cadeiras', icon: 'CHAIR' },
   ];
 
   togglePiecesMenu(): void {
@@ -54,11 +53,9 @@ export class Header {
 
   onDocumentClick(event: MouseEvent): void {
     const target = event.target;
-
     if (!(target instanceof Node) || this.elementRef.nativeElement.contains(target)) {
       return;
     }
-
     this.closePiecesMenu();
   }
 

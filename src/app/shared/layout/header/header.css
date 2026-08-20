@@ -1,11 +1,30 @@
-mat-toolbar {
+.custom-toolbar {
   display: flex;
-  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
   position: sticky;
   top: 0;
   z-index: 1000;
-  border-radius: 14px;
-  overflow: visible;
+  padding: 0 1.5rem;
+  height: 72px;
+  background-color: var(--card-bg) !important;
+  color: var(--text-primary) !important;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+  border-bottom: 1px solid var(--border-color);
+}
+
+.logo-btn {
+  background: transparent;
+  border: none;
+  padding: 0;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+}
+
+.logo-btn img {
+  height: 40px;
+  width: auto;
 }
 
 .flex-spacer {
@@ -15,201 +34,159 @@ mat-toolbar {
 .header-actions {
   display: flex;
   align-items: center;
-  flex: 1 1 auto;
-  flex-wrap: wrap;
-  justify-content: flex-end;
-  gap: 8px;
+  gap: 0.5rem;
 }
 
-.header-actions > * {
-  margin-left: 0;
-}
-
-.small-button.mat-mdc-button, 
-.small-button.mat-mdc-raised-button {
-  height: 28px;
-  line-height: 28px;
-  padding: 0 8px;
-  font-size: 12px;
-  min-width: unset !important;
-}
-
-.small-button {
-  background: transparent;
-  border: none;
-  padding: 0;
-  margin: 0;
-  cursor: pointer;
-  outline: none;
-}
-
-.auth-badge {
-  display: inline-flex;
-  align-items: center;
-  min-height: 36px;
-  padding: 0 0.85rem;
-  border-radius: 999px;
-  background: rgba(255, 255, 255, 0.16);
-  color: currentColor;
-  font-size: 0.9rem;
+.header-actions button[mat-button] {
+  color: var(--text-primary);
+  border-radius: 8px;
   font-weight: 600;
 }
 
-img {
-  height: 40px;
-  width: auto;
+/* Efeito da Aba Ativa (Igual à referência enviada) */
+.pieces-menu__trigger.active-tab {
+  background-color: var(--primary) !important;
+  color: #ffffff !important;
+  border-radius: 8px 8px 0 0 !important;
+}
+
+.pieces-menu__trigger .arrow {
+  font-size: 0.7rem;
+  margin-left: 4px;
 }
 
 .pieces-menu {
   position: relative;
 }
 
-.pieces-menu__trigger {
-  position: relative;
-}
-
+/* Painel Mega Menu com Exemplos Visuais */
 .pieces-menu__panel {
   position: absolute;
-  top: calc(100% + 10px);
-  left: 0;
+  top: calc(100% + 8px);
+  left: 50%;
+  transform: translateX(-50%);
   z-index: 1200;
-  display: grid;
-  gap: 0.85rem;
-  min-width: min(36rem, calc(100vw - 1rem));
-  max-width: calc(100vw - 1rem);
-  padding: 0.95rem;
-  border: 1px solid rgba(148, 163, 184, 0.28);
-  border-radius: 18px;
-  background: linear-gradient(180deg, rgba(16, 22, 33, 0.98), rgba(11, 16, 25, 0.98));
-  box-shadow: 0 18px 40px rgba(2, 6, 23, 0.45);
-}
-
-.pieces-menu__section {
-  display: grid;
-  gap: 0.4rem;
+  width: 600px;
+  max-width: 90vw;
+  padding: 1.25rem;
+  border: 1px solid var(--border-color);
+  border-radius: 12px;
+  background-color: var(--card-bg);
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
 }
 
 .pieces-menu__section-title {
-  margin: 0 0 0.2rem;
-  color: #9fb0c6;
-  font-size: 0.72rem;
+  margin: 0 0 1rem;
+  color: var(--text-secondary);
+  font-size: 0.75rem;
   font-weight: 800;
-  letter-spacing: 0.12em;
+  letter-spacing: 0.1em;
   text-transform: uppercase;
 }
 
-.pieces-menu__divider {
-  height: 1px;
-  background: rgba(148, 163, 184, 0.18);
-}
-
-.pieces-menu__item {
+/* Grid de Cards com Imagens */
+.mega-grid {
   display: grid;
-  grid-template-columns: 2rem minmax(0, 1fr) auto;
-  align-items: center;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
   gap: 0.75rem;
-  width: 100%;
-  min-height: 3rem;
-  padding: 0.65rem 0.75rem;
-  border: 1px solid transparent;
-  border-radius: 12px;
-  background: transparent;
-  color: #e5eefb;
+}
+
+.pieces-card-item {
+  display: flex;
+  align-items: center;
+  gap: 0.85rem;
+  padding: 0.65rem;
+  border: 1px solid var(--border-color);
+  border-radius: 8px;
+  background: var(--bg-color);
   text-decoration: none;
-  text-align: left;
-  cursor: pointer;
-  transition: background-color 140ms ease, border-color 140ms ease, transform 140ms ease;
+  transition: all 150ms ease;
 }
 
-.pieces-menu__item:hover,
-.pieces-menu__item:focus-visible {
-  border-color: rgba(96, 165, 250, 0.35);
-  background: rgba(37, 99, 235, 0.14);
-  transform: translateY(-1px);
+.pieces-card-item:hover {
+  border-color: var(--primary);
+  transform: translateY(-2px);
 }
 
-.pieces-menu__item--disabled {
-  cursor: default;
-}
-
-.pieces-menu__item--disabled:hover,
-.pieces-menu__item--disabled:focus-visible {
-  border-color: transparent;
-  background: rgba(255, 255, 255, 0.04);
-  transform: none;
-}
-
-.pieces-menu__icon {
+.pieces-card-img {
+  width: 42px;
+  height: 42px;
+  border-radius: 6px;
+  background: var(--card-bg);
   display: grid;
   place-items: center;
-  width: 2rem;
-  height: 2rem;
-  border-radius: 9px;
-  background: linear-gradient(180deg, rgba(56, 189, 248, 0.22), rgba(37, 99, 235, 0.18));
-  color: #dbeafe;
-  font-size: 0.7rem;
-  font-weight: 800;
-  letter-spacing: 0.04em;
+  overflow: hidden;
+  flex-shrink: 0;
 }
 
-.pieces-menu__label {
+.pieces-card-img img {
+  width: 32px;
+  height: 32px;
+  object-fit: contain;
+}
+
+.pieces-card-info {
+  display: grid;
   min-width: 0;
-  font-size: 0.92rem;
-  font-weight: 700;
-  white-space: nowrap;
 }
 
-.pieces-menu__status {
-  color: #9fb0c6;
-  font-size: 0.72rem;
+.pieces-card-label {
+  color: var(--text-primary);
+  font-size: 0.85rem;
   font-weight: 700;
   white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.pieces-card-sub {
+  color: var(--text-secondary);
+  font-size: 0.7rem;
+}
+
+/* Botões de Ação Direita */
+.btn-outline {
+  color: var(--text-primary) !important;
+  border-color: var(--border-color) !important;
+  border-radius: 8px;
+  margin-left: 8px;
+}
+
+.btn-primary {
+  background-color: var(--primary) !important;
+  color: #ffffff !important;
+  border-radius: 8px;
+  margin-left: 8px;
+}
+
+.auth-badge {
+  display: inline-flex;
+  align-items: center;
+  height: 36px;
+  padding: 0 1rem;
+  margin-left: 1rem;
+  border-radius: 999px;
+  background-color: var(--border-color);
+  color: var(--text-primary);
+  font-size: 0.85rem;
+  font-weight: 600;
 }
 
 .theme-toggle-btn {
-  width: 40px;
-  min-width: 40px;
-  height: 40px;
-  padding: 0;
-  border-radius: 999px;
-  position: relative;
-}
-
-.theme-toggle-btn .icon {
-  position: absolute;
-  inset: 0;
-  display: inline-flex;
+  color: var(--text-primary) !important;
+  display: flex;
   align-items: center;
   justify-content: center;
-  font-size: 18px;
-  line-height: 1;
-  transform: translateY(-0.5px);
+  margin-left: 8px;
 }
 
-@media (max-width: 900px) {
-  .header-actions {
-    justify-content: flex-start;
+@media (max-width: 850px) {
+  .mega-grid {
+    grid-template-columns: 1fr;
   }
-
   .pieces-menu__panel {
-    min-width: min(92vw, 36rem);
-  }
-}
-
-@media (max-width: 640px) {
-  .pieces-menu__panel {
+    width: calc(100vw - 32px);
     left: 0;
-    right: auto;
-    width: min(100vw - 1rem, 28rem);
-    max-width: calc(100vw - 1rem);
-    padding: 0.8rem;
-  }
-
-  .pieces-menu__item {
-    padding-inline: 0.7rem;
-  }
-
-  .pieces-menu__label {
-    white-space: normal;
+    transform: none;
   }
 }
