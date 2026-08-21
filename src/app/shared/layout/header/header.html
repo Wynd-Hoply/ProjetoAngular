@@ -5,41 +5,24 @@
 
   <span class="flex-spacer"></span>
 
-  <div class="header-actions">
+  <!-- AÇÕES DESKTOP (Escondidas no celular) -->
+  <div class="header-actions desktop-only">
     <button mat-button routerLink="/home">Início</button>
     <button mat-button routerLink="/auto-build">Auto Build</button>
 
-    <!-- Botão Peças com destaque de aba ativa quando aberto -->
     <div class="pieces-menu" [class.pieces-menu--open]="piecesMenuOpen()">
-      <button
-        mat-button
-        type="button"
-        class="pieces-menu__trigger"
-        [class.active-tab]="piecesMenuOpen()"
-        aria-haspopup="true"
-        [attr.aria-expanded]="piecesMenuOpen()"
-        aria-controls="pieces-menu-panel"
-        (click)="togglePiecesMenu()"
-      >
+      <button mat-button type="button" class="pieces-menu__trigger" [class.active-tab]="piecesMenuOpen()" (click)="togglePiecesMenu()">
         Peças <span class="arrow">▾</span>
       </button>
 
       @if (piecesMenuOpen()) {
-        <div id="pieces-menu-panel" class="pieces-menu__panel" role="menu" aria-label="Menu de peças">
+        <div class="pieces-menu__panel" role="menu">
           <div class="pieces-menu__section">
             <p class="pieces-menu__section-title">Componentes Principais</p>
-
             <div class="mega-grid">
               @for (item of pcComponents; track item.route) {
-                <a
-                  class="pieces-card-item"
-                  [routerLink]="item.route"
-                  role="menuitem"
-                  (click)="closePiecesMenu()"
-                >
-                  <div class="pieces-card-img">
-                    <img [src]="item.image" [alt]="item.label" />
-                  </div>
+                <a class="pieces-card-item" [routerLink]="item.route" (click)="closePiecesMenu()">
+                  <div class="pieces-card-img"><img [src]="item.image" [alt]="item.label" /></div>
                   <div class="pieces-card-info">
                     <span class="pieces-card-label">{{ item.label }}</span>
                     <span class="pieces-card-sub">Ver catálogo</span>
@@ -58,22 +41,67 @@
 
     @if (authService.isAuthenticated()) {
       <span class="auth-badge">{{ authService.displayName() }}</span>
-      <button mat-stroked-button class="btn-outline" routerLink="/auth/login" type="button" (click)="authService.logout()">Sair</button>
+      <button mat-stroked-button class="btn-outline" routerLink="/auth/login" (click)="authService.logout()">Sair</button>
     } @else {
-      <button mat-stroked-button class="btn-outline" type="button" (click)="openLogin()">Entrar</button>
-      <button mat-flat-button class="btn-primary" routerLink="/auth/register" type="button">Cadastre-se</button>
+      <button mat-stroked-button class="btn-outline" (click)="openLogin()">Entrar</button>
+      <button mat-flat-button class="btn-primary" routerLink="/auth/register">Cadastre-se</button>
     }
 
-    <button
-      mat-icon-button
-      type="button"
-      class="theme-toggle-btn"
-      (click)="themeService.toggleTheme()"
-      [attr.aria-label]="themeService.isDarkMode() ? 'Ativar modo claro' : 'Ativar modo escuro'"
-    >
-      <span class="icon">
-        {{ themeService.isDarkMode() ? '☀' : '☾' }}
-      </span>
+    <button mat-icon-button class="theme-toggle-btn" (click)="themeService.toggleTheme()">
+      <span class="icon">{{ themeService.isDarkMode() ? '☀' : '☾' }}</span>
     </button>
   </div>
+
+  <!-- BOTÃO MENU HAMBÚRGUER (Apenas no celular) -->
+  <button class="hamburger-btn mobile-only" (click)="toggleMobileMenu()" aria-label="Abrir menu">
+    <svg viewBox="0 0 24 24" width="28" height="28" fill="currentColor">
+      <path d="M3 18h18v-2H3v2zm0-5h18v-2H3v2zm0-7v2h18V6H3z"/>
+    </svg>
+  </button>
 </mat-toolbar>
+
+<!-- GAVETA LATERAL (SIDEBAR MOBILE) -->
+@if (mobileMenuOpen()) {
+  <div class="mobile-backdrop" (click)="closeMobileMenu()"></div>
+  
+  <aside class="mobile-sidebar">
+    <div class="mobile-sidebar__header">
+      <img src="assets/images/LogoWM.png" alt="Logo" class="sidebar-logo" />
+      <button class="close-btn" (click)="closeMobileMenu()">✕</button>
+    </div>
+    
+    <nav class="mobile-nav">
+      <a class="mobile-nav__link" routerLink="/home" (click)="closeMobileMenu()">Home</a>
+      <a class="mobile-nav__link" routerLink="/build-up" (click)="closeMobileMenu()">Montar seu PC</a>
+      
+      <!-- Lista aninhada idêntica à referência -->
+      <div class="mobile-nav__group">
+        <span class="mobile-nav__group-title">Peças</span>
+        <div class="mobile-nav__sublinks">
+          @for (item of pcComponents; track item.route) {
+            <a class="mobile-nav__sublink" [routerLink]="item.route" (click)="closeMobileMenu()">
+              {{ item.label }}
+            </a>
+          }
+        </div>
+      </div>
+
+      <a class="mobile-nav__link" routerLink="/builds" (click)="closeMobileMenu()">Builds dos usuários</a>
+      <a class="mobile-nav__link" routerLink="/compare" (click)="closeMobileMenu()">Comparar componentes</a>
+
+      <hr class="mobile-divider">
+
+      @if (authService.isAuthenticated()) {
+        <div class="mobile-auth-info">Logado como: {{ authService.displayName() }}</div>
+        <button class="mobile-nav__link" (click)="authService.logout(); closeMobileMenu()">Sair</button>
+      } @else {
+        <button class="mobile-nav__link" (click)="openLogin()">Entrar</button>
+        <a class="mobile-nav__link mobile-nav__link--highlight" routerLink="/auth/register" (click)="closeMobileMenu()">Cadastre-se</a>
+      }
+
+      <button class="mobile-nav__link" (click)="themeService.toggleTheme()">
+        Tema: {{ themeService.isDarkMode() ? 'Modo Claro ☀' : 'Modo Escuro ☾' }}
+      </button>
+    </nav>
+  </aside>
+}

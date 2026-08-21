@@ -9,22 +9,23 @@ export class ThemeService {
   private readonly platformId = inject(PLATFORM_ID);
   private readonly isBrowser = isPlatformBrowser(this.platformId);
   
-  // Agora o padrão inicial é true (Modo Escuro)
-  isDarkMode = signal(true); 
+  isDarkMode = signal<boolean>(this.getInitialThemeState());
 
   constructor() {
-    this.initTheme();
+    this.applyTheme(this.isDarkMode());
   }
 
-  private initTheme(): void {
+  private getInitialThemeState(): boolean {
     if (!this.isBrowser) {
-      return;
+      return false;
     }
 
     const savedTheme = localStorage.getItem(this.THEME_KEY);
-    // Se não tiver nada salvo, assume escuro. Se tiver, lê a preferência.
-    const isDark = savedTheme ? savedTheme === 'dark' : true; 
-    this.setDarkMode(isDark);
+    if (savedTheme) {
+      return savedTheme === 'dark';
+    }
+
+    return typeof window.matchMedia === 'function' && window.matchMedia('(prefers-color-scheme: dark)').matches;
   }
 
   toggleTheme(): void {
@@ -39,11 +40,19 @@ export class ThemeService {
     }
 
     localStorage.setItem(this.THEME_KEY, isDark ? 'dark' : 'light');
+    this.applyTheme(isDark);
+  }
 
-    // LÓGICA INVERTIDA: Adiciona 'light-mode' se NÃO for dark
+  private applyTheme(isDark: boolean): void {
+    if (!this.isBrowser) {
+      return;
+    }
+
     if (isDark) {
+      document.body.classList.add('dark-mode');
       document.body.classList.remove('light-mode');
     } else {
+      document.body.classList.remove('dark-mode');
       document.body.classList.add('light-mode');
     }
   }
