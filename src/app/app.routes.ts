@@ -39,6 +39,10 @@ export const routes: Routes = [
     loadComponent: () => import('./features/build-summary/build-summary').then((m) => m.BuildSummary),
   },
   {
+    path: 'auto-build',
+    loadComponent: () => import('./features/auto-build/auto-build').then((m) => m.AutoBuild),
+  },
+  {
     path: 'pre-builds',
     redirectTo: 'builds',
   },
