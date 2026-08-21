@@ -1,42 +1,91 @@
 .container-principal {
-	display: grid;
-	gap: 1.25rem;
-	padding: 1.25rem;
+  display: grid;
+  gap: 1.25rem;
+  padding: 1.25rem;
 }
 
 .bloco-controle {
-	display: grid;
+  display: grid;
 }
 
 .bloco-controle__card {
-	display: flex;
-	align-items: center;
-	justify-content: space-between;
-	gap: 1rem;
-	padding: 1.25rem 1.4rem;
-	border-radius: 20px;
-    /* ATUALIZADO: Usando as variáveis */
-	border: 1px solid var(--border-color);
-	background: var(--card-bg);
-	color: var(--text-primary);
-	box-shadow: 0 24px 48px rgba(0, 0, 0, 0.2);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  padding: 1.25rem 1.4rem;
+  border-radius: 20px;
+  border: 1px solid var(--border-color);
+  background: var(--card-bg);
+  color: var(--text-primary);
+  box-shadow: 0 12px 24px rgba(0, 0, 0, 0.06);
 }
 
 .bloco-controle__card--active {
-	border-color: var(--accent);
+  border-color: var(--primary);
 }
 
 .bloco-controle__eyebrow {
-	margin: 0 0 0.35rem;
-	font-size: 0.78rem;
-	letter-spacing: 0.14em;
-	text-transform: uppercase;
-	color: var(--text-secondary);
+  margin: 0 0 0.35rem;
+  font-size: 0.78rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--text-secondary);
 }
 
-/* ... mantenha o restante das classes substituindo as cores ... */
+.bloco-controle__card h2 {
+  margin: 0;
+  font-size: clamp(1.1rem, 2vw, 1.4rem);
+}
+
+.bloco-controle__card p {
+  margin: 0.4rem 0 0;
+  color: var(--text-secondary);
+}
+
+.bloco-controle__actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+}
+
+/* ESTRUTURA DO BOTÃO RESTAURADA */
 .bloco-controle__action {
-    /* ... */
-	background: var(--primary);
-	color: #fff; /* Texto do botão primário pode ficar fixo */
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 44px;
+  padding: 0 1rem;
+  border-radius: 8px;
+  border: 1px solid var(--primary);
+  background: var(--primary);
+  color: #ffffff;
+  text-decoration: none;
+  font-weight: 600;
+  transition: transform 160ms ease, box-shadow 160ms ease, filter 160ms ease;
+  cursor: pointer;
+}
+
+.bloco-controle__action:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.08);
+  filter: brightness(1.15);
+}
+
+/* BOTÃO SECUNDÁRIO (FANTASMA) */
+.bloco-controle__action--ghost {
+  background: transparent;
+  border-color: var(--border-color);
+  color: var(--text-primary);
+}
+
+.bloco-controle__action--ghost:hover {
+  background: var(--border-color);
+  filter: none;
+}
+
+hr {
+  border: 0;
+  border-top: 1px solid var(--border-color);
+  margin: 2rem 0;
 }
