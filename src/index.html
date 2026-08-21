@@ -13,8 +13,33 @@
       rel="stylesheet"
     />
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet" />
+    
+    <!-- Script preventivo contra o flash de tema claro ao recarregar -->
+    <script>
+      try {
+        const savedTheme = localStorage.getItem('user-theme');
+        const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+        if (savedTheme === 'dark' || (!savedTheme && prefersDark)) {
+          document.documentElement.classList.add('dark-flash');
+          // Adiciona a classe dark-mode direto no body assim que o DOM estiver pronto
+          document.addEventListener('DOMContentLoaded', () => {
+            document.body.classList.add('dark-mode');
+          });
+        }
+      } catch (e) {}
+    </script>
   </head>
   <body>
+    <script>
+      // Aplica imediatamente caso o body já exista no fluxo inicial
+      try {
+        const savedTheme = localStorage.getItem('user-theme');
+        const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+        if (savedTheme === 'dark' || (!savedTheme && prefersDark)) {
+          document.body.classList.add('dark-mode');
+        }
+      } catch (e) {}
+    </script>
     <app-root></app-root>
   </body>
 </html>

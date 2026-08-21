@@ -2,55 +2,45 @@
    VARIÁVEIS DE TEMA (MODO ESCURO - PADRÃO)
    ========================================= */
 :root {
-  /* Cores de Destaque */
-  --primary: #FF1F78;       /* Magenta Neon */
-  --accent: #3C1FFF;        /* Índigo Ultramar */
-  
-  /* Estrutura */
-  --bg-color: #130C1E;      /* Grafite Profundo */
-  --card-bg: #1D142E;       /* Roxo Escuro Profundo */
-  --border-color: #2E2145;  /* Violeta Suave */
-  
-  /* Textos */
-  --text-primary: #FDFDF5;  /* Off-White Quente */
-  --text-secondary: #A297B8;/* Lilás Acinzentado */
+  --primary: #FF1F78;       
+  --accent: #00fbff;        
+  --bg-color: #130C1E;      
+  --card-bg: #1D142E;       
+  --border-color: #2E2145;  
+  --text-primary: #FDFDF5;  
+  --text-secondary: #A297B8;
 }
 
 /* =========================================
    VARIÁVEIS DE TEMA (MODO CLARO)
    ========================================= */
 body.light-mode {
-  --primary: #D9005B;       /* Magenta Vivo */
-  --accent: #2B10D9;        /* Índigo Profundo */
-  
-  --bg-color: #F9F7FA;      /* Off-White Lilás Suave */
-  --card-bg: #FFFFFF;       /* Branco Puro */
-  --border-color: #E8E3ED;  /* Cinza Lilás Suave */
-  
-  --text-primary: #1A1228;  /* Grafite Violeta Escuro */
-  --text-secondary: #665B78;/* Roxo Acinzentado Médio */
+  --primary: #D9005B;       
+  --accent: #2B10D9;        
+  --bg-color: #F9F7FA;      
+  --card-bg: #FFFFFF;       
+  --border-color: #E8E3ED;  
+  --text-primary: #1A1228;  
+  --text-secondary: #665B78;
 }
 
-/* =========================================
-   CONFIGURAÇÕES BASE
-   ========================================= */
 * {
   box-sizing: border-box;
 }
 
 body {
   margin: 0;
+  /* Define o fundo escuro padrão imediatamente para evitar flash branco */
   background-color: var(--bg-color);
   color: var(--text-primary);
   transition: background-color 0.3s ease, color 0.3s ease;
   font-family: Arial, sans-serif;
-  /* padding: 2rem; (Mantenha se realmente for necessário para o layout geral) */
 }
-
-/* Modal e Dialogs (Baseado no seu código) */
-.login-dialog-panel .mat-mdc-dialog-surface {
-  padding: 0;
-  border-radius: 6px;
-  overflow: hidden;
-  background-color: var(--card-bg); /* Adicionado para acompanhar o tema */
+/* Aplicação global das cores de fundo e texto */
+body {
+  background-color: var(--bg-color);
+  color: var(--text-primary);
+  font-family: system-ui, -apple-system, sans-serif;
+  margin: 0;
+  transition: background-color 200ms ease, color 200ms ease;
 }
