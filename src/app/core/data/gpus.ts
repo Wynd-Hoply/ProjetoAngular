@@ -11,7 +11,7 @@ export const gpus: Component[] = [
     price: 1_899.9,
     performanceScore: 76,
     powerDrawWatts: 115,
-    image: componentImage,
+    image: '/assets/images/GPUs/201.jpg',
     specifications: { vramGB: 8, memoryType: 'GDDR6', memorySpeedMHz: 17000, interface: 'PCIe 4.0 x8', tdpWatts: 115, gpuLengthMm: 240 },
   },
   {
@@ -22,7 +22,7 @@ export const gpus: Component[] = [
     price: 2_899.9,
     performanceScore: 88,
     powerDrawWatts: 245,
-    image: componentImage,
+    image: '/assets/images/GPUs/202.jpg',
     specifications: { vramGB: 12, memoryType: 'GDDR6', memorySpeedMHz: 18000, interface: 'PCIe 4.0 x16', tdpWatts: 245, gpuLengthMm: 320 },
   },
   {
@@ -33,7 +33,7 @@ export const gpus: Component[] = [
     price: 4_199.9,
     performanceScore: 94,
     powerDrawWatts: 220,
-    image: componentImage,
+    image: '/assets/images/GPUs/203.jpg',
     specifications: { vramGB: 12, memoryType: 'GDDR6X', memorySpeedMHz: 21000, interface: 'PCIe 4.0 x16', tdpWatts: 220, gpuLengthMm: 300 },
   },
   {
@@ -44,7 +44,7 @@ export const gpus: Component[] = [
     price: 6_499.9,
     performanceScore: 99,
     powerDrawWatts: 355,
-    image: componentImage,
+    image: '/assets/images/GPUs/204.webp',
     specifications: { vramGB: 24, memoryType: 'GDDR6', memorySpeedMHz: 20000, interface: 'PCIe 4.0 x16', tdpWatts: 355, gpuLengthMm: 345 },
   },
 ];

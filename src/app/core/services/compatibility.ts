@@ -21,11 +21,26 @@ export class CompatibilityService {
   readonly hasIncompatibility = computed(() => this.checks().some((check) => check.status === 'incompatible'));
   readonly isCompatible = computed(() => !this.hasIncompatibility() && this.checks().some((check) => check.status === 'compatible'));
 
+  evaluateSelection(selected: Partial<Record<Component['category'], Component>>): CompatibilityCheck[] {
+    return this.evaluate(selected);
+  }
+
+  estimatedConsumptionFor(selected: Partial<Record<Component['category'], Component>>): number {
+    return Object.values(selected)
+      .filter((component): component is Component => component !== undefined)
+      .reduce((total, component) => total + component.powerDrawWatts, 0);
+  }
+
+  recommendedWattageFor(selected: Partial<Record<Component['category'], Component>>): number {
+    return Math.ceil(this.estimatedConsumptionFor(selected) * 1.2);
+  }
+
   private evaluate(selected: Partial<Record<Component['category'], Component>>): CompatibilityCheck[] {
     const checks: CompatibilityCheck[] = [];
     const cpu = selected.cpu;
     const motherboard = selected.motherboard;
     const ram = selected.ram;
+    const gpu = selected.gpu;
     const cooler = selected.cooler;
     const powerSupply = selected.psu;
     const computerCase = selected.case;
@@ -68,6 +83,22 @@ export class CompatibilityService {
       checks.push(formFactor && supportedFormFactors.includes(formFactor)
         ? this.compatible('case-motherboard', 'Gabinete e placa-mãe', `O gabinete suporta o formato ${formFactor}.`)
         : this.incompatible('case-motherboard', 'Gabinete e placa-mãe', `A placa-mãe utiliza formato ${formFactor ?? 'não informado'}, não listado como suportado pelo gabinete.`));
+    }
+
+    if (gpu && computerCase) {
+      const gpuLength = gpu.specifications.gpuLengthMm;
+      const supportedLength = computerCase.specifications.gpuLengthMm;
+      checks.push(gpuLength && supportedLength && gpuLength <= supportedLength
+        ? this.compatible('gpu-case', 'GPU e gabinete', `A GPU mede ${gpuLength} mm e cabe no gabinete.`)
+        : this.incompatible('gpu-case', 'GPU e gabinete', `A GPU mede ${gpuLength ?? 'não informado'} mm, mas o gabinete suporta até ${supportedLength ?? 'não informado'} mm.`));
+    }
+
+    if (cooler && computerCase) {
+      const coolerHeight = cooler.specifications.coolerHeightMm ?? cooler.specifications.radiatorSizeMm;
+      const supportedHeight = computerCase.specifications.coolerHeightMm;
+      checks.push(coolerHeight && supportedHeight && coolerHeight <= supportedHeight
+        ? this.compatible('cooler-case', 'Cooler e gabinete', `O cooler cabe no gabinete com ${coolerHeight} mm.`)
+        : this.incompatible('cooler-case', 'Cooler e gabinete', `O cooler exige ${coolerHeight ?? 'medida não informada'} mm, mas o gabinete suporta até ${supportedHeight ?? 'não informado'} mm.`));
     }
 
     return checks;

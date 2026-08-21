@@ -11,7 +11,7 @@ export const cases: Component[] = [
     price: 399.9,
     performanceScore: 70,
     powerDrawWatts: 0,
-    image: componentImage,
+    image: '/assets/images/Gabinetes/701.jpg',
     specifications: { formFactor: 'Micro-ATX', supportedFormFactors: ['Micro-ATX', 'Mini-ITX'], gpuLengthMm: 330, coolerHeightMm: 161 },
   },
   {
@@ -22,7 +22,7 @@ export const cases: Component[] = [
     price: 599.9,
     performanceScore: 82,
     powerDrawWatts: 0,
-    image: componentImage,
+    image: '/assets/images/Gabinetes/702.jpg',
     specifications: { formFactor: 'ATX', supportedFormFactors: ['ATX', 'Micro-ATX', 'Mini-ITX'], gpuLengthMm: 365, coolerHeightMm: 165 },
   },
   {
@@ -33,7 +33,7 @@ export const cases: Component[] = [
     price: 799.9,
     performanceScore: 91,
     powerDrawWatts: 0,
-    image: componentImage,
+    image: '/assets/images/Gabinetes/703.jpg',
     specifications: { formFactor: 'ATX', supportedFormFactors: ['ATX', 'Micro-ATX', 'Mini-ITX'], gpuLengthMm: 392, coolerHeightMm: 180 },
   },
   {
@@ -44,7 +44,7 @@ export const cases: Component[] = [
     price: 299.9,
     performanceScore: 58,
     powerDrawWatts: 0,
-    image: componentImage,
+    image: '/assets/images/Gabinetes/704.jpg',
     specifications: { formFactor: 'ATX', supportedFormFactors: ['ATX', 'Micro-ATX', 'Mini-ITX'], gpuLengthMm: 350, coolerHeightMm: 155 },
   },
 ];
