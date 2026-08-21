@@ -48,7 +48,7 @@ import { ThemeService } from './core/services/theme';
           <nav class="footer-nav">
             <a routerLink="/home">Início</a>
             <a routerLink="/build-up">Montar PC</a>
-            <a routerLink="/builds">Builds de Usuários</a>
+            <a routerLink="/builds">Minhas Builds</a>
             <a routerLink="/compare">Comparar</a>
           </nav>
         </div>
