@@ -8,7 +8,7 @@
       <h1 id="compare-title">Comparar componentes</h1>
       <p>{{ comparison.selected().length }} de {{ comparison.maxItems }} componentes selecionados.</p>
     </div>
-    <button type="button" (click)="comparison.clear()">Limpar comparação</button>
+    <button type="button" class="action-button-clear" (click)="comparison.clear()">Limpar comparação</button>
   </header>
 
   @if (comparison.selected().length > 0) {
@@ -39,7 +39,7 @@
     <div class="empty-state">
       <h2>Nenhum componente selecionado</h2>
       <p>Volte ao catálogo e marque os componentes que deseja comparar.</p>
-      <a routerLink="/components">Explorar componentes</a>
+      <a routerLink="/components" class="explore-btn">Explorar componentes</a>
     </div>
   }
 </section>

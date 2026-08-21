@@ -3,8 +3,6 @@ import { Routes } from '@angular/router';
 import { authGuard } from './core/guards/auth.guard';
 import { BuildUp } from './features/build-up/build-up';
 
-
-
 export const routes: Routes = [
   {
     path: '',
@@ -17,6 +15,11 @@ export const routes: Routes = [
   {
     path: 'home',
     loadComponent: () => import('./features/home/home/home').then((m) => m.Home),
+  },
+  // ORDEM CRÍTICA: Rota específica sempre antes da genérica
+  {
+    path: 'components/item/:id',
+    loadComponent: () => import('./features/produtos/produto/produtos').then((m) => m.Produto),
   },
   {
     path: 'components',

@@ -1,0 +1,124 @@
+/* =========================================
+   ESTRUTURA PRINCIPAL DO FOOTER
+   ========================================= */
+.custom-footer {
+  background-color: var(--card-bg);
+  border-top: 1px solid var(--border-color);
+  color: var(--text-primary);
+  padding: 4rem 1.5rem 1.5rem;
+  margin-top: 4rem; /* Dá um respiro entre o conteúdo da página e o rodapé */
+}
+
+.footer-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: 2fr 1fr 1fr;
+  gap: 3rem;
+  margin-bottom: 3rem;
+}
+
+/* =========================================
+   COLUNA DA MARCA
+   ========================================= */
+.footer-logo {
+  height: 48px;
+  width: auto;
+  margin-bottom: 1rem;
+}
+
+.footer-description {
+  color: var(--text-secondary);
+  font-size: 0.95rem;
+  line-height: 1.6;
+  max-width: 400px;
+}
+
+/* =========================================
+   LINKS RÁPIDOS E NAVEGAÇÃO
+   ========================================= */
+.footer-links h3,
+.footer-social h3 {
+  color: var(--text-primary);
+  font-size: 1.1rem;
+  margin: 0 0 1.25rem;
+}
+
+.footer-nav {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.footer-nav a {
+  color: var(--text-secondary);
+  text-decoration: none;
+  font-size: 0.95rem;
+  font-weight: 600;
+  transition: color 150ms ease;
+  width: fit-content;
+}
+
+.footer-nav a:hover {
+  color: var(--primary); /* Brilha no Magenta quando passa o mouse */
+}
+
+/* =========================================
+   REDES SOCIAIS
+   ========================================= */
+.social-icons {
+  display: flex;
+  gap: 0.75rem;
+}
+
+.social-btn {
+  display: grid;
+  place-items: center;
+  width: 40px;
+  height: 40px;
+  border-radius: 8px;
+  background-color: var(--bg-color);
+  border: 1px solid var(--border-color);
+  color: var(--text-primary);
+  text-decoration: none;
+  font-weight: 800;
+  font-size: 0.85rem;
+  transition: all 150ms ease;
+}
+
+.social-btn:hover {
+  border-color: var(--primary);
+  color: var(--primary);
+  transform: translateY(-2px);
+}
+
+/* =========================================
+   LINHA FINAL (COPYRIGHT)
+   ========================================= */
+.footer-bottom {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding-top: 1.5rem;
+  border-top: 1px solid var(--border-color);
+  text-align: center;
+}
+
+.footer-bottom p {
+  margin: 0;
+  color: var(--text-secondary);
+  font-size: 0.85rem;
+}
+
+/* =========================================
+   RESPONSIVIDADE (MOBILE)
+   ========================================= */
+@media (max-width: 768px) {
+  .footer-container {
+    grid-template-columns: 1fr;
+    gap: 2rem;
+  }
+  
+  .custom-footer {
+    padding: 3rem 1rem 1rem;
+  }
+}

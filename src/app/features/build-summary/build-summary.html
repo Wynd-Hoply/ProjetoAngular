@@ -13,7 +13,6 @@
 
     <div class="summary-actions" aria-label="Ações da configuração">
       <a class="action-button action-button--primary" routerLink="/builder">Editar configuração</a>
-      <button type="button" class="action-button action-button--secondary" (click)="saveBuild()">Salvar build</button>
       <a class="action-button action-button--quiet" routerLink="/components">Voltar ao catálogo</a>
     </div>
 
@@ -22,7 +21,7 @@
         <div class="section-heading"><div><p class="eyebrow">Visão geral</p><h2 id="components-title">Componentes escolhidos</h2></div><span>{{ components().length }} itens</span></div>
         <div class="component-grid">
           @for (item of components(); track item.component.id) {
-            <article class="component-card">
+            <article class="component-card" [routerLink]="['/components', item.slot.category]" style="cursor: pointer;" title="Ver componentes da categoria">
               <div class="component-card__image"><img [src]="item.component.image" [alt]="'Imagem de ' + item.component.name" width="96" height="96" /></div>
               <div class="component-card__body"><span class="component-category">{{ item.slot.label }}</span><h3>{{ item.component.name }}</h3><p>{{ item.component.brand }} · {{ specificationSummary(item.component) }}</p><div class="component-card__footer"><strong>{{ formatPrice(item.component.price) }}</strong><span>{{ item.component.powerDrawWatts }} W</span></div></div>
             </article>

@@ -1,0 +1,54 @@
+<section class="product-page">
+  @if (product(); as item) {
+    <nav class="breadcrumb">
+      <a routerLink="/home">Home</a> <span>/</span>
+      <a routerLink="/components">Componentes</a> <span>/</span>
+      <span>{{ item.name }}</span>
+    </nav>
+
+    <h1>{{ item.name }}</h1>
+
+    <div class="product-layout">
+      <!-- CONTAINER DA IMAGEM GIGANTE -->
+      <div class="main-image-container">
+        <img [src]="item.image" [alt]="item.name" class="super-product-img" />
+      </div>
+
+      <div class="product-pricing-section">
+        <h2>Preços nas Lojas</h2>
+        <div class="stores-table">
+          <div class="store-row store-row--header">
+            <span>Loja</span>
+            <span>Frete</span>
+            <span>Preço</span>
+            <span>Ação</span>
+          </div>
+
+          @for (store of stores; track store.name) {
+            <div class="store-row">
+              <div class="store-info">
+                <strong>{{ store.name }}</strong>
+                <small>{{ store.pixDiscount }}</small>
+              </div>
+              <span class="store-freight">{{ store.freight }}</span>
+              <div class="store-price">
+                <strong>{{ formatPrice(item.price) }}</strong>
+                <small>{{ store.discount }}</small>
+              </div>
+              <a class="buy-button" [href]="'https://www.google.com/search?q=' + item.name + ' ' + store.name" target="_blank">Comprar</a>
+            </div>
+          }
+        </div>
+        
+        <div class="product-actions">
+          <button class="btn-primary-action" (click)="addToBuilder(item)">+ Adicionar à Build</button>
+        </div>
+      </div>
+    </div>
+  } @else {
+    <div class="empty-product">
+      <h2>Produto não encontrado</h2>
+      <a routerLink="/components" class="explore-btn">Voltar ao catálogo</a>
+    </div>
+  }
+</section>
