@@ -2,9 +2,12 @@ import { computed, inject, Injectable, PLATFORM_ID, signal } from '@angular/core
 import { isPlatformBrowser } from '@angular/common';
 import { ComponentCategory } from './component.model';
 
+
 export interface SavedBuild {
   id: string;
   owner: string;
+  shareId: string;
+  isPublic: boolean;
   name: string;
   date: string;
   components: Partial<Record<ComponentCategory, number>>;
@@ -84,7 +87,12 @@ export class AuthService {
     return { success: true, message: `Bem-vindo, ${user.name}.` };
   }
 
-  async register(name: string, username: string, email: string, password: string): Promise<AuthResult> {
+  async register(
+    name: string,
+    username: string,
+    email: string,
+    password: string,
+  ): Promise<AuthResult> {
     const normalizedName = name.trim();
     const normalizedUsername = username.trim();
     const normalizedEmail = email.trim().toLowerCase();
@@ -94,7 +102,10 @@ export class AuthService {
     }
 
     if (!USERNAME_PATTERN.test(normalizedUsername)) {
-      return { success: false, message: 'O usuário deve ter de 3 a 20 caracteres (letras, números ou _).' };
+      return {
+        success: false,
+        message: 'O usuário deve ter de 3 a 20 caracteres (letras, números ou _).',
+      };
     }
 
     if (password.length < 6) {
@@ -105,7 +116,11 @@ export class AuthService {
       return { success: false, message: 'Já existe uma conta cadastrada com este email.' };
     }
 
-    if (this.usersState().some((user) => user.username.toLowerCase() === normalizedUsername.toLowerCase())) {
+    if (
+      this.usersState().some(
+        (user) => user.username.toLowerCase() === normalizedUsername.toLowerCase(),
+      )
+    ) {
       return { success: false, message: 'Esse nome de usuário já está em uso.' };
     }
 
@@ -152,14 +167,18 @@ export class AuthService {
       return { success: false, message: 'O nome não pode ficar vazio.' };
     }
 
-    this.usersState.update((users) => users.map((user) => user.username === session.username
-      ? {
-          ...user,
-          name: nextName ?? user.name,
-          bio: update.bio !== undefined ? update.bio.slice(0, 280) : user.bio,
-          avatar: update.avatar !== undefined ? update.avatar : user.avatar,
-        }
-      : user));
+    this.usersState.update((users) =>
+      users.map((user) =>
+        user.username === session.username
+          ? {
+              ...user,
+              name: nextName ?? user.name,
+              bio: update.bio !== undefined ? update.bio.slice(0, 280) : user.bio,
+              avatar: update.avatar !== undefined ? update.avatar : user.avatar,
+            }
+          : user,
+      ),
+    );
 
     this.persistUsers();
 
@@ -194,9 +213,13 @@ export class AuthService {
     const salt = this.generateSalt();
     const hash = await this.hashPassword(newPassword, salt);
 
-    this.usersState.update((users) => users.map((item) => item.username === session.username
-      ? { ...item, passwordHash: hash, passwordSalt: salt }
-      : item));
+    this.usersState.update((users) =>
+      users.map((item) =>
+        item.username === session.username
+          ? { ...item, passwordHash: hash, passwordSalt: salt }
+          : item,
+      ),
+    );
     this.persistUsers();
 
     return { success: true, message: 'Senha alterada com sucesso.' };
@@ -228,14 +251,18 @@ export class AuthService {
     }
     const data = new TextEncoder().encode(`${salt}:${password}`);
     const digest = await crypto.subtle.digest('SHA-256', data);
-    return Array.from(new Uint8Array(digest)).map((b) => b.toString(16).padStart(2, '0')).join('');
+    return Array.from(new Uint8Array(digest))
+      .map((b) => b.toString(16).padStart(2, '0'))
+      .join('');
   }
 
   private generateSalt(): string {
     if (this.isBrowser && typeof crypto !== 'undefined' && crypto.getRandomValues) {
       const bytes = new Uint8Array(16);
       crypto.getRandomValues(bytes);
-      return Array.from(bytes).map((b) => b.toString(16).padStart(2, '0')).join('');
+      return Array.from(bytes)
+        .map((b) => b.toString(16).padStart(2, '0'))
+        .join('');
     }
     return Math.random().toString(36).slice(2);
   }

@@ -33,7 +33,7 @@ export const routes: Routes = [
     path: 'compare',
     loadComponent: () => import('./features/compare/compare').then((m) => m.Compare),
   },
-  // Perfil público (não exige login para visualizar).
+  // Perfil público (visível sem login).
   {
     path: 'perfil/:username',
     loadComponent: () => import('./features/profile/profile').then((m) => m.Profile),
@@ -43,6 +43,15 @@ export const routes: Routes = [
     path: 'perfil/:username/builds',
     loadComponent: () => import('./features/profile/profile').then((m) => m.Profile),
     data: { tab: 'builds' },
+  },
+  // Link compartilhável de build — público, sem login.
+  {
+    path: 'build/:shareId',
+    loadComponent: () => import('./features/build-share/build-share').then((m) => m.BuildShare),
+  },
+  {
+    path: 'builds-comunidade',
+    loadComponent: () => import('./features/builds-comunidade/builds-comunidade').then((m) => m.BuildsComunidade),
   },
   {
     path: 'builds',
