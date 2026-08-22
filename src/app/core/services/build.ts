@@ -1,6 +1,7 @@
 import { isPlatformBrowser } from '@angular/common';
 import { computed, inject, Injectable, PLATFORM_ID, signal } from '@angular/core';
 
+import { AuthService } from './auth';
 import { BuilderService } from './builder';
 import { SavedBuild } from '../models/saved-build.model';
 
@@ -10,32 +11,53 @@ export class BuildService {
   private readonly platformId = inject(PLATFORM_ID);
   private readonly isBrowser = isPlatformBrowser(this.platformId);
   private readonly builder = inject(BuilderService);
-  private readonly buildsState = signal<SavedBuild[]>(this.readBuilds());
+  private readonly auth = inject(AuthService);
+  // Guarda TODAS as builds de TODOS os usuários deste navegador.
+  private readonly allBuildsState = signal<SavedBuild[]>(this.readBuilds());
 
-  readonly builds = this.buildsState.asReadonly();
+  // "Minhas builds": só as do usuário logado no momento. Reage sozinho
+  // a login/logout porque depende de auth.currentUser().
+  readonly builds = computed(() => {
+    const username = this.auth.currentUser()?.username;
+    return username ? this.allBuildsState().filter((build) => build.owner === username) : [];
+  });
+
   readonly activeBuildId = signal<string | null>(null);
-  readonly activeBuild = computed(() => this.buildsState().find((build) => build.id === this.activeBuildId()) ?? null);
+  readonly activeBuild = computed(() => this.builds().find((build) => build.id === this.activeBuildId()) ?? null);
 
   getById(id: string): SavedBuild | null {
-    return this.buildsState().find((build) => build.id === id) ?? null;
+    return this.allBuildsState().find((build) => build.id === id) ?? null;
+  }
+
+  // Builds de um usuário específico (usado no /perfil/:username, inclusive de outras pessoas).
+  byOwner(username: string): SavedBuild[] {
+    const normalized = username.trim().toLowerCase();
+    return this.allBuildsState()
+      .filter((build) => build.owner.toLowerCase() === normalized)
+      .sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime());
   }
 
   save(name: string, id?: string | null): SavedBuild | null {
+    const owner = this.auth.currentUser()?.username;
     const normalizedName = name.trim();
-    if (!normalizedName || this.builder.selectedComponents().length === 0) {
+    if (!owner || !normalizedName || this.builder.selectedComponents().length === 0) {
       return null;
     }
 
-    const existing = id ? this.buildsState().find((build) => build.id === id) : undefined;
+    const existing = id
+      ? this.allBuildsState().find((build) => build.id === id && build.owner === owner)
+      : undefined;
+
     const build: SavedBuild = {
       id: existing?.id ?? this.createId(),
+      owner,
       name: normalizedName,
       date: new Date().toISOString(),
       components: this.builder.snapshot(),
       total: this.builder.total(),
     };
 
-    this.buildsState.update((current) => existing
+    this.allBuildsState.update((current) => existing
       ? current.map((item) => item.id === build.id ? build : item)
       : [build, ...current]);
     this.activeBuildId.set(build.id);
@@ -44,7 +66,8 @@ export class BuildService {
   }
 
   open(id: string): SavedBuild | null {
-    const build = this.buildsState().find((item) => item.id === id);
+    const owner = this.auth.currentUser()?.username;
+    const build = this.allBuildsState().find((item) => item.id === id && item.owner === owner);
     if (!build) {
       return null;
     }
@@ -55,7 +78,8 @@ export class BuildService {
   }
 
   remove(id: string): void {
-    this.buildsState.update((current) => current.filter((build) => build.id !== id));
+    const owner = this.auth.currentUser()?.username;
+    this.allBuildsState.update((current) => current.filter((build) => !(build.id === id && build.owner === owner)));
     if (this.activeBuildId() === id) {
       this.activeBuildId.set(null);
     }
@@ -78,7 +102,7 @@ export class BuildService {
 
     try {
       const parsedBuilds = JSON.parse(storedBuilds) as SavedBuild[];
-      return Array.isArray(parsedBuilds) ? parsedBuilds : [];
+      return Array.isArray(parsedBuilds) ? parsedBuilds.filter((build) => !!build.owner) : [];
     } catch {
       return [];
     }
@@ -86,7 +110,7 @@ export class BuildService {
 
   private persist(): void {
     if (this.isBrowser) {
-      localStorage.setItem(this.storageKey, JSON.stringify(this.buildsState()));
+      localStorage.setItem(this.storageKey, JSON.stringify(this.allBuildsState()));
     }
   }
 

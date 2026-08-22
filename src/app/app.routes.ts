@@ -33,12 +33,25 @@ export const routes: Routes = [
     path: 'compare',
     loadComponent: () => import('./features/compare/compare').then((m) => m.Compare),
   },
+  // Perfil público (não exige login para visualizar).
+  {
+    path: 'perfil/:username',
+    loadComponent: () => import('./features/profile/profile').then((m) => m.Profile),
+    data: { tab: 'geral' },
+  },
+  {
+    path: 'perfil/:username/builds',
+    loadComponent: () => import('./features/profile/profile').then((m) => m.Profile),
+    data: { tab: 'builds' },
+  },
   {
     path: 'builds',
+    canActivate: [authGuard],
     loadComponent: () => import('./features/builds/builds').then((m) => m.Builds),
   },
   {
     path: 'builds/:id',
+    canActivate: [authGuard],
     loadComponent: () => import('./features/build-summary/build-summary').then((m) => m.BuildSummary),
   },
   {
@@ -51,6 +64,7 @@ export const routes: Routes = [
   },
   {
     path: 'builder',
+    canActivate: [authGuard],
     component: BuildUp,
   },
   {

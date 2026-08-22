@@ -40,8 +40,15 @@
     <button mat-button routerLink="/compare">Comparar</button>
 
     @if (authService.isAuthenticated()) {
-      <span class="auth-badge">{{ authService.displayName() }}</span>
-      <button mat-stroked-button class="btn-outline" routerLink="/auth/login" (click)="authService.logout()">Sair</button>
+      <a class="auth-profile-chip" [routerLink]="['/perfil', authService.currentUser()?.username]">
+        @if (authService.currentUser()?.avatar) {
+          <img [src]="authService.currentUser()?.avatar" alt="" class="auth-profile-avatar" />
+        } @else {
+          <span class="auth-profile-avatar auth-profile-avatar--fallback">{{ initials(authService.displayName()) }}</span>
+        }
+        <span>{{ authService.displayName() }}</span>
+      </a>
+      <button mat-stroked-button class="btn-outline" (click)="logout()">Sair</button>
     } @else {
       <button mat-stroked-button class="btn-outline" (click)="openLogin()">Entrar</button>
       <button mat-flat-button class="btn-primary" routerLink="/auth/register">Cadastre-se</button>
@@ -63,18 +70,17 @@
 <!-- GAVETA LATERAL (SIDEBAR MOBILE) -->
 @if (mobileMenuOpen()) {
   <div class="mobile-backdrop" (click)="closeMobileMenu()"></div>
-  
+
   <aside class="mobile-sidebar">
     <div class="mobile-sidebar__header">
       <img src="assets/images/LogoWM.png" alt="Logo" class="sidebar-logo" />
       <button class="close-btn" (click)="closeMobileMenu()">✕</button>
     </div>
-    
+
     <nav class="mobile-nav">
       <a class="mobile-nav__link" routerLink="/home" (click)="closeMobileMenu()">Home</a>
       <a class="mobile-nav__link" routerLink="/build-up" (click)="closeMobileMenu()">Montar seu PC</a>
-      
-      <!-- Lista aninhada idêntica à referência -->
+
       <div class="mobile-nav__group">
         <span class="mobile-nav__group-title">Peças</span>
         <div class="mobile-nav__sublinks">
@@ -92,8 +98,10 @@
       <hr class="mobile-divider">
 
       @if (authService.isAuthenticated()) {
-        <div class="mobile-auth-info">Logado como: {{ authService.displayName() }}</div>
-        <button class="mobile-nav__link" (click)="authService.logout(); closeMobileMenu()">Sair</button>
+        <a class="mobile-nav__link" [routerLink]="['/perfil', authService.currentUser()?.username]" (click)="closeMobileMenu()">
+          Meu perfil ({{ authService.displayName() }})
+        </a>
+        <button class="mobile-nav__link" (click)="logout()">Sair</button>
       } @else {
         <button class="mobile-nav__link" (click)="openLogin()">Entrar</button>
         <a class="mobile-nav__link mobile-nav__link--highlight" routerLink="/auth/register" (click)="closeMobileMenu()">Cadastre-se</a>
