@@ -12,7 +12,7 @@
 
     <header class="profile-header">
       <div class="profile-avatar">
-        @if (profile()!.avatar) {
+        @if (profile()!.avatar && !editing()) {
           <img [src]="profile()!.avatar" alt="Avatar de {{ profile()!.name }}" />
         } @else {
           <span class="profile-avatar__fallback">{{ initials(profile()!.name) }}</span>
@@ -47,7 +47,7 @@
           @if (editAvatar()) {
             <img [src]="editAvatar()" alt="Pré-visualização do avatar" />
           } @else {
-            <span class="profile-avatar__fallback">{{ initials(editName() || profile()!.name) }}</span>
+            <span class="edit-profile-avatar__fallback">{{ initials(editName() || profile()!.name) }}</span>
           }
           <div class="profile-edit-avatar__actions">
             <label class="profile-avatar-upload">

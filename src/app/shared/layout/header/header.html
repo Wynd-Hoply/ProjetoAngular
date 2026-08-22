@@ -51,11 +51,8 @@
         @if (authService.currentUser()?.avatar) {
           <img [src]="authService.currentUser()?.avatar" alt="" class="auth-profile-avatar" />
         } @else {
-          <span class="auth-profile-avatar auth-profile-avatar--fallback">{{
-            initials(authService.displayName())
-          }}</span>
+          <span class="profile-avatar__fallback">{{ initials(authService.currentUser()!.name) }}</span>
         }
-        <span>{{ authService.displayName() }}</span>
       </a>
       <button mat-stroked-button class="btn-outline" (click)="logout()">Sair</button>
     } @else {

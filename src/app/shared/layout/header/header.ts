@@ -6,10 +6,12 @@ import { Router, RouterLink } from '@angular/router';
 import { ThemeService } from '../../../core/services/theme';
 import { AuthService } from '../../../core/services/auth';
 import { Login } from '../../../features/auth/login/login';
+import { Profile } from '../../../features/profile/profile';
+
 
 @Component({
   selector: 'app-header',
-  imports: [MatToolbarModule, MatButtonModule, MatDialogModule, RouterLink],
+  imports: [MatToolbarModule, MatButtonModule, MatDialogModule, RouterLink, Profile],
   templateUrl: './header.html',
   styleUrl: './header.css',
   host: {

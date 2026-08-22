@@ -55,12 +55,10 @@ export const routes: Routes = [
   },
   {
     path: 'builds',
-    canActivate: [authGuard],
     loadComponent: () => import('./features/builds/builds').then((m) => m.Builds),
   },
   {
     path: 'builds/:id',
-    canActivate: [authGuard],
     loadComponent: () => import('./features/build-summary/build-summary').then((m) => m.BuildSummary),
   },
   {
@@ -68,13 +66,8 @@ export const routes: Routes = [
     loadComponent: () => import('./features/auto-build/auto-build').then((m) => m.AutoBuild),
   },
   {
-    path: 'pre-builds',
-    redirectTo: 'builds',
-  },
-  {
     path: 'builder',
-    canActivate: [authGuard],
-    component: BuildUp,
+    loadComponent: () => import('./features/build-up/build-up').then((m) => m.BuildUp),
   },
   {
     path: 'build-up',
