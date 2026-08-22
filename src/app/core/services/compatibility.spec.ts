@@ -36,6 +36,17 @@ describe('CompatibilityService', () => {
     expect(check?.message).toContain('AM5');
   });
 
+  it('should support older socket and DDR4 platforms', () => {
+    builder.add(catalog.getById(111)!);
+    builder.add(catalog.getById(310)!);
+    builder.add(catalog.getById(410)!);
+    builder.add(catalog.getById(810)!);
+
+    expect(service.checks().find((check) => check.key === 'cpu-motherboard')?.status).toBe('compatible');
+    expect(service.checks().find((check) => check.key === 'ram-motherboard')?.status).toBe('compatible');
+    expect(service.checks().find((check) => check.key === 'cpu-cooler')?.status).toBe('compatible');
+  });
+
   it('should calculate consumption with a 20 percent recommendation margin', () => {
     builder.add(catalog.getById(101)!);
     builder.add(catalog.getById(201)!);
