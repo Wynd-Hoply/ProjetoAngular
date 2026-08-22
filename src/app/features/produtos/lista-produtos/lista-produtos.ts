@@ -1,5 +1,7 @@
 import { ChangeDetectionStrategy, Component, computed, inject, signal } from '@angular/core';
+import { toSignal } from '@angular/core/rxjs-interop';
 import { ActivatedRoute, Router, RouterLink } from '@angular/router';
+import { map } from 'rxjs';
 
 import { BuilderService } from '../../../core/services/builder';
 import { CatalogService } from '../../../core/services/catalog';
@@ -32,7 +34,16 @@ export class ListaProdutos {
   readonly builder = inject(BuilderService);
   readonly comparison = inject(ComparisonService);
 
-  readonly category = signal<ComponentCategory | undefined>(this.readCategory());
+  // Antes era um signal() lido só na criação do componente, o que travava
+  // o valor quando o Router reaproveitava a mesma instância entre categorias.
+  // Agora reage a toda mudança do parâmetro :category na URL.
+  readonly category = toSignal(
+    this.route.paramMap.pipe(
+      map((params) => this.parseCategory(params.get('category')))
+    ),
+    { initialValue: this.parseCategory(this.route.snapshot.paramMap.get('category')) }
+  );
+
   readonly search = signal('');
   readonly brand = signal('');
   readonly minPrice = signal<number | undefined>(undefined);
@@ -124,8 +135,7 @@ export class ListaProdutos {
     };
   }
 
-  private readCategory(): ComponentCategory | undefined {
-    const value = this.route.snapshot.paramMap.get('category');
-    return value && value in categoryLabels ? value as ComponentCategory : undefined;
+  private parseCategory(value: string | null): ComponentCategory | undefined {
+    return value && value in categoryLabels ? (value as ComponentCategory) : undefined;
   }
 }
