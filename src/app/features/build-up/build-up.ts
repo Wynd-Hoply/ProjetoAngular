@@ -5,6 +5,7 @@ import { BuilderService } from '../../core/services/builder';
 import { BuildService } from '../../core/services/build';
 import { CompatibilityService } from '../../core/services/compatibility';
 import { ComponentCategory } from '../../core/models/component.model';
+import { SavedBuild } from '../../core/models/saved-build.model';
 
 interface BuilderSlot {
   category: ComponentCategory;
@@ -25,6 +26,9 @@ export class BuildUp {
   readonly compatibility = inject(CompatibilityService);
   readonly buildName = signal('Minha configuração');
   readonly saveMessage = signal('');
+  readonly savedBuild = signal<SavedBuild | null>(null);
+  readonly linkCopyFeedback = signal('');
+
   readonly slots: BuilderSlot[] = [
     { category: 'cpu', label: 'Processador', route: 'cpu' },
     { category: 'gpu', label: 'Placa de vídeo', route: 'gpu' },
@@ -36,6 +40,10 @@ export class BuildUp {
     { category: 'cooler', label: 'Cooler', route: 'cooler' },
   ];
   readonly missingSlots = computed(() => this.slots.filter((slot) => !this.builder.selected()[slot.category]));
+  readonly shareLink = computed(() => {
+    const build = this.savedBuild();
+    return build ? this.builds.buildLink(build.shareId) : '';
+  });
 
   formatPrice(price: number): string {
     return price.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' });
@@ -51,6 +59,25 @@ export class BuildUp {
 
   saveBuild(): void {
     const savedBuild = this.builds.save(this.buildName(), this.builds.activeBuildId());
+    this.savedBuild.set(savedBuild);
+    this.linkCopyFeedback.set('');
     this.saveMessage.set(savedBuild ? `Build "${savedBuild.name}" salva com sucesso.` : 'Adicione componentes e informe um nome para salvar.');
+  }
+
+  copyShareLink(): void {
+    const link = this.shareLink();
+    if (!link) return;
+
+    navigator.clipboard.writeText(link).then(
+      () => this.linkCopyFeedback.set('Link copiado!'),
+      () => this.linkCopyFeedback.set(link),
+    );
+  }
+
+  togglePublic(): void {
+    const build = this.savedBuild();
+    if (!build) return;
+    this.builds.setPublic(build.id, !build.isPublic);
+    this.savedBuild.set({ ...build, isPublic: !build.isPublic });
   }
 }

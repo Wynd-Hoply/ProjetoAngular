@@ -20,19 +20,17 @@ export class Login {
   private readonly route = inject(ActivatedRoute);
   private readonly dialogRef = inject(MatDialogRef<Login>, { optional: true });
 
-  // Signals simples para controlar estado visual da tela.
   protected readonly loading = signal(false);
   protected readonly statusMessage = signal('');
   protected readonly isSuccess = signal(false);
   protected readonly submitted = signal(false);
 
-  // Formulário reativo com validação de email e tamanho mínimo da senha.
+  // Aceita email OU nome de usuário no mesmo campo.
   protected readonly form = this.formBuilder.nonNullable.group({
-    email: ['', [Validators.required, Validators.email]],
+    identifier: ['', [Validators.required, Validators.minLength(3)]],
     password: ['', [Validators.required, Validators.minLength(6)]],
   });
 
-  // Tenta autenticar, mostra feedback e redireciona para a rota original.
   protected async submit(): Promise<void> {
     this.submitted.set(true);
 
@@ -45,7 +43,7 @@ export class Login {
     this.loading.set(true);
 
     try {
-      const result = this.authService.login(this.form.controls.email.value, this.form.controls.password.value);
+      const result = await this.authService.login(this.form.controls.identifier.value, this.form.controls.password.value);
       this.statusMessage.set(result.message);
       this.isSuccess.set(result.success);
 

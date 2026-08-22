@@ -2,12 +2,14 @@ import { CommonModule } from '@angular/common';
 import { ChangeDetectionStrategy, Component, inject, signal } from '@angular/core';
 import { FormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
 import { ActivatedRoute, Router, RouterLink } from '@angular/router';
+import { Login } from '../../../features/auth/login/login';
+import { MatDialog, MatDialogModule, MatDialogRef } from '@angular/material/dialog';
 
 import { AuthService } from '../../../core/services/auth';
 
 @Component({
   selector: 'app-register',
-  imports: [CommonModule, ReactiveFormsModule, RouterLink],
+  imports: [CommonModule, ReactiveFormsModule, MatDialogModule, RouterLink],
   templateUrl: './register.html',
   styleUrl: './register.css',
   changeDetection: ChangeDetectionStrategy.OnPush,
@@ -17,22 +19,24 @@ export class Register {
   private readonly authService = inject(AuthService);
   private readonly router = inject(Router);
   private readonly route = inject(ActivatedRoute);
+  private readonly dialog = inject(MatDialog);
 
-  // Signals usados para refletir carregamento, mensagem e tentativa de envio.
+  readonly piecesMenuOpen = signal(false);
+  readonly mobileMenuOpen = signal(false);
+
   protected readonly loading = signal(false);
   protected readonly statusMessage = signal('');
   protected readonly isSuccess = signal(false);
   protected readonly submitted = signal(false);
 
-  // Formulário reativo com confirmação de senha.
   protected readonly form = this.formBuilder.nonNullable.group({
     name: ['', [Validators.required, Validators.minLength(3)]],
+    username: ['', [Validators.required, Validators.pattern(/^[a-zA-Z0-9_]{3,20}$/)]],
     email: ['', [Validators.required, Validators.email]],
     password: ['', [Validators.required, Validators.minLength(6)]],
     confirmPassword: ['', [Validators.required]],
   });
 
-  // Valida os campos, confere as senhas e cria a conta no localStorage.
   protected async submit(): Promise<void> {
     this.submitted.set(true);
 
@@ -51,8 +55,9 @@ export class Register {
     this.loading.set(true);
 
     try {
-      const result = this.authService.register(
+      const result = await this.authService.register(
         this.form.controls.name.value,
+        this.form.controls.username.value,
         this.form.controls.email.value,
         this.form.controls.password.value,
       );
@@ -66,5 +71,19 @@ export class Register {
     } finally {
       this.loading.set(false);
     }
+  }
+
+  closeMobileMenu(): void {
+    this.mobileMenuOpen.set(false);
+  }
+
+  openLogin(): void {
+    this.closeMobileMenu();
+    this.dialog.open(Login, {
+      width: 'min(420px, calc(100vw - 32px))',
+      maxWidth: 'calc(100vw - 32px)',
+      panelClass: 'login-dialog-panel',
+      autoFocus: 'input',
+    });
   }
 }

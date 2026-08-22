@@ -478,6 +478,37 @@ h2 {
   line-height: 1.45;
 }
 
+.share-panel {
+  margin-top: 12px;
+  padding: 12px;
+  border: 1px solid var(--border, #333);
+  border-radius: 10px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.share-panel__row {
+  display: flex;
+  gap: 8px;
+}
+
+.share-panel__row input {
+  flex: 1;
+  padding: 8px 10px;
+  border-radius: 8px;
+  border: 1px solid var(--border, #333);
+  background: transparent;
+  color: inherit;
+  font: inherit;
+}
+
+.share-panel__feedback {
+  margin: 0;
+  font-size: 0.85rem;
+  color: var(--primary, #6c5ce7);
+}
+
 @media (max-width: 850px) {
   .builder-header {
     align-items: start;

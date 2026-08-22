@@ -1,0 +1,68 @@
+.community-page {
+  max-width: 1080px;
+  margin: 0 auto;
+  padding: 24px 16px 64px;
+}
+
+.community-header {
+  margin: 20px 0 32px;
+}
+
+.community-list {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+  gap: 16px;
+}
+
+.community-card {
+  border: 1px solid var(--border, #333);
+  border-radius: 12px;
+  padding: 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.community-card__author {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  text-decoration: none;
+  color: var(--text-muted, #999);
+  font-size: 0.85rem;
+}
+
+.community-card__avatar {
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  object-fit: cover;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--surface-alt, #2a2a30);
+  font-size: 0.75rem;
+  font-weight: 700;
+}
+
+.community-card h2 {
+  margin: 0;
+  font-size: 1.1rem;
+}
+
+.community-card__date {
+  font-size: 0.8rem;
+  color: var(--text-muted, #999);
+}
+
+.community-card__price {
+  font-size: 1.2rem;
+}
+
+.community-card__link {
+  margin-top: auto;
+  align-self: flex-start;
+  color: var(--primary, #6c5ce7);
+  font-weight: 600;
+  text-decoration: none;
+}

@@ -2,7 +2,7 @@ import { Component, ElementRef, inject, signal } from '@angular/core';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatButtonModule } from '@angular/material/button';
 import { MatDialog, MatDialogModule } from '@angular/material/dialog';
-import { RouterLink } from '@angular/router';
+import { Router, RouterLink } from '@angular/router';
 import { ThemeService } from '../../../core/services/theme';
 import { AuthService } from '../../../core/services/auth';
 import { Login } from '../../../features/auth/login/login';
@@ -14,17 +14,18 @@ import { Login } from '../../../features/auth/login/login';
   styleUrl: './header.css',
   host: {
     '(document:click)': 'onDocumentClick($event)',
-    '(document:keydown.escape)': 'closeAllMenus()', // Atualizado para fechar ambos
+    '(document:keydown.escape)': 'closeAllMenus()',
   },
 })
 export class Header {
   private readonly elementRef = inject(ElementRef<HTMLElement>);
+  private readonly router = inject(Router);
   themeService = inject(ThemeService);
   authService = inject(AuthService);
   private readonly dialog = inject(MatDialog);
-  
+
   readonly piecesMenuOpen = signal(false);
-  readonly mobileMenuOpen = signal(false); // Novo controle do menu mobile
+  readonly mobileMenuOpen = signal(false);
 
   readonly pcComponents = [
     { label: 'Processadores', icon: 'CPU', route: '/components/cpu', image: 'assets/images/LogoWM.png' },
@@ -44,7 +45,6 @@ export class Header {
     { label: 'Fones de ouvido', icon: 'AUDIO' },
   ];
 
-  // Controle Menu Desktop
   togglePiecesMenu(): void {
     this.piecesMenuOpen.update((isOpen) => !isOpen);
   }
@@ -53,7 +53,6 @@ export class Header {
     this.piecesMenuOpen.set(false);
   }
 
-  // Controle Menu Mobile
   toggleMobileMenu(): void {
     this.mobileMenuOpen.update((isOpen) => !isOpen);
   }
@@ -76,12 +75,22 @@ export class Header {
   }
 
   openLogin(): void {
-    this.closeMobileMenu(); // Fecha o menu ao abrir o modal
+    this.closeMobileMenu();
     this.dialog.open(Login, {
       width: 'min(420px, calc(100vw - 32px))',
       maxWidth: 'calc(100vw - 32px)',
       panelClass: 'login-dialog-panel',
       autoFocus: 'input',
     });
+  }
+
+  logout(): void {
+    this.authService.logout();
+    this.closeMobileMenu();
+    void this.router.navigate(['/']);
+  }
+
+  initials(name: string): string {
+    return name.trim().charAt(0).toUpperCase() || '?';
   }
 }
