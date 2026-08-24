@@ -44,3 +44,7 @@ body {
   margin: 0;
   transition: background-color 200ms ease, color 200ms ease;
 }
+
+input {
+    width: 546px;
+}
