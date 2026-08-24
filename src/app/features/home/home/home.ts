@@ -23,7 +23,7 @@ interface BuilderStep {
 })
 export class Home {
   readonly categories: CategoryShortcut[] = [
-    { label: 'Processadores', description: 'Desempenho para cada tipo de uso.', route: 'cpu', icon: '<img src="assets/images/LogoWM.png" alt="Logo WM" />' },
+    { label: 'Processadores', description: 'Desempenho para cada tipo de uso.', route: 'cpu', icon: 'CPU' },
     { label: 'Placas de vídeo', description: 'Mais frames para jogar e criar.', route: 'gpu', icon: 'GPU' },
     { label: 'Placas-mãe', description: 'A base certa para sua configuração.', route: 'motherboard', icon: 'MB' },
     { label: 'Memórias', description: 'Agilidade para suas tarefas.', route: 'ram', icon: 'RAM' },
