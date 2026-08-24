@@ -43,7 +43,7 @@
     </div>
 
     <button mat-button routerLink="/builds">Minhas Builds</button>
-    <button mat-button routerLink="/compare">Comparar</button>
+    
 
     
     @if (authService.isAdmin()) {
@@ -106,9 +106,7 @@
       </div>
 
       <a class="mobile-nav__link" routerLink="/builds" (click)="closeMobileMenu()">Minhas Builds</a>
-      <a class="mobile-nav__link" routerLink="/compare" (click)="closeMobileMenu()"
-        >Comparar componentes</a
-      >
+      
       @if (authService.isAdmin()) {
   <a class="mobile-nav__link" routerLink="/admin" (click)="closeMobileMenu()">Área administrativa</a>
 }
