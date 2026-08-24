@@ -13,7 +13,7 @@
 		<form class="auth-form" [formGroup]="form" (ngSubmit)="submit()">
 			<label>
 				<span>Email ou nome de usuário</span>
-				<input type="text" formControlName="identifier" placeholder="voce@exemplo.com ou seu_usuario" autocomplete="username" />
+				<input type="text" formControlName="identifier" placeholder="voce@exemplo.com ou seu usuario" autocomplete="username" />
 			</label>
 
 			@if (form.controls.identifier.invalid && (form.controls.identifier.dirty || form.controls.identifier.touched || submitted())) {
