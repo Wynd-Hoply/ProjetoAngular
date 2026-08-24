@@ -1,0 +1,60 @@
+@if (!build()) {
+  <section class="share-page share-page--empty">
+    <h1>Build não encontrada</h1>
+    <p>O link pode estar errado ou a build foi removida pelo dono.</p>
+    <a routerLink="/home">Voltar para o início</a>
+  </section>
+} @else {
+  <section class="share-page">
+    <nav class="breadcrumb" aria-label="Breadcrumb">
+      <a routerLink="/home">Home</a><span>/</span><span>{{ build()!.name }}</span>
+    </nav>
+
+    <header class="share-header">
+      <div>
+        <p class="eyebrow">Build compartilhada</p>
+        <h1>{{ build()!.name }}</h1>
+        @if (author()) {
+          <a class="share-author" [routerLink]="['/perfil', author()!.username]">
+            @if (author()!.avatar) {
+              <img [src]="author()!.avatar" alt="" class="share-author__avatar" />
+            }
+            <span>por {{ author()!.name }}</span>
+          </a>
+        }
+        <p class="share-date">Salva em {{ formatDate(build()!.date) }}</p>
+      </div>
+      <strong class="share-total">{{ formatPrice(build()!.total) }}</strong>
+    </header>
+
+    <div class="share-actions">
+      <button type="button" class="share-copy-button" (click)="copyLink()">Copiar link</button>
+      
+      <button type="button" class="share-use-button" (click)="useThisBuild()">Usar esta build</button>
+    </div>
+
+    @if (copyFeedback()) {
+      <p class="share-feedback">{{ copyFeedback() }}</p>
+    }
+
+    @if (build()!.isPublic) {
+      <p class="share-visibility-tag">Visível em Builds da comunidade</p>
+    }
+
+    <table class="share-table">
+      <tbody>
+        @for (item of items(); track item.slot.category) {
+          <tr>
+            <th>{{ item.slot.label }}</th>
+            <td>{{ item.component.name }}</td>
+            <td class="share-table__price">{{ formatPrice(item.component.price) }}</td>
+          </tr>
+        }
+      </tbody>
+    </table>
+
+    @if (missingSlots().length > 0) {
+      <p class="share-missing">Faltando: {{ missingSlots().length }} componente(s) não incluído(s) nesta build.</p>
+    }
+  </section>
+}

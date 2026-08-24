@@ -1,1 +1,50 @@
-/* You can add global styles to this file, and also import other style files */
+/* =========================================
+   VARIÁVEIS DE TEMA (MODO ESCURO - PADRÃO)
+   ========================================= */
+:root {
+  --primary: #FF1F78;       
+  --accent: #FF1F78;        
+  --bg-color: #130C1E;      
+  --card-bg: #1D142E;       
+  --border-color: #2E2145;  
+  --text-primary: #FDFDF5;  
+  --text-secondary: #A297B8;
+}
+
+/* =========================================
+   VARIÁVEIS DE TEMA (MODO CLARO)
+   ========================================= */
+body.light-mode {
+  --primary: #D9005B;       
+  --accent: #2B10D9;        
+  --bg-color: #F9F7FA;      
+  --card-bg: #FFFFFF;       
+  --border-color: #E8E3ED;  
+  --text-primary: #1A1228;  
+  --text-secondary: #665B78;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  /* Define o fundo escuro padrão imediatamente para evitar flash branco */
+  background-color: var(--bg-color);
+  color: var(--text-primary);
+  transition: background-color 0.3s ease, color 0.3s ease;
+  font-family: Arial, sans-serif;
+}
+/* Aplicação global das cores de fundo e texto */
+body {
+  background-color: var(--bg-color);
+  color: var(--text-primary);
+  font-family: system-ui, -apple-system, sans-serif;
+  margin: 0;
+  transition: background-color 200ms ease, color 200ms ease;
+}
+
+input {
+    width: 546px;
+}

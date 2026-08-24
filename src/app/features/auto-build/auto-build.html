@@ -1,0 +1,142 @@
+<section class="auto-build-page" aria-labelledby="auto-build-title">
+  <nav class="breadcrumb" aria-label="Breadcrumb">
+    <a routerLink="/home">Home</a><span>/</span><span>Auto Build</span>
+  </nav>
+
+  <header class="hero">
+    <div>
+      <p class="eyebrow">PCraft</p>
+      <h1 id="auto-build-title">Auto Build</h1>
+      <p>Crie uma configuração automática equilibrada com base no orçamento, na finalidade e nas preferências opcionais.</p>
+    </div>
+    <a class="secondary-link" routerLink="/builder">Abrir montador manual</a>
+  </header>
+
+  <section class="wizard" aria-label="Formulário do Auto Build">
+    <div class="wizard-step">
+      <h2>Etapa 1 · Orçamento</h2>
+      <div class="preset-grid">
+        @for (option of presetBudgets; track option.value) {
+          <button type="button" class="preset-button" [class.preset-button--active]="budget() === option.value" (click)="selectPresetBudget(option.value)">
+            {{ option.label }}
+          </button>
+        }
+      </div>
+      <label class="field" for="custom-budget">Valor personalizado</label>
+      <input id="custom-budget" type="text" inputmode="decimal" placeholder="Ex.: R$ 6.500" [value]="customBudget()" (input)="updateCustomBudget(($any($event.target)).value)" />
+      <p class="helper">Orçamento atual: <strong>{{ currentBudgetLabel() }}</strong></p>
+    </div>
+
+    <div class="wizard-step">
+      <h2>Etapa 2 · Finalidade</h2>
+      <div class="option-grid">
+        @for (option of purposeOptions; track option.value) {
+          <button type="button" class="option-button" [class.option-button--active]="purpose() === option.value" (click)="setPurpose(option.value)">{{ option.label }}</button>
+        }
+      </div>
+    </div>
+
+    <div class="wizard-step">
+      <h2>Etapa 3 · Preferências</h2>
+      <div class="preference-group">
+        <label>Processador</label>
+        <div class="option-grid">
+          @for (option of cpuOptions; track option.value) {
+            <button type="button" class="option-button" [class.option-button--active]="cpuPreference() === option.value" (click)="setCpuPreference(option.value)">{{ option.label }}</button>
+          }
+        </div>
+      </div>
+
+      <div class="preference-group">
+        <label>GPU</label>
+        <div class="option-grid">
+          @for (option of gpuOptions; track option.value) {
+            <button type="button" class="option-button" [class.option-button--active]="gpuPreference() === option.value" (click)="setGpuPreference(option.value)">{{ option.label }}</button>
+          }
+        </div>
+      </div>
+
+      <div class="preference-group">
+        <label>Prioridade</label>
+        <div class="option-grid">
+          @for (option of priorityOptions; track option.value) {
+            <button type="button" class="option-button" [class.option-button--active]="priority() === option.value" (click)="setPriority(option.value)">{{ option.label }}</button>
+          }
+        </div>
+      </div>
+    </div>
+
+    <div class="wizard-actions">
+      <button type="button" class="primary-button" (click)="generateBuild()" [disabled]="!canGenerate()">Gerar Build</button>
+      <p class="feedback" role="status">{{ feedback() }}</p>
+    </div>
+  </section>
+
+  @if (result(); as currentResult) {
+    <section class="result-panel" aria-labelledby="result-title">
+      <div class="result-header">
+        <div>
+          <p class="eyebrow">Resultado</p>
+          <h2 id="result-title">{{ currentResult.feasible ? 'Build gerada' : 'Não foi possível gerar uma build completa' }}</h2>
+          <p>{{ currentResult.summary[0] }}</p>
+        </div>
+
+        @if (currentResult.feasible) {
+          <div class="result-kpis">
+            <article><span>Total</span><strong>{{ formatCurrency(currentResult.total) }}</strong></article>
+            <article><span>Orçamento usado</span><strong>{{ currentResult.budgetUsedPercent.toFixed(0) }}%</strong></article>
+            <article><span>Consumo estimado</span><strong>{{ currentResult.estimatedConsumption }} W</strong></article>
+            <article><span>Fonte mínima</span><strong>{{ currentResult.recommendedWattage }} W</strong></article>
+          </div>
+        }
+      </div>
+
+      @if (currentResult.feasible) {
+        <div class="result-grid">
+          <div class="component-list">
+            @for (entry of resultEntries(); track entry[0]) {
+              @let category = entry[0];
+              @let component = entry[1];
+              <article class="component-card">
+                <img [ngSrc]="component.image" [alt]="'Imagem de ' + component.name" width="96" height="96" />
+                <div class="component-card__content">
+                  <span>{{ categoryLabel(category) }}</span>
+                  <strong>{{ component.name }}</strong>
+                  <small>{{ component.brand }} · {{ formatPrice(component.price) }}</small>
+                  <small>Desempenho: {{ component.performanceScore }} pts · Consumo: {{ component.powerDrawWatts }} W</small>
+                </div>
+              </article>
+            }
+          </div>
+
+          <aside class="summary-card">
+            <h3>Resumo</h3>
+            <ul>
+              @for (item of currentResult.summary; track item) {
+                <li>{{ item }}</li>
+              }
+            </ul>
+
+            <div class="compatibility-box" [class.compatibility-box--bad]="!currentResult.compatible">
+              <strong>{{ currentResult.compatible ? 'Compatibilidade validada' : 'Há pendências de compatibilidade' }}</strong>
+              <p>{{ currentResult.compatibilityChecks.length }} verificações realizadas.</p>
+            </div>
+          </aside>
+        </div>
+      } @else {
+        <div class="summary-card summary-card--empty">
+          <h3>Orçamento mínimo estimado</h3>
+          <p>{{ formatCurrency(currentResult.minimumRequiredBudget) }}</p>
+          <p>O catálogo mockado atual exige um orçamento maior para preencher todas as categorias obrigatórias.</p>
+        </div>
+      }
+
+      <div class="result-actions">
+        <button type="button" class="primary-button" (click)="useBuild()" [disabled]="!currentResult.feasible">Usar esta build</button>
+        <button type="button" class="secondary-button" (click)="redoBuild()">Refazer</button>
+        <button type="button" class="secondary-button" (click)="editBuild()" [disabled]="!currentResult.feasible">Editar build</button>
+        <a class="secondary-button" routerLink="/home">Voltar</a>
+      </div>
+    </section>
+  }
+</section>

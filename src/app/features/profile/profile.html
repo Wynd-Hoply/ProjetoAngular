@@ -1,0 +1,168 @@
+@if (!profile()) {
+  <section class="profile-page profile-page--empty">
+    <h1>Perfil não encontrado</h1>
+    <p>Não existe nenhuma conta com o usuário "{{ username() }}" neste navegador.</p>
+    <a routerLink="/home">Voltar para o início</a>
+  </section>
+} @else {
+  <section class="profile-page">
+    <nav class="breadcrumb" aria-label="Breadcrumb">
+      <a routerLink="/home">Home</a><span>/</span><span>Perfil de {{ profile()!.name }}</span>
+    </nav>
+
+    <header class="profile-header">
+      <div class="profile-avatar">
+        @if (profile()!.avatar && !editing()) {
+          <img [src]="profile()!.avatar" alt="Avatar de {{ profile()!.name }}" />
+        } @else {
+          <span class="profile-avatar__fallback">{{ initials(profile()!.name) }}</span>
+        }
+      </div>
+
+      <div class="profile-identity">
+        <h1>{{ profile()!.name }}</h1>
+        <p class="profile-username">&#64;{{ profile()!.username }}</p>
+        @if (profile()!.bio) {
+          <p class="profile-bio">{{ profile()!.bio }}</p>
+        }
+        <p class="profile-joined">Entrou em {{ formatJoinDate(profile()!.joinedAt) }}</p>
+      </div>
+
+      @if (isOwnProfile() && !editing()) {
+        <button type="button" class="profile-edit-button" (click)="startEditing()">Editar perfil</button>
+      }
+    </header>
+
+    @if (editing()) {
+      <section class="profile-edit-card">
+        <h2>Editar perfil</h2>
+
+        @if (profileMessage()) {
+          <p class="profile-feedback" [class.profile-feedback--success]="profileSuccess()" [class.profile-feedback--error]="!profileSuccess()">
+            {{ profileMessage() }}
+          </p>
+        }
+
+        <div class="profile-edit-avatar">
+          @if (editAvatar()) {
+            <img [src]="editAvatar()" alt="Pré-visualização do avatar" />
+          } @else {
+            <span class="edit-profile-avatar__fallback">{{ initials(editName() || profile()!.name) }}</span>
+          }
+          <div class="profile-edit-avatar__actions">
+            <label class="profile-avatar-upload">
+              Escolher imagem
+              <input type="file" accept="image/*" (change)="onAvatarSelected($event)" hidden />
+            </label>
+            @if (editAvatar()) {
+              <button type="button" class="profile-avatar-remove" (click)="removeAvatar()">Remover</button>
+            }
+          </div>
+        </div>
+
+        <label class="profile-field">
+          <span>Nome</span>
+          <input type="text" [value]="editName()" (input)="updateName($event)" maxlength="60" />
+        </label>
+
+        <label class="profile-field">
+          <span>Bio</span>
+          <textarea rows="3" maxlength="280" [value]="editBio()" (input)="updateBio($event)" placeholder="Fale um pouco sobre você ou suas builds"></textarea>
+        </label>
+
+        <div class="profile-edit-actions">
+          <button type="button" class="profile-save-button" (click)="saveProfile()">Salvar alterações</button>
+          <button type="button" class="profile-cancel-button" (click)="cancelEditing()">Cancelar</button>
+        </div>
+
+        <hr class="profile-divider" />
+
+        <button type="button" class="profile-password-toggle" (click)="togglePasswordForm()">
+          {{ changingPassword() ? 'Cancelar troca de senha' : 'Alterar senha' }}
+        </button>
+
+        @if (changingPassword()) {
+          <div class="profile-password-form">
+            @if (passwordMessage()) {
+              <p class="profile-feedback" [class.profile-feedback--success]="passwordSuccess()" [class.profile-feedback--error]="!passwordSuccess()">
+                {{ passwordMessage() }}
+              </p>
+            }
+
+            <label class="profile-field">
+              <span>Senha atual</span>
+              <input type="password" [value]="currentPassword()" (input)="currentPassword.set($any($event.target).value)" autocomplete="current-password" />
+            </label>
+
+            <label class="profile-field">
+              <span>Nova senha</span>
+              <input type="password" [value]="newPassword()" (input)="newPassword.set($any($event.target).value)" autocomplete="new-password" />
+            </label>
+
+            <label class="profile-field">
+              <span>Confirmar nova senha</span>
+              <input type="password" [value]="confirmNewPassword()" (input)="confirmNewPassword.set($any($event.target).value)" autocomplete="new-password" />
+            </label>
+
+            <button type="button" class="profile-save-button" [disabled]="passwordLoading()" (click)="submitPasswordChange()">
+              {{ passwordLoading() ? 'Salvando...' : 'Salvar nova senha' }}
+            </button>
+          </div>
+        }
+      </section>
+    }
+
+    <nav class="profile-tabs">
+      <a class="profile-tab" [class.profile-tab--active]="tab === 'geral'" [routerLink]="['/perfil', profile()!.username]">Geral</a>
+      <a class="profile-tab" [class.profile-tab--active]="tab === 'builds'" [routerLink]="['/perfil', profile()!.username, 'builds']">Builds {{ builds().length }}</a>
+    </nav>
+
+    @if (tab === 'geral') {
+      <section class="profile-current-build">
+        <h2>PC atual de {{ profile()!.name }}</h2>
+
+        @if (!currentBuild()) {
+          <p class="profile-empty">Nenhuma build salva ainda.</p>
+        } @else {
+          <table class="profile-build-table">
+            <tbody>
+              @for (item of currentBuildItems(); track item.slot.category) {
+                <tr>
+                  <th>{{ item.slot.label }}</th>
+                  <td>{{ item.component!.name }}</td>
+                </tr>
+              }
+            </tbody>
+          </table>
+          <a class="profile-build-link" (click)="openBuild(currentBuild()!.id)">Ver build com preços</a>
+        }
+      </section>
+    } @else {
+      <section class="profile-builds-list">
+        <h2>Builds de {{ profile()!.name }}</h2>
+
+        @if (builds().length === 0) {
+          <p class="profile-empty">Nenhuma build salva ainda.</p>
+        } @else {
+          <div class="build-list">
+            @for (build of builds(); track build.id) {
+              <article class="build-card">
+                <div class="build-card__main">
+                  <span class="build-date">Salva em {{ formatDate(build.date) }}</span>
+                  <h3>{{ build.name }}</h3>
+                </div>
+                <strong class="build-price">{{ formatPrice(build.total) }}</strong>
+                <div class="build-actions">
+                  <button type="button" class="open-button" (click)="openBuild(build.id)">Ver resumo</button>
+                  @if (isOwnProfile()) {
+                    <button type="button" class="delete-button" (click)="removeBuild(build.id)">Excluir</button>
+                  }
+                </div>
+              </article>
+            }
+          </div>
+        }
+      </section>
+    }
+  </section>
+}

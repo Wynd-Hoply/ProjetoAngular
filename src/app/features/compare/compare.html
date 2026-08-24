@@ -1,0 +1,45 @@
+<section class="compare-page" aria-labelledby="compare-title">
+  <nav class="breadcrumb" aria-label="Breadcrumb">
+    <a routerLink="/home">Home</a><span>/</span><span>Comparar</span>
+  </nav>
+  <header class="compare-header">
+    <div>
+      <p class="eyebrow">Análise de componentes</p>
+      <h1 id="compare-title">Comparar componentes</h1>
+      <p>{{ comparison.selected().length }} de {{ comparison.maxItems }} componentes selecionados.</p>
+    </div>
+    <button type="button" class="action-button-clear" (click)="comparison.clear()">Limpar comparação</button>
+  </header>
+
+  @if (comparison.selected().length > 0) {
+    <div class="compare-table-wrap">
+      <div class="compare-table" [style.--comparison-columns]="comparison.selected().length">
+        <div class="compare-row compare-row--products">
+          <div class="compare-label">Componente</div>
+      @for (component of comparison.selected(); track component.id) {
+        <article class="product-column">
+          <img [src]="component.image" [alt]="'Imagem de ' + component.name" width="72" height="72" />
+          <p>{{ component.category }}</p>
+          <h2>{{ component.name }}</h2>
+          <button type="button" class="remove" (click)="comparison.remove(component.id)">Remover</button>
+        </article>
+      }
+        </div>
+        @for (row of rows(); track row.label) {
+          <div class="compare-row" [class.compare-row--different]="row.differs">
+            <div class="compare-label">{{ row.label }}</div>
+            @for (value of row.values; track $index) {
+              <div class="compare-value">{{ value }}</div>
+            }
+          </div>
+        }
+      </div>
+    </div>
+  } @else {
+    <div class="empty-state">
+      <h2>Nenhum componente selecionado</h2>
+      <p>Volte ao catálogo e marque os componentes que deseja comparar.</p>
+      <a routerLink="/components" class="explore-btn">Explorar componentes</a>
+    </div>
+  }
+</section>

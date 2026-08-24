@@ -1,0 +1,37 @@
+<section class="community-page" aria-labelledby="community-title">
+  <nav class="breadcrumb" aria-label="Breadcrumb"><a routerLink="/home">Home</a><span>/</span><span>Builds da comunidade</span></nav>
+
+  <header class="community-header">
+    <p class="eyebrow">PCraft</p>
+    <h1 id="community-title">Builds da comunidade</h1>
+    <p>Configurações que outros usuários decidiram compartilhar publicamente.</p>
+  </header>
+
+  @if (buildService.publicBuilds().length === 0) {
+    <section class="empty-state">
+      <h2>Nenhuma build pública ainda</h2>
+      <p>Salve uma build e clique em "Publicar na comunidade" para que ela apareça aqui.</p>
+    </section>
+  } @else {
+    <div class="community-list">
+      @for (build of buildService.publicBuilds(); track build.id) {
+        <article class="community-card">
+          <a class="community-card__author" [routerLink]="['/perfil', build.owner]">
+            @if (authorOf(build.owner)?.avatar) {
+              <img [src]="authorOf(build.owner)?.avatar" alt="" class="community-card__avatar" />
+            } @else {
+              <span class="community-card__avatar community-card__avatar--fallback">{{ authorInitial(build.owner) }}</span>
+            }
+            <span>{{ authorOf(build.owner)?.name ?? build.owner }}</span>
+          </a>
+
+          <h2>{{ build.name }}</h2>
+          <span class="community-card__date">Compartilhada em {{ formatDate(build.date) }}</span>
+          <strong class="community-card__price">{{ formatPrice(build.total) }}</strong>
+
+          <a class="community-card__link" [routerLink]="['/build', build.shareId]">Ver build</a>
+        </article>
+      }
+    </div>
+  }
+</section>

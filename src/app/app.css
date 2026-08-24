@@ -1,0 +1,225 @@
+.container-principal {
+  display: grid;
+  gap: 1.25rem;
+  padding: 1.25rem;
+}
+
+.bloco-controle {
+  display: grid;
+}
+
+.bloco-controle__card {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  padding: 1.25rem 1.4rem;
+  border-radius: 20px;
+  border: 1px solid var(--border-color);
+  background: var(--card-bg);
+  color: var(--text-primary);
+  box-shadow: 0 12px 24px rgba(0, 0, 0, 0.06);
+}
+
+.bloco-controle__card--active {
+  border-color: var(--primary);
+}
+
+.bloco-controle__eyebrow {
+  margin: 0 0 0.35rem;
+  font-size: 0.78rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--text-secondary);
+}
+
+.bloco-controle__card h2 {
+  margin: 0;
+  font-size: clamp(1.1rem, 2vw, 1.4rem);
+}
+
+.bloco-controle__card p {
+  margin: 0.4rem 0 0;
+  color: var(--text-secondary);
+}
+
+.bloco-controle__actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+}
+
+/* ESTRUTURA DO BOTÃO RESTAURADA */
+.bloco-controle__action {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 44px;
+  padding: 0 1rem;
+  border-radius: 8px;
+  border: 1px solid var(--primary);
+  background: var(--primary);
+  color: #ffffff;
+  text-decoration: none;
+  font-weight: 600;
+  transition: transform 160ms ease, box-shadow 160ms ease, filter 160ms ease;
+  cursor: pointer;
+}
+
+.bloco-controle__action:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.08);
+  filter: brightness(1.15);
+}
+
+/* BOTÃO SECUNDÁRIO (FANTASMA) */
+.bloco-controle__action--ghost {
+  background: transparent;
+  border-color: var(--border-color);
+  color: var(--text-primary);
+}
+
+.bloco-controle__action--ghost:hover {
+  background: var(--border-color);
+  filter: none;
+}
+
+hr {
+  border: 0;
+  border-top: 1px solid var(--border-color);
+  margin: 2rem 0;
+}
+
+/* =========================================
+   RESPONSIVIDADE (MOBILE) - APP.CSS
+   ========================================= */
+@media (max-width: 680px) {
+  .bloco-controle__card {
+    flex-direction: column; /* Coloca o texto em cima e os botões embaixo */
+    align-items: stretch; /* Estica o container */
+    text-align: center; /* Centraliza a saudação */
+    padding: 1.25rem 1rem;
+  }
+
+  .bloco-controle__actions {
+    flex-direction: column; /* Empilha o botão "Continuar" e "Sair" */
+    width: 100%;
+    margin-top: 0.5rem;
+  }
+
+  .bloco-controle__action {
+    width: 100%; /* Faz os botões ocuparem 100% da largura, ótimo para o toque */
+  }
+}
+
+/* =========================================
+   RODAPÉ (FOOTER) - APP.CSS
+   ========================================= */
+.custom-footer {
+  background-color: var(--card-bg);
+  border-top: 1px solid var(--border-color);
+  color: var(--text-primary);
+  padding: 4rem 1.5rem 1.5rem;
+  margin-top: 5rem;
+}
+
+.footer-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: 2fr 1fr 1fr;
+  gap: 3rem;
+  margin-bottom: 3rem;
+}
+
+.footer-logo {
+  height: 44px;
+  width: auto;
+  margin-bottom: 1rem;
+}
+
+.footer-description {
+  color: var(--text-secondary);
+  font-size: 0.92rem;
+  line-height: 1.6;
+  max-width: 380px;
+  margin: 0;
+}
+
+.footer-links h3,
+.footer-social h3 {
+  color: var(--text-primary);
+  font-size: 1.05rem;
+  margin: 0 0 1.25rem;
+}
+
+.footer-nav {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.footer-nav a {
+  color: var(--text-secondary);
+  text-decoration: none;
+  font-size: 0.92rem;
+  font-weight: 600;
+  transition: color 150ms ease;
+  width: fit-content;
+}
+
+.footer-nav a:hover {
+  color: var(--primary);
+}
+
+.social-icons {
+  display: flex;
+  gap: 0.75rem;
+}
+
+.social-btn {
+  display: grid;
+  place-items: center;
+  width: 40px;
+  height: 40px;
+  border-radius: 8px;
+  background-color: var(--bg-color);
+  border: 1px solid var(--border-color);
+  color: var(--text-primary);
+  text-decoration: none;
+  font-weight: 800;
+  font-size: 0.82rem;
+  transition: all 150ms ease;
+}
+
+.social-btn:hover {
+  border-color: var(--primary);
+  color: var(--primary);
+  transform: translateY(-2px);
+}
+
+.footer-bottom {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding-top: 1.5rem;
+  border-top: 1px solid var(--border-color);
+  text-align: center;
+}
+
+.footer-bottom p {
+  margin: 0;
+  color: var(--text-secondary);
+  font-size: 0.85rem;
+}
+
+@media (max-width: 768px) {
+  .footer-container {
+    grid-template-columns: 1fr;
+    gap: 2rem;
+  }
+  
+  .custom-footer {
+    padding: 3rem 1rem 1rem;
+    margin-top: 3rem;
+  }
+}

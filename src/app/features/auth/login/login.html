@@ -1,0 +1,41 @@
+<section class="auth-card" role="dialog" aria-labelledby="login-title">
+		<header class="auth-card__header">
+			<h2 id="login-title">Entrar no PCraft</h2>
+			<button type="button" class="auth-close" aria-label="Fechar" (click)="close()">&times;</button>
+		</header>
+
+		@if (statusMessage()) {
+			<p class="auth-feedback" [class.auth-feedback--success]="isSuccess()" [class.auth-feedback--error]="!isSuccess()">
+				{{ statusMessage() }}
+			</p>
+		}
+
+		<form class="auth-form" [formGroup]="form" (ngSubmit)="submit()">
+			<label>
+				<span>Email ou nome de usuário</span>
+				<input type="text" formControlName="identifier" placeholder="voce@exemplo.com ou seu usuario" autocomplete="username" />
+			</label>
+
+			@if (form.controls.identifier.invalid && (form.controls.identifier.dirty || form.controls.identifier.touched || submitted())) {
+				<small class="field-error">Informe seu email ou nome de usuário.</small>
+			}
+
+			<label>
+				<span>Senha</span>
+				<input type="password" formControlName="password" placeholder="Sua senha" autocomplete="current-password" />
+			</label>
+
+			@if (form.controls.password.invalid && (form.controls.password.dirty || form.controls.password.touched || submitted())) {
+				<small class="field-error">A senha precisa ter pelo menos 6 caracteres.</small>
+			}
+
+			<button type="submit" class="auth-submit" [disabled]="loading()">
+				{{ loading() ? 'Entrando...' : 'Entrar' }}
+			</button>
+		</form>
+
+		<p class="auth-card__footer">
+			Ainda não tem conta?
+			<a routerLink="/auth/register" (click)="close()">Criar conta</a>
+		</p>
+</section>

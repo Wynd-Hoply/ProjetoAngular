@@ -1,0 +1,105 @@
+.share-page {
+  max-width: 860px;
+  margin: 0 auto;
+  padding: 24px 16px 64px;
+}
+
+.share-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 16px;
+  margin: 20px 0 24px;
+  flex-wrap: wrap;
+}
+
+.eyebrow {
+  text-transform: uppercase;
+  font-size: 0.75rem;
+  letter-spacing: 0.08em;
+  color: var(--text-muted, #999);
+  margin: 0 0 4px;
+}
+
+.share-author {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  text-decoration: none;
+  color: inherit;
+  margin: 6px 0;
+}
+
+.share-author__avatar {
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  object-fit: cover;
+}
+
+.share-date {
+  margin: 0;
+  font-size: 0.85rem;
+  color: var(--text-muted, #999);
+}
+
+.share-total {
+  font-size: 1.6rem;
+}
+
+.share-actions {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+  margin-bottom: 12px;
+}
+
+.share-feedback {
+  color: var(--primary, #6c5ce7);
+  font-size: 0.9rem;
+}
+
+.share-visibility-tag {
+  display: inline-block;
+  padding: 4px 10px;
+  border-radius: 999px;
+  background: rgba(108, 92, 231, 0.15);
+  color: var(--primary, #6c5ce7);
+  font-size: 0.8rem;
+  margin-bottom: 16px;
+}
+
+.share-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 16px;
+}
+
+.share-table th,
+.share-table td {
+  text-align: left;
+  padding: 10px 12px;
+  border-bottom: 1px solid var(--border, #333);
+}
+
+.share-table th {
+  width: 160px;
+  color: var(--text-muted, #999);
+  font-weight: 500;
+}
+
+.share-table__price {
+  text-align: right;
+  white-space: nowrap;
+}
+
+.share-missing {
+  margin-top: 12px;
+  color: var(--text-muted, #999);
+  font-size: 0.85rem;
+}
+
+.button {
+  background: var(--primary); 
+  color: #FFFFFF; 
+}

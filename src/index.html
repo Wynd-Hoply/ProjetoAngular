@@ -1,13 +1,45 @@
 <!doctype html>
 <html lang="en">
-<head>
-  <meta charset="utf-8">
-  <title>Project</title>
-  <base href="/">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <link rel="icon" type="image/x-icon" href="favicon.ico">
-</head>
-<body>
-  <app-root></app-root>
-</body>
+  <head>
+    <meta charset="utf-8" />
+    <title>Projeto Angular</title>
+    <base href="/" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="icon" type="image/png" href="assets/images/LogoWM.png" />
+    <link rel="preconnect" href="assets/images/LogoWM.png" />
+    <link rel="preconnect" href="assets/images/LogoWM.png" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500&display=swap"
+      rel="stylesheet"
+    />
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet" />
+    
+    <!-- Script preventivo contra o flash de tema claro ao recarregar -->
+    <script>
+      try {
+        const savedTheme = localStorage.getItem('user-theme');
+        const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+        if (savedTheme === 'dark' || (!savedTheme && prefersDark)) {
+          document.documentElement.classList.add('dark-flash');
+          // Adiciona a classe dark-mode direto no body assim que o DOM estiver pronto
+          document.addEventListener('DOMContentLoaded', () => {
+            document.body.classList.add('dark-mode');
+          });
+        }
+      } catch (e) {}
+    </script>
+  </head>
+  <body>
+    <script>
+      // Aplica imediatamente caso o body já exista no fluxo inicial
+      try {
+        const savedTheme = localStorage.getItem('user-theme');
+        const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+        if (savedTheme === 'dark' || (!savedTheme && prefersDark)) {
+          document.body.classList.add('dark-mode');
+        }
+      } catch (e) {}
+    </script>
+    <app-root></app-root>
+  </body>
 </html>

@@ -1,0 +1,143 @@
+<mat-toolbar class="custom-toolbar">
+  <button class="logo-btn" routerLink="/home" aria-label="Ir para a página inicial">
+    <img src="assets/images/LogoWM.png" alt="Logo" class="logo" />
+  </button>
+
+  <span class="flex-spacer"></span>
+
+  <!-- AÇÕES DESKTOP (Escondidas no celular) -->
+  <div class="header-actions desktop-only">
+    <button mat-button routerLink="/home">Início</button>
+    <button mat-button routerLink="/build-up">Monte seu PC</button>
+    <button mat-button routerLink="/auto-build">Auto Build</button>
+
+    <div class="pieces-menu" [class.pieces-menu--open]="piecesMenuOpen()">
+      <button
+        mat-button
+        type="button"
+        class="pieces-menu__trigger"
+        [class.active-tab]="piecesMenuOpen()"
+        (click)="togglePiecesMenu()"
+      >
+        Peças <span class="arrow">▾</span>
+      </button>
+      
+      @if (piecesMenuOpen()) {
+        <div class="pieces-menu__panel" role="menu">
+          <div class="pieces-menu__section">
+            <p class="pieces-menu__section-title">Componentes Principais</p>
+            <div class="mega-grid">
+              @for (item of pcComponents; track item.route) {
+                <a class="pieces-card-item" [routerLink]="item.route" (click)="closePiecesMenu()">
+                  <div class="pieces-card-img"><img [src]="item.image" [alt]="item.label" /></div>
+                  <div class="pieces-card-info">
+                    <span class="pieces-card-label">{{ item.label }}</span>
+                    <span class="pieces-card-sub">Ver catálogo</span>
+                  </div>
+                </a>
+              }
+            </div>
+          </div>
+        </div>
+      }
+    </div>
+
+    <button mat-button routerLink="/builds">Minhas Builds</button>
+    <button mat-button routerLink="/compare">Comparar</button>
+
+    
+    @if (authService.isAdmin()) {
+  <a class="admin-link" routerLink="/admin">Admin</a>
+}
+    
+
+    @if (authService.isAuthenticated()) {
+      <a class="auth-profile-chip" [routerLink]="['/perfil', authService.currentUser()?.username]">
+        @if (authService.currentUser()?.avatar) {
+          <img [src]="authService.currentUser()?.avatar" alt="" class="auth-profile-avatar" />
+        } @else {
+          <span class="profile-avatar__fallback">{{ initials(authService.currentUser()!.name) }}</span>
+        }
+      </a>
+      <button mat-stroked-button class="btn-outline" (click)="logout()">Sair</button>
+    } @else {
+      <button mat-stroked-button class="btn-outline" (click)="openLogin()">Entrar</button>
+      <button mat-flat-button class="btn-primary" routerLink="/auth/register">Cadastre-se</button>
+    }
+
+    <button mat-icon-button class="theme-toggle-btn" (click)="themeService.toggleTheme()">
+      <span class="icon">{{ themeService.isDarkMode() ? '☀' : '☾' }}</span>
+    </button>
+  </div>
+
+  <!-- BOTÃO MENU HAMBÚRGUER (Apenas no celular) -->
+  <button class="hamburger-btn mobile-only" (click)="toggleMobileMenu()" aria-label="Abrir menu">
+    <svg viewBox="0 0 24 24" width="28" height="28" fill="currentColor">
+      <path d="M3 18h18v-2H3v2zm0-5h18v-2H3v2zm0-7v2h18V6H3z" />
+    </svg>
+  </button>
+</mat-toolbar>
+
+<!-- GAVETA LATERAL (SIDEBAR MOBILE) -->
+@if (mobileMenuOpen()) {
+  <div class="mobile-backdrop" (click)="closeMobileMenu()"></div>
+
+  <aside class="mobile-sidebar">
+    <div class="mobile-sidebar__header">
+      <img src="assets/images/LogoWM.png" alt="Logo" class="sidebar-logo" />
+      <button class="close-btn" (click)="closeMobileMenu()">✕</button>
+    </div>
+
+    <nav class="mobile-nav">
+      <a class="mobile-nav__link" routerLink="/home" (click)="closeMobileMenu()">Home</a>
+      <a class="mobile-nav__link" routerLink="/build-up" (click)="closeMobileMenu()"
+        >Montar seu PC</a
+      >
+
+      <div class="mobile-nav__group">
+        <span class="mobile-nav__group-title">Peças</span>
+        <div class="mobile-nav__sublinks">
+          @for (item of pcComponents; track item.route) {
+            <a class="mobile-nav__sublink" [routerLink]="item.route" (click)="closeMobileMenu()">
+              {{ item.label }}
+            </a>
+          }
+        </div>
+      </div>
+
+      <a class="mobile-nav__link" routerLink="/builds" (click)="closeMobileMenu()">Minhas Builds</a>
+      <a class="mobile-nav__link" routerLink="/compare" (click)="closeMobileMenu()"
+        >Comparar componentes</a
+      >
+      @if (authService.isAdmin()) {
+  <a class="mobile-nav__link" routerLink="/admin" (click)="closeMobileMenu()">Área administrativa</a>
+}
+      
+
+      <hr class="mobile-divider" />
+
+      @if (authService.isAuthenticated()) {
+        <a
+          class="mobile-nav__link"
+          [routerLink]="['/perfil', authService.currentUser()?.username]"
+          (click)="closeMobileMenu()"
+        >
+          Meu perfil ({{ authService.displayName() }})
+        </a>
+        <button class="mobile-nav__link" (click)="logout()">Sair</button>
+      } @else {
+        <button class="mobile-nav__link" (click)="openLogin()">Entrar</button>
+        <a
+          class="mobile-nav__link mobile-nav__link--highlight"
+          routerLink="/auth/register"
+          (click)="closeMobileMenu()"
+          >Cadastre-se</a
+        >
+      }
+
+      <button class="mobile-nav__link" (click)="themeService.toggleTheme()">
+        Tema: {{ themeService.isDarkMode() ? 'Modo Claro ☀' : 'Modo Escuro ☾' }}
+      </button>
+    </nav>
+  </aside>
+}

@@ -1,0 +1,41 @@
+<section class="summary-page" aria-labelledby="summary-title">
+  @if (build(); as currentBuild) {
+    <nav class="breadcrumb" aria-label="Breadcrumb"><a routerLink="/home">Home</a><span>/</span><a routerLink="/builds">Minhas Builds</a><span>/</span><span>Resumo</span></nav>
+
+    <header class="summary-hero">
+      <div>
+        <p class="eyebrow">Configuração salva</p>
+        <h1 id="summary-title">{{ currentBuild.name }}</h1>
+        <p>Resumo da sua configuração · salva em {{ formatDate(currentBuild.date) }}</p>
+      </div>
+      <div class="hero-total"><span>Investimento estimado</span><strong>{{ formatPrice(currentBuild.total) }}</strong><small>{{ components().length }} de {{ slots.length }} categorias preenchidas</small></div>
+    </header>
+
+    <div class="summary-actions" aria-label="Ações da configuração">
+      <a class="action-button action-button--primary" routerLink="/builder">Editar configuração</a>
+      <a class="action-button action-button--quiet" routerLink="/components">Voltar ao catálogo</a>
+    </div>
+
+    <div class="summary-layout">
+      <main class="component-section" aria-labelledby="components-title">
+        <div class="section-heading"><div><p class="eyebrow">Visão geral</p><h2 id="components-title">Componentes escolhidos</h2></div><span>{{ components().length }} itens</span></div>
+        <div class="component-grid">
+          @for (item of components(); track item.component.id) {
+            <article class="component-card" [routerLink]="['/components', item.slot.category]" style="cursor: pointer;" title="Ver componentes da categoria">
+              <div class="component-card__image"><img [src]="item.component.image" [alt]="'Imagem de ' + item.component.name" width="96" height="96" /></div>
+              <div class="component-card__body"><span class="component-category">{{ item.slot.label }}</span><h3>{{ item.component.name }}</h3><p>{{ item.component.brand }} · {{ specificationSummary(item.component) }}</p><div class="component-card__footer"><strong>{{ formatPrice(item.component.price) }}</strong><span>{{ item.component.powerDrawWatts }} W</span></div></div>
+            </article>
+          } @empty { <p class="empty-copy">Nenhum componente foi salvo nesta configuração.</p> }
+        </div>
+      </main>
+
+      <aside class="status-column" aria-label="Status da configuração">
+        <section class="status-card status-card--power"><p class="eyebrow">Energia</p><h2>Consumo estimado</h2><strong>{{ compatibility.estimatedConsumption() }} W</strong><p>Fonte recomendada: <b>{{ compatibility.recommendedWattage() }} W</b></p></section>
+        <section class="status-card"><div class="section-heading section-heading--small"><h2>Compatibilidade</h2><span [class.status-bad]="compatibility.hasIncompatibility()">{{ compatibility.hasIncompatibility() ? 'Revisar' : 'OK' }}</span></div>
+          @if (compatibility.checks().length === 0) { <p class="muted-copy">Selecione mais componentes relacionados para validar a configuração.</p> } @else { <div class="status-list">@for (check of compatibility.checks(); track check.key) { <div class="status-item" [class.status-item--bad]="check.status === 'incompatible'"><b>{{ check.status === 'incompatible' ? '⚠' : '✓' }}</b><span><strong>{{ check.label }}</strong><small>{{ check.message }}</small></span></div> }</div> }
+        </section>
+        <section class="status-card missing-card"><p class="eyebrow">Checklist</p><h2>Categorias faltantes</h2>@if (missingSlots().length === 0) { <p class="complete-copy">✓ Configuração completa</p> } @else { <ul>@for (slot of missingSlots(); track slot.category) { <li>{{ slot.label }}</li> }</ul> }</section>
+      </aside>
+    </div>
+  }
+</section>

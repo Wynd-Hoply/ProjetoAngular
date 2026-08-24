@@ -1,0 +1,137 @@
+<section class="catalog-page" aria-labelledby="catalog-title">
+	<nav class="breadcrumb" aria-label="Breadcrumb">
+		<a routerLink="/home">Home</a>
+		<span>/</span>
+		<a routerLink="/components">Componentes</a>
+		@if (category()) {
+			<span>/</span>
+			<span>{{ title() }}</span>
+		}
+	</nav>
+
+	<div class="catalog-layout">
+		<aside class="filters" aria-labelledby="filters-title">
+			<div class="filters__heading">
+				<h2 id="filters-title">Filtros</h2>
+				<button type="button" class="text-button" (click)="clearFilters()">Limpar</button>
+			</div>
+
+			<label class="field-label" for="min-price">Faixa de preço</label>
+			<div class="price-fields">
+				<input id="min-price" type="number" min="0" placeholder="Mínimo" [value]="minPrice() ?? ''" (input)="updateNumber('minPrice', $event)" />
+				<input type="number" min="0" placeholder="Máximo" [value]="maxPrice() ?? ''" (input)="updateNumber('maxPrice', $event)" />
+			</div>
+
+			<label class="field-label" for="brand">Fabricante</label>
+			<select id="brand" [value]="brand()" (change)="updateBrand($event)">
+				<option value="">Todos</option>
+				@for (brandOption of brands(); track brandOption) {
+					<option [value]="brandOption">{{ brandOption }}</option>
+				}
+			</select>
+
+			<label class="field-label" for="vram">VRAM mínima (GB)</label>
+			<input id="vram" type="number" min="0" placeholder="Todas" [value]="minVram() ?? ''" (input)="updateNumber('minVram', $event)" />
+
+			<label class="field-label" for="capacity">Capacidade mínima (GB)</label>
+			<input id="capacity" type="number" min="0" placeholder="Todas" [value]="minCapacity() ?? ''" (input)="updateNumber('minCapacity', $event)" />
+
+			<label class="field-label" for="wattage">Potência mínima (W)</label>
+			<input id="wattage" type="number" min="0" placeholder="Todas" [value]="minWattage() ?? ''" (input)="updateNumber('minWattage', $event)" />
+
+			<p class="filters__hint">Os filtros disponíveis combinam automaticamente com as especificações de cada categoria.</p>
+		</aside>
+
+		<div class="catalog-content">
+			<header class="catalog-header">
+				<div>
+					<p class="eyebrow">Catálogo PCraft</p>
+					<h1 id="catalog-title">{{ title() }}</h1>
+					<p class="result-count">{{ results().length }} componentes encontrados</p>
+				</div>
+				<div class="catalog-actions">
+					<button type="button" class="secondary-button" (click)="clearSelection()">Limpar seleção</button>
+					<a class="primary-button" routerLink="/compare">Comparar ({{ comparison.selected().length }})</a>
+					<a class="builder-link" routerLink="/build-up">Montagem: {{ formatPrice(builder.total()) }}</a>
+				</div>
+			</header>
+
+			<div class="toolbar">
+				<label class="search-field" for="component-search">
+					<span aria-hidden="true">⌕</span>
+					<input id="component-search" type="search" placeholder="Pesquisar por nome, marca ou especificação" [value]="search()" (input)="updateSearch($event)" />
+				</label>
+				<label class="sort-field" for="sort">Ordenar por
+					<select id="sort" [value]="sort()" (change)="updateSort($event)">
+						<option value="name-asc">Nome A-Z</option>
+						<option value="name-desc">Nome Z-A</option>
+						<option value="price-asc">Menor preço</option>
+						<option value="price-desc">Maior preço</option>
+						<option value="performance-desc">Desempenho</option>
+					</select>
+				</label>
+			</div>
+
+			<div class="table-wrap">
+				<div class="component-table" role="table" aria-label="Lista de componentes">
+					<div class="table-row table-row--heading" role="row">
+						<span role="columnheader">Comparar</span>
+						<span role="columnheader">Componente</span>
+						<span role="columnheader">Especificações</span>
+						<span role="columnheader">Preço</span>
+						<span role="columnheader">Ação</span>
+					</div>
+					@for (component of pagedResults(); track component.id) {
+						<div class="table-row" role="row">
+							<label class="compare-check" [attr.aria-label]="'Comparar ' + component.name">
+								<input type="checkbox" [checked]="isCompared(component.id)" (change)="toggleComparison(component)" />
+							</label>
+							<div class="component-name">
+								<img [src]="component.image" [alt]="'Imagem de ' + component.name" width="52" height="52" />
+								<div>
+									<strong>{{ component.name }}</strong>
+									<span>{{ component.brand }} · {{ component.performanceScore }} pts</span>
+								</div>
+							</div>
+							<span class="specifications">{{ specificationSummary(component) || 'Especificações gerais' }}</span>
+							<strong class="price">{{ formatPrice(component.price) }}</strong>
+							<button type="button" class="add-button" [attr.aria-label]="'Adicionar ' + component.name + ' à montagem'" (click)="addToBuilder(component)">+</button>
+						</div>
+					} @empty {
+						<div class="empty-state">Nenhum componente corresponde aos filtros atuais.</div>
+					}
+				</div>
+			</div>
+
+			@if (totalPages() > 1) {
+				<nav class="pagination" aria-label="Paginação de resultados">
+					<button
+						type="button"
+						class="page-nav"
+						(click)="previousPage()"
+						[disabled]="page() === 1"
+					>‹ Anterior</button>
+
+					<div class="page-numbers">
+						@for (pageNumber of pageNumbers(); track pageNumber) {
+							<button
+								type="button"
+								class="page-number"
+								[class.active]="pageNumber === page()"
+								[attr.aria-current]="pageNumber === page() ? 'page' : null"
+								(click)="goToPage(pageNumber)"
+							>{{ pageNumber }}</button>
+						}
+					</div>
+
+					<button
+						type="button"
+						class="page-nav"
+						(click)="nextPage()"
+						[disabled]="page() === totalPages()"
+					>Próximo ›</button>
+				</nav>
+			}
+		</div>
+	</div>
+</section>
