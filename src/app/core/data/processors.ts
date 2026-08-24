@@ -1,6 +1,7 @@
 import { Component } from '../models/component.model';
 
 const componentImage = 'assets/images/LogoWM.png';
+const prImage = '/assets/images/PROCESSADOR/Processador (1).png';
 
 export const processors: Component[] = [
   {
@@ -11,7 +12,7 @@ export const processors: Component[] = [
     price: 1_249.9,
     performanceScore: 78,
     powerDrawWatts: 65,
-    image: '/assets/images/Processadores/101.jpg',
+    image: prImage,
     specifications: { socket: 'AM5', coreCount: 6, threadCount: 12, baseClockGHz: 3.8, boostClockGHz: 5.1, tdpWatts: 65 },
   },
   {
@@ -22,7 +23,7 @@ export const processors: Component[] = [
     price: 2_699.9,
     performanceScore: 96,
     powerDrawWatts: 120,
-    image: '/assets/images/Processadores/102.webp',
+    image: prImage,
     specifications: { socket: 'AM5', coreCount: 8, threadCount: 16, baseClockGHz: 4.2, boostClockGHz: 5, tdpWatts: 120 },
   },
   {
@@ -33,7 +34,7 @@ export const processors: Component[] = [
     price: 2_199.9,
     performanceScore: 91,
     powerDrawWatts: 181,
-    image: '/assets/images/Processadores/103.jpg',
+    image: prImage,
     specifications: { socket: 'LGA1700', coreCount: 14, threadCount: 20, baseClockGHz: 3.5, boostClockGHz: 5.3, tdpWatts: 181 },
   },
   {
@@ -44,7 +45,7 @@ export const processors: Component[] = [
     price: 3_099.9,
     performanceScore: 98,
     powerDrawWatts: 253,
-    image: '/assets/images/Processadores/104.webp',
+    image: prImage,
     specifications: { socket: 'LGA1700', coreCount: 20, threadCount: 28, baseClockGHz: 3.4, boostClockGHz: 5.6, tdpWatts: 253 },
   },
   {
@@ -55,7 +56,7 @@ export const processors: Component[] = [
     price: 1_799.9,
     performanceScore: 89,
     powerDrawWatts: 105,
-    image: componentImage,
+    image: prImage,
     specifications: { socket: 'AM5', coreCount: 8, threadCount: 16, baseClockGHz: 4.5, boostClockGHz: 5.4, tdpWatts: 105 },
   },
   {
@@ -66,7 +67,7 @@ export const processors: Component[] = [
     price: 4_699.9,
     performanceScore: 99,
     powerDrawWatts: 253,
-    image: componentImage,
+    image: prImage,
     specifications: { socket: 'LGA1700', coreCount: 24, threadCount: 32, baseClockGHz: 3.2, boostClockGHz: 6, tdpWatts: 253 },
   },
   {
@@ -77,7 +78,7 @@ export const processors: Component[] = [
     price: 1_149.9,
     performanceScore: 74,
     powerDrawWatts: 65,
-    image: componentImage,
+    image: prImage,
     specifications: { socket: 'AM5', coreCount: 6, threadCount: 12, baseClockGHz: 4.3, boostClockGHz: 5.1, tdpWatts: 65 },
   },
   {
@@ -88,7 +89,7 @@ export const processors: Component[] = [
     price: 1_899.9,
     performanceScore: 90,
     powerDrawWatts: 181,
-    image: componentImage,
+    image: prImage,
     specifications: { socket: 'LGA1700', coreCount: 14, threadCount: 20, baseClockGHz: 3.5, boostClockGHz: 5.1, tdpWatts: 181 },
   },
   {
@@ -99,7 +100,7 @@ export const processors: Component[] = [
     price: 2_299.9,
     performanceScore: 92,
     powerDrawWatts: 65,
-    image: componentImage,
+    image: prImage,
     specifications: { socket: 'AM5', coreCount: 12, threadCount: 24, baseClockGHz: 3.7, boostClockGHz: 5.4, tdpWatts: 65 },
   },
   {
@@ -110,7 +111,7 @@ export const processors: Component[] = [
     price: 2_699.9,
     performanceScore: 95,
     powerDrawWatts: 253,
-    image: componentImage,
+    image: prImage,
     specifications: { socket: 'LGA1700', coreCount: 16, threadCount: 24, baseClockGHz: 3.4, boostClockGHz: 5.4, tdpWatts: 253 },
   },
   {
@@ -121,7 +122,7 @@ export const processors: Component[] = [
     price: 799.9,
     performanceScore: 75,
     powerDrawWatts: 65,
-    image: componentImage,
+    image: prImage,
     specifications: { socket: 'LGA1200', coreCount: 6, threadCount: 12, baseClockGHz: 2.6, boostClockGHz: 4.4, tdpWatts: 65 },
   },
   {
@@ -132,7 +133,7 @@ export const processors: Component[] = [
     price: 699.9,
     performanceScore: 72,
     powerDrawWatts: 65,
-    image: componentImage,
+    image: prImage,
     specifications: { socket: 'AM4', coreCount: 6, threadCount: 12, baseClockGHz: 3.5, boostClockGHz: 4.4, tdpWatts: 65 },
   },
   {
@@ -143,7 +144,7 @@ export const processors: Component[] = [
     price: 1_399.9,
     performanceScore: 88,
     powerDrawWatts: 105,
-    image: '/assets/images/Processadores/113.jpg',
+    image: prImage,
     specifications: { socket: 'AM4', coreCount: 8, threadCount: 16, baseClockGHz: 3.0, boostClockGHz: 4.1, tdpWatts: 105 },
   },
   {
@@ -154,7 +155,7 @@ export const processors: Component[] = [
     price: 849.9,
     performanceScore: 76,
     powerDrawWatts: 65,
-    image: '/assets/images/Processadores/114.jpg',
+    image: prImage,
     specifications: { socket: 'LGA1700', coreCount: 6, threadCount: 12, baseClockGHz: 2.5, boostClockGHz: 4.4, tdpWatts: 65 },
   },
   {
@@ -165,7 +166,7 @@ export const processors: Component[] = [
     price: 829.9,
     performanceScore: 70,
     powerDrawWatts: 65,
-    image: '/assets/images/Processadores/115.jpg',
+    image: prImage,
     specifications: { socket: 'AM4', coreCount: 6, threadCount: 12, baseClockGHz: 3.9, boostClockGHz: 4.4, tdpWatts: 65 },
   },
   {
@@ -176,7 +177,7 @@ export const processors: Component[] = [
     price: 549.9,
     performanceScore: 62,
     powerDrawWatts: 58,
-    image: '/assets/images/Processadores/116.jpg',
+    image: prImage,
     specifications: { socket: 'LGA1700', coreCount: 4, threadCount: 8, baseClockGHz: 3.3, boostClockGHz: 4.3, tdpWatts: 58 },
   },
   {
@@ -187,7 +188,7 @@ export const processors: Component[] = [
     price: 1_049.9,
     performanceScore: 81,
     powerDrawWatts: 65,
-    image: '/assets/images/Processadores/117.jpg',
+    image: prImage,
     specifications: { socket: 'AM4', coreCount: 8, threadCount: 16, baseClockGHz: 3.4, boostClockGHz: 4.6, tdpWatts: 65 },
   },
   {
@@ -198,7 +199,7 @@ export const processors: Component[] = [
     price: 1_199.9,
     performanceScore: 82,
     powerDrawWatts: 65,
-    image: '/assets/images/Processadores/118.jpg',
+    image: prImage,
     specifications: { socket: 'LGA1700', coreCount: 10, threadCount: 16, baseClockGHz: 2.5, boostClockGHz: 4.6, tdpWatts: 65 },
   },
   {
@@ -209,7 +210,7 @@ export const processors: Component[] = [
     price: 999.9,
     performanceScore: 77,
     powerDrawWatts: 65,
-    image: '/assets/images/Processadores/119.jpg',
+    image: prImage,
     specifications: { socket: 'AM5', coreCount: 6, threadCount: 12, baseClockGHz: 3.7, boostClockGHz: 5.0, tdpWatts: 65 },
   },
   {
@@ -220,7 +221,7 @@ export const processors: Component[] = [
     price: 4_299.9,
     performanceScore: 100,
     powerDrawWatts: 120,
-    image: '/assets/images/Processadores/120.jpg',
+    image: prImage,
     specifications: { socket: 'AM5', coreCount: 16, threadCount: 32, baseClockGHz: 4.2, boostClockGHz: 5.7, tdpWatts: 120 },
   },
   {
@@ -231,7 +232,7 @@ export const processors: Component[] = [
     price: 1_299.9,
     performanceScore: 84,
     powerDrawWatts: 65,
-    image: '/assets/images/Processadores/121.jpg',
+    image: prImage,
     specifications: { socket: 'LGA1700', coreCount: 10, threadCount: 16, baseClockGHz: 2.5, boostClockGHz: 4.7, tdpWatts: 65 },
   },
   {
@@ -242,7 +243,7 @@ export const processors: Component[] = [
     price: 469.9,
     performanceScore: 58,
     powerDrawWatts: 65,
-    image: '/assets/images/Processadores/122.jpg',
+    image: prImage,
     specifications: { socket: 'AM4', coreCount: 6, threadCount: 12, baseClockGHz: 3.6, boostClockGHz: 4.1, tdpWatts: 65 },
   },
   {
@@ -253,7 +254,7 @@ export const processors: Component[] = [
     price: 1_899.9,
     performanceScore: 89,
     powerDrawWatts: 190,
-    image: '/assets/images/Processadores/123.jpg',
+    image: prImage,
     specifications: { socket: 'LGA1700', coreCount: 12, threadCount: 20, baseClockGHz: 3.6, boostClockGHz: 5.0, tdpWatts: 190 },
   },
   {
@@ -264,7 +265,7 @@ export const processors: Component[] = [
     price: 2_399.9,
     performanceScore: 93,
     powerDrawWatts: 65,
-    image: '/assets/images/Processadores/124.jpg',
+    image: prImage,
     specifications: { socket: 'AM5', coreCount: 8, threadCount: 16, baseClockGHz: 3.8, boostClockGHz: 5.5, tdpWatts: 65 },
   },
   {
@@ -275,7 +276,7 @@ export const processors: Component[] = [
     price: 689.9,
     performanceScore: 66,
     powerDrawWatts: 58,
-    image: '/assets/images/Processadores/125.jpg',
+    image: prImage,
     specifications: { socket: 'LGA1700', coreCount: 4, threadCount: 8, baseClockGHz: 3.5, boostClockGHz: 4.7, tdpWatts: 58 },
   }
 ];

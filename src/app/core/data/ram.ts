@@ -1,6 +1,7 @@
 import { Component } from '../models/component.model';
 
 const componentImage = 'assets/images/LogoWM.png';
+const prImage = '/assets/images/Ram/images__1_-removebg-preview.png';
 
 export const ram: Component[] = [
   {
@@ -11,7 +12,7 @@ export const ram: Component[] = [
     price: 329.9,
     performanceScore: 62,
     powerDrawWatts: 8,
-    image: componentImage,
+    image: prImage,
     specifications: { capacityGB: 16, ramType: 'DDR4', memorySpeedMHz: 3200 },
   },
   {
@@ -22,7 +23,7 @@ export const ram: Component[] = [
     price: 699.9,
     performanceScore: 78,
     powerDrawWatts: 10,
-    image: componentImage,
+    image: prImage,
     specifications: { capacityGB: 32, ramType: 'DDR5', memorySpeedMHz: 6000 },
   },
   {
@@ -33,7 +34,7 @@ export const ram: Component[] = [
     price: 899.9,
     performanceScore: 88,
     powerDrawWatts: 10,
-    image: componentImage,
+    image: prImage,
     specifications: { capacityGB: 32, ramType: 'DDR5', memorySpeedMHz: 6400 },
   },
   {
@@ -44,7 +45,7 @@ export const ram: Component[] = [
     price: 1_399.9,
     performanceScore: 92,
     powerDrawWatts: 14,
-    image: componentImage,
+    image: prImage,
     specifications: { capacityGB: 64, ramType: 'DDR5', memorySpeedMHz: 6000 },
   },
   {
@@ -55,7 +56,7 @@ export const ram: Component[] = [
     price: 899.9,
     performanceScore: 84,
     powerDrawWatts: 12,
-    image: componentImage,
+    image: prImage,
     specifications: { capacityGB: 32, ramType: 'DDR5', memorySpeedMHz: 6000 },
   },
   {
@@ -66,7 +67,7 @@ export const ram: Component[] = [
     price: 649.9,
     performanceScore: 72,
     powerDrawWatts: 10,
-    image: componentImage,
+    image: prImage,
     specifications: { capacityGB: 32, ramType: 'DDR4', memorySpeedMHz: 3600 },
   },
   {
@@ -77,7 +78,7 @@ export const ram: Component[] = [
     price: 529.9,
     performanceScore: 70,
     powerDrawWatts: 9,
-    image: componentImage,
+    image: prImage,
     specifications: { capacityGB: 16, ramType: 'DDR5', memorySpeedMHz: 5600 },
   },
   {
@@ -88,7 +89,7 @@ export const ram: Component[] = [
     price: 1_549.9,
     performanceScore: 89,
     powerDrawWatts: 14,
-    image: componentImage,
+    image: prImage,
     specifications: { capacityGB: 48, ramType: 'DDR5', memorySpeedMHz: 6000 },
   },
   {
@@ -99,7 +100,7 @@ export const ram: Component[] = [
     price: 1_799.9,
     performanceScore: 94,
     powerDrawWatts: 16,
-    image: componentImage,
+    image: prImage,
     specifications: { capacityGB: 64, ramType: 'DDR5', memorySpeedMHz: 6000 },
   },
   {
@@ -110,7 +111,7 @@ export const ram: Component[] = [
     price: 299.9,
     performanceScore: 58,
     powerDrawWatts: 8,
-    image: componentImage,
+    image: prImage,
     specifications: { capacityGB: 16, ramType: 'DDR4', memorySpeedMHz: 3200 },
   },
   {
@@ -121,7 +122,7 @@ export const ram: Component[] = [
     price: 579.9,
     performanceScore: 74,
     powerDrawWatts: 10,
-    image: componentImage,
+    image: prImage,
     specifications: { capacityGB: 32, ramType: 'DDR4', memorySpeedMHz: 3600 },
   },
   {
@@ -132,7 +133,7 @@ export const ram: Component[] = [
     price: 799.9,
     performanceScore: 83,
     powerDrawWatts: 11,
-    image: 'assets/images/RAM/412.jpg',
+    image: prImage,
     specifications: { capacityGB: 32, ramType: 'DDR5', memorySpeedMHz: 6000 },
   },
   {
@@ -143,7 +144,7 @@ export const ram: Component[] = [
     price: 149.9,
     performanceScore: 45,
     powerDrawWatts: 4,
-    image: 'assets/images/RAM/413.jpg',
+    image: prImage,
     specifications: { capacityGB: 8, ramType: 'DDR4', memorySpeedMHz: 3200 },
   },
   {
@@ -154,7 +155,7 @@ export const ram: Component[] = [
     price: 319.9,
     performanceScore: 61,
     powerDrawWatts: 8,
-    image: 'assets/images/RAM/414.jpg',
+    image: prImage,
     specifications: { capacityGB: 16, ramType: 'DDR4', memorySpeedMHz: 3200 },
   },
   {
@@ -165,7 +166,7 @@ export const ram: Component[] = [
     price: 349.9,
     performanceScore: 63,
     powerDrawWatts: 9,
-    image: 'assets/images/RAM/415.jpg',
+    image: prImage,
     specifications: { capacityGB: 16, ramType: 'DDR4', memorySpeedMHz: 3200 },
   },
   {
@@ -176,7 +177,7 @@ export const ram: Component[] = [
     price: 729.9,
     performanceScore: 76,
     powerDrawWatts: 11,
-    image: 'assets/images/RAM/416.jpg',
+    image: prImage,
     specifications: { capacityGB: 32, ramType: 'DDR4', memorySpeedMHz: 3600 },
   },
   {
@@ -187,7 +188,7 @@ export const ram: Component[] = [
     price: 279.9,
     performanceScore: 57,
     powerDrawWatts: 8,
-    image: 'assets/images/RAM/417.jpg',
+    image: prImage,
     specifications: { capacityGB: 16, ramType: 'DDR4', memorySpeedMHz: 3200 },
   },
   {
@@ -198,7 +199,7 @@ export const ram: Component[] = [
     price: 2_199.9,
     performanceScore: 97,
     powerDrawWatts: 16,
-    image: 'assets/images/RAM/418.jpg',
+    image: prImage,
     specifications: { capacityGB: 64, ramType: 'DDR5', memorySpeedMHz: 6600 },
   },
   {
@@ -209,7 +210,7 @@ export const ram: Component[] = [
     price: 749.9,
     performanceScore: 77,
     powerDrawWatts: 11,
-    image: 'assets/images/RAM/419.jpg',
+    image: prImage,
     specifications: { capacityGB: 32, ramType: 'DDR5', memorySpeedMHz: 5600 },
   },
   {
@@ -220,7 +221,7 @@ export const ram: Component[] = [
     price: 389.9,
     performanceScore: 65,
     powerDrawWatts: 6,
-    image: 'assets/images/RAM/420.jpg',
+    image: prImage,
     specifications: { capacityGB: 16, ramType: 'DDR5', memorySpeedMHz: 5200 },
   },
   {
@@ -231,7 +232,7 @@ export const ram: Component[] = [
     price: 2_899.9,
     performanceScore: 99,
     powerDrawWatts: 18,
-    image: 'assets/images/RAM/421.jpg',
+    image: prImage,
     specifications: { capacityGB: 96, ramType: 'DDR5', memorySpeedMHz: 6800 },
   },
   {
@@ -242,7 +243,7 @@ export const ram: Component[] = [
     price: 249.9,
     performanceScore: 54,
     powerDrawWatts: 5,
-    image: 'assets/images/RAM/422.jpg',
+    image: prImage,
     specifications: { capacityGB: 16, ramType: 'DDR4', memorySpeedMHz: 3200 },
   },
   {
@@ -253,7 +254,7 @@ export const ram: Component[] = [
     price: 849.9,
     performanceScore: 86,
     powerDrawWatts: 12,
-    image: 'assets/images/RAM/423.jpg',
+    image: prImage,
     specifications: { capacityGB: 32, ramType: 'DDR5', memorySpeedMHz: 6400 },
   },
   {
@@ -264,7 +265,7 @@ export const ram: Component[] = [
     price: 589.9,
     performanceScore: 70,
     powerDrawWatts: 10,
-    image: 'assets/images/RAM/424.jpg',
+    image: prImage,
     specifications: { capacityGB: 32, ramType: 'DDR4', memorySpeedMHz: 3200 },
   },
   {
@@ -275,7 +276,7 @@ export const ram: Component[] = [
     price: 949.9,
     performanceScore: 91,
     powerDrawWatts: 13,
-    image: 'assets/images/RAM/425.jpg',
+    image: prImage,
     specifications: { capacityGB: 32, ramType: 'DDR5', memorySpeedMHz: 7000 },
   }
 ];

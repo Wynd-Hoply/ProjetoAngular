@@ -1,6 +1,7 @@
 import { Component } from '../models/component.model';
 
 const componentImage = 'assets/images/LogoWM.png';
+const prImage = '/assets/images/FONTE/Fonte (1).png';
 
 export const psus: Component[] = [
   {
@@ -11,7 +12,7 @@ export const psus: Component[] = [
     price: 399.9,
     performanceScore: 68,
     powerDrawWatts: 0,
-    image: 'assets/images/Fontes/601.jpg',
+    image: prImage,
     specifications: { wattage: 650, efficiency: '80 Plus Bronze', modular: false },
   },
   {
@@ -22,7 +23,7 @@ export const psus: Component[] = [
     price: 450.9,
     performanceScore: 82,
     powerDrawWatts: 0,
-    image: 'assets/images/Fontes/602.webp',
+    image: prImage,
     specifications: { wattage: 750, efficiency: '80 Plus Gold', modular: true },
   },
   {
@@ -33,7 +34,7 @@ export const psus: Component[] = [
     price: 300.9,
     performanceScore: 90,
     powerDrawWatts: 0,
-    image: 'assets/images/Fontes/603.jpg',
+    image: prImage,
     specifications: { wattage: 850, efficiency: '80 Plus Gold', modular: true },
   },
   {
@@ -44,7 +45,7 @@ export const psus: Component[] = [
     price: 1_299.9,
     performanceScore: 97,
     powerDrawWatts: 0,
-    image: 'assets/images/Fontes/604.jpg',
+    image: prImage,
     specifications: { wattage: 1000, efficiency: '80 Plus Gold', modular: true },
   },
   {
@@ -55,7 +56,7 @@ export const psus: Component[] = [
     price: 769.9,
     performanceScore: 90,
     powerDrawWatts: 0,
-    image: componentImage,
+    image: prImage,
     specifications: { wattage: 750, efficiency: '80 Plus Gold', modular: true },
   },
   {
@@ -66,7 +67,7 @@ export const psus: Component[] = [
     price: 699.9,
     performanceScore: 84,
     powerDrawWatts: 0,
-    image: componentImage,
+    image: prImage,
     specifications: { wattage: 750, efficiency: '80 Plus Gold', modular: true },
   },
   {
@@ -77,7 +78,7 @@ export const psus: Component[] = [
     price: 729.9,
     performanceScore: 87,
     powerDrawWatts: 0,
-    image: componentImage,
+    image: prImage,
     specifications: { wattage: 750, efficiency: '80 Plus Gold', modular: true },
   },
   {
@@ -88,7 +89,7 @@ export const psus: Component[] = [
     price: 879.9,
     performanceScore: 91,
     powerDrawWatts: 0,
-    image: componentImage,
+    image: prImage,
     specifications: { wattage: 850, efficiency: '80 Plus Gold', modular: true },
   },
   {
@@ -99,7 +100,7 @@ export const psus: Component[] = [
     price: 829.9,
     performanceScore: 89,
     powerDrawWatts: 0,
-    image: componentImage,
+    image: prImage,
     specifications: { wattage: 750, efficiency: '80 Plus Gold', modular: true },
   },
   {
@@ -110,7 +111,7 @@ export const psus: Component[] = [
     price: 329.9,
     performanceScore: 70,
     powerDrawWatts: 0,
-    image: 'assets/images/Fontes/610.jpg',
+    image: prImage,
     specifications: { wattage: 650, efficiency: '80 Plus Bronze', modular: false },
   },
   {
@@ -121,7 +122,7 @@ export const psus: Component[] = [
     price: 389.9,
     performanceScore: 73,
     powerDrawWatts: 0,
-    image: 'assets/images/Fontes/611.jpg',
+    image: prImage,
     specifications: { wattage: 650, efficiency: '80 Plus Gold', modular: false },
   },
   {
@@ -132,7 +133,7 @@ export const psus: Component[] = [
     price: 299.9,
     performanceScore: 62,
     powerDrawWatts: 0,
-    image: 'assets/images/Fontes/612.jpg',
+    image: prImage,
     specifications: { wattage: 550, efficiency: '80 Plus Bronze', modular: false },
   },
   {
@@ -143,7 +144,7 @@ export const psus: Component[] = [
     price: 349.9,
     performanceScore: 65,
     powerDrawWatts: 0,
-    image: 'assets/images/Fontes/613.jpg',
+    image: prImage,
     specifications: { wattage: 650, efficiency: '80 Plus Bronze', modular: false },
   },
   {
@@ -154,7 +155,7 @@ export const psus: Component[] = [
     price: 249.9,
     performanceScore: 55,
     powerDrawWatts: 0,
-    image: 'assets/images/Fontes/614.jpg',
+    image: prImage,
     specifications: { wattage: 500, efficiency: '80 Plus White', modular: false },
   },
   {
@@ -165,7 +166,7 @@ export const psus: Component[] = [
     price: 749.9,
     performanceScore: 91,
     powerDrawWatts: 0,
-    image: 'assets/images/Fontes/615.jpg',
+    image: prImage,
     specifications: { wattage: 850, efficiency: '80 Plus Gold', modular: true },
   },
   {
@@ -176,7 +177,7 @@ export const psus: Component[] = [
     price: 899.9,
     performanceScore: 93,
     powerDrawWatts: 0,
-    image: 'assets/images/Fontes/616.jpg',
+    image: prImage,
     specifications: { wattage: 850, efficiency: '80 Plus Gold', modular: true },
   },
   {
@@ -187,7 +188,7 @@ export const psus: Component[] = [
     price: 369.9,
     performanceScore: 72,
     powerDrawWatts: 0,
-    image: 'assets/images/Fontes/617.jpg',
+    image: prImage,
     specifications: { wattage: 650, efficiency: '80 Plus Bronze', modular: false },
   },
   {
@@ -198,7 +199,7 @@ export const psus: Component[] = [
     price: 529.9,
     performanceScore: 81,
     powerDrawWatts: 0,
-    image: 'assets/images/Fontes/618.jpg',
+    image: prImage,
     specifications: { wattage: 850, efficiency: '80 Plus Gold', modular: true },
   },
   {
@@ -209,7 +210,7 @@ export const psus: Component[] = [
     price: 1_199.9,
     performanceScore: 95,
     powerDrawWatts: 0,
-    image: 'assets/images/Fontes/619.jpg',
+    image: prImage,
     specifications: { wattage: 750, efficiency: '80 Plus Platinum', modular: true },
   },
   {
@@ -220,7 +221,7 @@ export const psus: Component[] = [
     price: 1_499.9,
     performanceScore: 98,
     powerDrawWatts: 0,
-    image: 'assets/images/Fontes/620.jpg',
+    image: prImage,
     specifications: { wattage: 1000, efficiency: '80 Plus Gold', modular: true },
   },
   {
@@ -231,7 +232,7 @@ export const psus: Component[] = [
     price: 679.9,
     performanceScore: 86,
     powerDrawWatts: 0,
-    image: 'assets/images/Fontes/621.jpg',
+    image: prImage,
     specifications: { wattage: 850, efficiency: '80 Plus Gold', modular: true },
   },
   {
@@ -242,7 +243,7 @@ export const psus: Component[] = [
     price: 379.9,
     performanceScore: 71,
     powerDrawWatts: 0,
-    image: 'assets/images/Fontes/622.jpg',
+    image: prImage,
     specifications: { wattage: 650, efficiency: '80 Plus Bronze', modular: false },
   },
   {
@@ -253,7 +254,7 @@ export const psus: Component[] = [
     price: 1_899.9,
     performanceScore: 99,
     powerDrawWatts: 0,
-    image: 'assets/images/Fontes/623.jpg',
+    image: prImage,
     specifications: { wattage: 1300, efficiency: '80 Plus Platinum', modular: true },
   },
   {
@@ -264,7 +265,7 @@ export const psus: Component[] = [
     price: 2_199.9,
     performanceScore: 99,
     powerDrawWatts: 0,
-    image: 'assets/images/Fontes/624.jpg',
+    image: prImage,
     specifications: { wattage: 1000, efficiency: '80 Plus Platinum', modular: true },
   },
   {
@@ -275,7 +276,7 @@ export const psus: Component[] = [
     price: 279.9,
     performanceScore: 66,
     powerDrawWatts: 0,
-    image: 'assets/images/Fontes/625.jpg',
+    image: prImage,
     specifications: { wattage: 550, efficiency: '80 Plus Bronze', modular: false },
   }
 ];

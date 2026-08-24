@@ -1,6 +1,7 @@
 import { Component } from '../models/component.model';
 
 const componentImage = 'assets/images/LogoWM.png';
+const prImage = '/assets/images/ARM/images__7_-removebg-preview.png';
 
 export const storage: Component[] = [
   {
@@ -11,7 +12,7 @@ export const storage: Component[] = [
     price: 399.9,
     performanceScore: 68,
     powerDrawWatts: 5,
-    image: componentImage,
+    image: prImage,
     specifications: { capacityGB: 1000, interface: 'PCIe 4.0 x4', readSpeedMBps: 3500, writeSpeedMBps: 2100 },
   },
   {
@@ -22,7 +23,7 @@ export const storage: Component[] = [
     price: 549.9,
     performanceScore: 82,
     powerDrawWatts: 5,
-    image: componentImage,
+    image: prImage,
     specifications: { capacityGB: 1000, interface: 'PCIe 4.0 x4', readSpeedMBps: 5150, writeSpeedMBps: 4900 },
   },
   {
@@ -33,7 +34,7 @@ export const storage: Component[] = [
     price: 1_199.9,
     performanceScore: 98,
     powerDrawWatts: 7,
-    image: componentImage,
+    image: prImage,
     specifications: { capacityGB: 2000, interface: 'PCIe 4.0 x4', readSpeedMBps: 7450, writeSpeedMBps: 6900 },
   },
   {
@@ -44,7 +45,7 @@ export const storage: Component[] = [
     price: 429.9,
     performanceScore: 48,
     powerDrawWatts: 6,
-    image: componentImage,
+    image: prImage,
     specifications: { capacityGB: 2000, interface: 'SATA III', readSpeedMBps: 190, writeSpeedMBps: 190 },
   },
   {
@@ -55,7 +56,7 @@ export const storage: Component[] = [
     price: 1_099.9,
     performanceScore: 96,
     powerDrawWatts: 7,
-    image: componentImage,
+    image: prImage,
     specifications: { capacityGB: 2000, interface: 'PCIe 4.0 x4', readSpeedMBps: 7300, writeSpeedMBps: 6600 },
   },
   {
@@ -66,7 +67,7 @@ export const storage: Component[] = [
     price: 579.9,
     performanceScore: 88,
     powerDrawWatts: 6,
-    image: componentImage,
+    image: prImage,
     specifications: { capacityGB: 1000, interface: 'PCIe 4.0 x4', readSpeedMBps: 7000, writeSpeedMBps: 5100 },
   },
   {
@@ -77,7 +78,7 @@ export const storage: Component[] = [
     price: 899.9,
     performanceScore: 90,
     powerDrawWatts: 6,
-    image: componentImage,
+    image: prImage,
     specifications: { capacityGB: 2000, interface: 'PCIe 4.0 x4', readSpeedMBps: 7400, writeSpeedMBps: 6500 },
   },
   {
@@ -88,7 +89,7 @@ export const storage: Component[] = [
     price: 649.9,
     performanceScore: 76,
     powerDrawWatts: 5,
-    image: componentImage,
+    image: prImage,
     specifications: { capacityGB: 2000, interface: 'PCIe 4.0 x4', readSpeedMBps: 5000, writeSpeedMBps: 4200 },
   },
   {
@@ -99,7 +100,7 @@ export const storage: Component[] = [
     price: 999.9,
     performanceScore: 95,
     powerDrawWatts: 7,
-    image: componentImage,
+    image: prImage,
     specifications: { capacityGB: 2000, interface: 'PCIe 4.0 x4', readSpeedMBps: 7000, writeSpeedMBps: 6000 },
   },
   {
@@ -110,7 +111,7 @@ export const storage: Component[] = [
     price: 1_299.9,
     performanceScore: 99,
     powerDrawWatts: 11,
-    image: componentImage,
+    image: prImage,
     specifications: { capacityGB: 1000, interface: 'PCIe 5.0 x4', readSpeedMBps: 11700, writeSpeedMBps: 9500 },
   },
   {
@@ -121,7 +122,7 @@ export const storage: Component[] = [
     price: 219.9,
     performanceScore: 52,
     powerDrawWatts: 3,
-    image: componentImage,
+    image: prImage,
     specifications: { capacityGB: 480, interface: 'SATA III', readSpeedMBps: 500, writeSpeedMBps: 450 },
   },
   {
@@ -132,7 +133,7 @@ export const storage: Component[] = [
     price: 449.9,
     performanceScore: 72,
     powerDrawWatts: 5,
-    image: componentImage,
+    image: prImage,
     specifications: { capacityGB: 1000, interface: 'PCIe 3.0 x4', readSpeedMBps: 3500, writeSpeedMBps: 3000 },
   },
   {
@@ -143,7 +144,7 @@ export const storage: Component[] = [
     price: 499.9,
     performanceScore: 58,
     powerDrawWatts: 4,
-    image: componentImage,
+    image: prImage,
     specifications: { capacityGB: 1000, interface: 'SATA III', readSpeedMBps: 560, writeSpeedMBps: 530 },
   },
   {
@@ -154,7 +155,7 @@ export const storage: Component[] = [
     price: 369.9,
     performanceScore: 66,
     powerDrawWatts: 4,
-    image: componentImage,
+    image: prImage,
     specifications: { capacityGB: 1000, interface: 'PCIe 3.0 x4', readSpeedMBps: 3500, writeSpeedMBps: 3000 },
   },
   {
@@ -165,7 +166,7 @@ export const storage: Component[] = [
     price: 419.9,
     performanceScore: 74,
     powerDrawWatts: 5,
-    image: componentImage,
+    image: prImage,
     specifications: { capacityGB: 1000, interface: 'PCIe 4.0 x4', readSpeedMBps: 4150, writeSpeedMBps: 4150 },
   },
   {
@@ -176,7 +177,7 @@ export const storage: Component[] = [
     price: 689.9,
     performanceScore: 46,
     powerDrawWatts: 7,
-    image: componentImage,
+    image: prImage,
     specifications: { capacityGB: 4000, interface: 'SATA III', readSpeedMBps: 190, writeSpeedMBps: 185 },
   },
   {
@@ -187,7 +188,7 @@ export const storage: Component[] = [
     price: 1_049.9,
     performanceScore: 94,
     powerDrawWatts: 7,
-    image: componentImage,
+    image: prImage,
     specifications: { capacityGB: 2000, interface: 'PCIe 4.0 x4', readSpeedMBps: 7100, writeSpeedMBps: 6800 },
   },
   {
@@ -198,7 +199,7 @@ export const storage: Component[] = [
     price: 249.9,
     performanceScore: 62,
     powerDrawWatts: 4,
-    image: componentImage,
+    image: prImage,
     specifications: { capacityGB: 512, interface: 'PCIe 3.0 x4', readSpeedMBps: 3300, writeSpeedMBps: 2400 },
   },
   {
@@ -209,7 +210,7 @@ export const storage: Component[] = [
     price: 629.9,
     performanceScore: 92,
     powerDrawWatts: 6,
-    image: componentImage,
+    image: prImage,
     specifications: { capacityGB: 1000, interface: 'PCIe 4.0 x4', readSpeedMBps: 7300, writeSpeedMBps: 6000 },
   },
   {
@@ -220,7 +221,7 @@ export const storage: Component[] = [
     price: 349.9,
     performanceScore: 60,
     powerDrawWatts: 4,
-    image: componentImage,
+    image: prImage,
     specifications: { capacityGB: 1000, interface: 'PCIe 3.0 x4', readSpeedMBps: 1800, writeSpeedMBps: 1500 },
   },
   {
@@ -231,7 +232,7 @@ export const storage: Component[] = [
     price: 2_399.9,
     performanceScore: 97,
     powerDrawWatts: 8,
-    image: componentImage,
+    image: prImage,
     specifications: { capacityGB: 4000, interface: 'PCIe 4.0 x4', readSpeedMBps: 7300, writeSpeedMBps: 6600 },
   },
   {
@@ -242,7 +243,7 @@ export const storage: Component[] = [
     price: 929.9,
     performanceScore: 93,
     powerDrawWatts: 7,
-    image: componentImage,
+    image: prImage,
     specifications: { capacityGB: 2000, interface: 'PCIe 4.0 x4', readSpeedMBps: 7400, writeSpeedMBps: 6800 },
   },
   {
@@ -253,7 +254,7 @@ export const storage: Component[] = [
     price: 389.9,
     performanceScore: 47,
     powerDrawWatts: 6,
-    image: componentImage,
+    image: prImage,
     specifications: { capacityGB: 2000, interface: 'SATA III', readSpeedMBps: 215, writeSpeedMBps: 210 },
   },
   {
@@ -264,7 +265,7 @@ export const storage: Component[] = [
     price: 329.9,
     performanceScore: 54,
     powerDrawWatts: 3,
-    image: componentImage,
+    image: prImage,
     specifications: { capacityGB: 960, interface: 'SATA III', readSpeedMBps: 550, writeSpeedMBps: 500 },
   },
   {
@@ -275,7 +276,7 @@ export const storage: Component[] = [
     price: 2_599.9,
     performanceScore: 98,
     powerDrawWatts: 8,
-    image: componentImage,
+    image: prImage,
     specifications: { capacityGB: 4000, interface: 'PCIe 4.0 x4', readSpeedMBps: 7450, writeSpeedMBps: 6900 },
   },
 ];

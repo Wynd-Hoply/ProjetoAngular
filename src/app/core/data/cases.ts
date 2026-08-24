@@ -1,6 +1,7 @@
 import { Component } from '../models/component.model';
 
 const componentImage = 'assets/images/LogoWM.png';
+const prImage = '/assets/images/Gabinetes/images__1_-removebg-preview.png';
 
 export const cases: Component[] = [
   {  
@@ -11,7 +12,7 @@ export const cases: Component[] = [
     price: 399.90,
     performanceScore: 70,
     powerDrawWatts: 0,
-    image: '/assets/images/Gabinetes/701.jpg',
+    image: prImage,
     specifications: {
       formFactor: 'Micro-ATX',
       supportedFormFactors: ['Micro-ATX', 'Mini-ITX'],
@@ -27,7 +28,7 @@ export const cases: Component[] = [
     price: 599.90,
     performanceScore: 82,
     powerDrawWatts: 0,
-    image: '/assets/images/Gabinetes/702.jpg',
+    image: prImage,
     specifications: {
       formFactor: 'ATX',
       supportedFormFactors: ['ATX', 'Micro-ATX', 'Mini-ITX'],
@@ -43,7 +44,7 @@ export const cases: Component[] = [
     price: 799.90,
     performanceScore: 91,
     powerDrawWatts: 0,
-    image: '/assets/images/Gabinetes/703.jpg',
+    image: prImage,
     specifications: {
       formFactor: 'ATX',
       supportedFormFactors: ['ATX', 'Micro-ATX', 'Mini-ITX'],
@@ -59,7 +60,7 @@ export const cases: Component[] = [
     price: 299.90,
     performanceScore: 58,
     powerDrawWatts: 0,
-    image: '/assets/images/Gabinetes/704.jpg',
+    image: prImage,
     specifications: {
       formFactor: 'ATX',
       supportedFormFactors: ['ATX', 'Micro-ATX', 'Mini-ITX'],
@@ -75,7 +76,7 @@ export const cases: Component[] = [
     price: 299.90,
     performanceScore: 60,
     powerDrawWatts: 0,
-    image: '/assets/images/Gabinetes/705.jpg',
+    image: prImage,
     specifications: {
       formFactor: 'Micro-ATX',
       supportedFormFactors: ['Micro-ATX', 'Mini-ITX'],
@@ -91,7 +92,7 @@ export const cases: Component[] = [
     price: 329.90,
     performanceScore: 68,
     powerDrawWatts: 0,
-    image: '/assets/images/Gabinetes/706.jpg',
+    image: prImage,
     specifications: {
       formFactor: 'ATX',
       supportedFormFactors: ['ATX', 'Micro-ATX', 'Mini-ITX'],
@@ -107,7 +108,7 @@ export const cases: Component[] = [
     price: 279.90,
     performanceScore: 64,
     powerDrawWatts: 0,
-    image: '/assets/images/Gabinetes/707.jpg',
+    image: prImage,
     specifications: {
       formFactor: 'ATX',
       supportedFormFactors: ['ATX', 'Micro-ATX', 'Mini-ITX'],
@@ -123,7 +124,7 @@ export const cases: Component[] = [
     price: 249.90,
     performanceScore: 57,
     powerDrawWatts: 0,
-    image: '/assets/images/Gabinetes/708.jpg',
+    image: prImage,
     specifications: {
       formFactor: 'Micro-ATX',
       supportedFormFactors: ['Micro-ATX', 'Mini-ITX'],
@@ -139,7 +140,7 @@ export const cases: Component[] = [
     price: 269.90,
     performanceScore: 61,
     powerDrawWatts: 0,
-    image: '/assets/images/Gabinetes/709.jpg',
+    image: prImage,
     specifications: {
       formFactor: 'ATX',
       supportedFormFactors: ['ATX', 'Micro-ATX', 'Mini-ITX'],
@@ -155,7 +156,7 @@ export const cases: Component[] = [
     price: 349.90,
     performanceScore: 65,
     powerDrawWatts: 0,
-    image: '/assets/images/Gabinetes/710.jpg',
+    image: prImage,
     specifications: {
       formFactor: 'ATX',
       supportedFormFactors: ['ATX', 'Micro-ATX', 'Mini-ITX'],
@@ -171,7 +172,7 @@ export const cases: Component[] = [
     price: 899.90,
     performanceScore: 88,
     powerDrawWatts: 0,
-    image: componentImage,
+    image: prImage,
     specifications: {
       formFactor: 'ATX',
       supportedFormFactors: ['ATX', 'Micro-ATX', 'Mini-ITX'],
@@ -187,7 +188,7 @@ export const cases: Component[] = [
     price: 649.90,
     performanceScore: 85,
     powerDrawWatts: 0,
-    image: '/assets/images/Gabinetes/712.jpg',
+    image: prImage,
     specifications: {
       formFactor: 'ATX',
       supportedFormFactors: ['ATX', 'Micro-ATX', 'Mini-ITX'],
@@ -203,7 +204,7 @@ export const cases: Component[] = [
     price: 1199.90,
     performanceScore: 95,
     powerDrawWatts: 0,
-    image: '/assets/images/Gabinetes/713.jpg',
+    image: prImage,
     specifications: {
       formFactor: 'ATX',
       supportedFormFactors: ['E-ATX', 'ATX', 'Micro-ATX', 'Mini-ITX'],
@@ -219,7 +220,7 @@ export const cases: Component[] = [
     price: 189.90,
     performanceScore: 50,
     powerDrawWatts: 0,
-    image: '/assets/images/Gabinetes/714.jpg',
+    image: prImage,
     specifications: {
       formFactor: 'Micro-ATX',
       supportedFormFactors: ['Micro-ATX', 'Mini-ITX'],
@@ -235,7 +236,7 @@ export const cases: Component[] = [
     price: 1399.90,
     performanceScore: 90,
     powerDrawWatts: 0,
-    image: '/assets/images/Gabinetes/715.jpg',
+    image: prImage,
     specifications: {
       formFactor: 'ATX',
       supportedFormFactors: ['E-ATX', 'ATX', 'Micro-ATX', 'Mini-ITX'],
@@ -251,7 +252,7 @@ export const cases: Component[] = [
     price: 989.90,
     performanceScore: 89,
     powerDrawWatts: 0,
-    image: '/assets/images/Gabinetes/716.jpg',
+    image: prImage,
     specifications: {
       formFactor: 'ATX',
       supportedFormFactors: ['ATX', 'Micro-ATX', 'Mini-ITX'],
@@ -267,7 +268,7 @@ export const cases: Component[] = [
     price: 549.90,
     performanceScore: 78,
     powerDrawWatts: 0,
-    image: '/assets/images/Gabinetes/717.jpg',
+    image: prImage,
     specifications: {
       formFactor: 'ATX',
       supportedFormFactors: ['E-ATX', 'ATX', 'Micro-ATX', 'Mini-ITX'],
@@ -283,7 +284,7 @@ export const cases: Component[] = [
     price: 679.90,
     performanceScore: 84,
     powerDrawWatts: 0,
-    image: '/assets/images/Gabinetes/718.jpg',
+    image: prImage,
     specifications: {
       formFactor: 'ATX',
       supportedFormFactors: ['E-ATX', 'ATX', 'Micro-ATX', 'Mini-ITX'],
@@ -299,7 +300,7 @@ export const cases: Component[] = [
     price: 239.90,
     performanceScore: 55,
     powerDrawWatts: 0,
-    image: '/assets/images/Gabinetes/719.jpg',
+    image: prImage,
     specifications: {
       formFactor: 'Micro-ATX',
       supportedFormFactors: ['Micro-ATX', 'Mini-ITX'],
@@ -315,7 +316,7 @@ export const cases: Component[] = [
     price: 1099.90,
     performanceScore: 93,
     powerDrawWatts: 0,
-    image: '/assets/images/Gabinetes/720.jpg',
+    image: prImage,
     specifications: {
       formFactor: 'ATX',
       supportedFormFactors: ['ATX', 'Micro-ATX', 'Mini-ITX'],
@@ -331,7 +332,7 @@ export const cases: Component[] = [
     price: 529.90,
     performanceScore: 80,
     powerDrawWatts: 0,
-    image: '/assets/images/Gabinetes/721.jpg',
+    image: prImage,
     specifications: {
       formFactor: 'ATX',
       supportedFormFactors: ['ATX', 'Micro-ATX', 'Mini-ITX'],
@@ -347,7 +348,7 @@ export const cases: Component[] = [
     price: 1149.90,
     performanceScore: 90,
     powerDrawWatts: 0,
-    image: '/assets/images/Gabinetes/722.jpg',
+    image: prImage,
     specifications: {
       formFactor: 'ATX',
       supportedFormFactors: ['ATX', 'Micro-ATX', 'Mini-ITX'],
@@ -363,7 +364,7 @@ export const cases: Component[] = [
     price: 319.90,
     performanceScore: 66,
     powerDrawWatts: 0,
-    image: '/assets/images/Gabinetes/723.jpg',
+    image: prImage,
     specifications: {
       formFactor: 'ATX',
       supportedFormFactors: ['ATX', 'Micro-ATX', 'Mini-ITX'],
@@ -379,7 +380,7 @@ export const cases: Component[] = [
     price: 449.90,
     performanceScore: 73,
     powerDrawWatts: 0,
-    image: '/assets/images/Gabinetes/724.jpg',
+    image: prImage,
     specifications: {
       formFactor: 'Micro-ATX',
       supportedFormFactors: ['Micro-ATX', 'Mini-ITX'],
@@ -395,7 +396,7 @@ export const cases: Component[] = [
     price: 219.90,
     performanceScore: 53,
     powerDrawWatts: 0,
-    image: '/assets/images/Gabinetes/725.jpg',
+    image: prImage,
     specifications: {
       formFactor: 'ATX',
       supportedFormFactors: ['ATX', 'Micro-ATX', 'Mini-ITX'],

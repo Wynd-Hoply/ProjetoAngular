@@ -1,6 +1,7 @@
 import { Component } from '../models/component.model';
 
 const componentImage = 'assets/images/LogoWM.png';
+const prImage = '/assets/images/Coolers/cooler (1).png';
 
 export const coolers: Component[] = [
   {
@@ -11,7 +12,7 @@ export const coolers: Component[] = [
     price: 179.9,
     performanceScore: 66,
     powerDrawWatts: 3,
-    image: '/assets/images/Coolers/801.jpg',
+    image: prImage,
     specifications: { coolerHeightMm: 150, supportedSockets: ['AM4', 'AM5', 'LGA1700'] },
   },
   {
@@ -22,7 +23,7 @@ export const coolers: Component[] = [
     price: 249.9,
     performanceScore: 73,
     powerDrawWatts: 4,
-    image: '/assets/images/Coolers/802.jpg',
+    image: prImage,
     specifications: { coolerHeightMm: 154, supportedSockets: ['AM4', 'AM5', 'LGA1700'] },
   },
   {
@@ -33,7 +34,7 @@ export const coolers: Component[] = [
     price: 699.9,
     performanceScore: 94,
     powerDrawWatts: 5,
-    image: '/assets/images/Coolers/803.jpg',
+    image: prImage,
     specifications: { coolerHeightMm: 168, supportedSockets: ['AM4', 'AM5', 'LGA1700'] },
   },
   {
@@ -44,7 +45,7 @@ export const coolers: Component[] = [
     price: 899.9,
     performanceScore: 91,
     powerDrawWatts: 8,
-    image: '/assets/images/Coolers/804.webp',
+    image: prImage,
     specifications: { radiatorSizeMm: 240, supportedSockets: ['AM4', 'AM5', 'LGA1700'] },
   },
   {
@@ -55,7 +56,7 @@ export const coolers: Component[] = [
     price: 319.9,
     performanceScore: 82,
     powerDrawWatts: 5,
-    image: componentImage,
+    image: prImage,
     specifications: { coolerHeightMm: 160, supportedSockets: ['AM4', 'AM5', 'LGA1700'] },
   },
   {
@@ -66,7 +67,7 @@ export const coolers: Component[] = [
     price: 249.9,
     performanceScore: 79,
     powerDrawWatts: 4,
-    image: componentImage,
+    image: prImage,
     specifications: { coolerHeightMm: 155, supportedSockets: ['AM4', 'AM5', 'LGA1700'] },
   },
   {
@@ -77,7 +78,7 @@ export const coolers: Component[] = [
     price: 279.9,
     performanceScore: 81,
     powerDrawWatts: 5,
-    image: componentImage,
+    image: prImage,
     specifications: { coolerHeightMm: 160, supportedSockets: ['AM4', 'AM5', 'LGA1700'] },
   },
   {
@@ -88,7 +89,7 @@ export const coolers: Component[] = [
     price: 299.9,
     performanceScore: 78,
     powerDrawWatts: 4,
-    image: componentImage,
+    image: prImage,
     specifications: { coolerHeightMm: 160, supportedSockets: ['AM4', 'AM5', 'LGA1700'] },
   },
   {
@@ -99,7 +100,7 @@ export const coolers: Component[] = [
     price: 429.9,
     performanceScore: 85,
     powerDrawWatts: 6,
-    image: componentImage,
+    image: prImage,
     specifications: { coolerHeightMm: 158, supportedSockets: ['AM4', 'AM5', 'LGA1200', 'LGA1700'] },
   },
   {
@@ -110,7 +111,7 @@ export const coolers: Component[] = [
     price: 159.9,
     performanceScore: 64,
     powerDrawWatts: 3,
-    image: componentImage,
+    image: prImage,
     specifications: { coolerHeightMm: 155, supportedSockets: ['AM4', 'LGA1200', 'LGA1700'] },
   },
   {
@@ -121,7 +122,7 @@ export const coolers: Component[] = [
     price: 89.9,
     performanceScore: 50,
     powerDrawWatts: 3,
-    image: '/assets/images/Coolers/811.jpg',
+    image: prImage,
     specifications: { coolerHeightMm: 150, supportedSockets: ['AM4', 'AM5', 'LGA1200', 'LGA1700'] },
   },
   {
@@ -132,7 +133,7 @@ export const coolers: Component[] = [
     price: 1299.9,
     performanceScore: 96,
     powerDrawWatts: 12,
-    image: '/assets/images/Coolers/812.jpg',
+    image: prImage,
     specifications: { radiatorSizeMm: 360, supportedSockets: ['AM4', 'AM5', 'LGA1700', 'LGA1200'] },
   },
   {
@@ -143,7 +144,7 @@ export const coolers: Component[] = [
     price: 289.9,
     performanceScore: 88,
     powerDrawWatts: 5,
-    image: '/assets/images/Coolers/813.jpg',
+    image: prImage,
     specifications: { coolerHeightMm: 155, supportedSockets: ['AM4', 'AM5', 'LGA1700', 'LGA1200'] },
   },
   {
@@ -154,7 +155,7 @@ export const coolers: Component[] = [
     price: 299.9,
     performanceScore: 78,
     powerDrawWatts: 8,
-    image: '/assets/images/Coolers/814.jpg',
+    image: prImage,
     specifications: { radiatorSizeMm: 240, supportedSockets: ['AM4', 'AM5', 'LGA1700'] },
   },
   {
@@ -165,7 +166,7 @@ export const coolers: Component[] = [
     price: 1099.9,
     performanceScore: 95,
     powerDrawWatts: 10,
-    image: '/assets/images/Coolers/815.jpg',
+    image: prImage,
     specifications: { radiatorSizeMm: 360, supportedSockets: ['AM4', 'AM5', 'LGA1700'] },
   },
   {
@@ -176,7 +177,7 @@ export const coolers: Component[] = [
     price: 349.9,
     performanceScore: 80,
     powerDrawWatts: 7,
-    image: '/assets/images/Coolers/816.jpg',
+    image: prImage,
     specifications: { radiatorSizeMm: 240, supportedSockets: ['AM4', 'AM5', 'LGA1700', 'LGA1200'] },
   },
   {
@@ -187,7 +188,7 @@ export const coolers: Component[] = [
     price: 459.9,
     performanceScore: 84,
     powerDrawWatts: 8,
-    image: '/assets/images/Coolers/817.jpg',
+    image: prImage,
     specifications: { radiatorSizeMm: 240, supportedSockets: ['AM4', 'AM5', 'LGA1700', 'LGA1200'] },
   },
   {
@@ -198,7 +199,7 @@ export const coolers: Component[] = [
     price: 99.9,
     performanceScore: 55,
     powerDrawWatts: 3,
-    image: '/assets/images/Coolers/818.jpg',
+    image: prImage,
     specifications: { coolerHeightMm: 152, supportedSockets: ['AM4', 'AM5', 'LGA1700'] },
   },
   {
@@ -209,7 +210,7 @@ export const coolers: Component[] = [
     price: 799.9,
     performanceScore: 89,
     powerDrawWatts: 8,
-    image: '/assets/images/Coolers/819.jpg',
+    image: prImage,
     specifications: { radiatorSizeMm: 240, supportedSockets: ['AM4', 'AM5', 'LGA1700', 'LGA1200'] },
   },
   {
@@ -220,7 +221,7 @@ export const coolers: Component[] = [
     price: 299.9,
     performanceScore: 71,
     powerDrawWatts: 4,
-    image: '/assets/images/Coolers/820.jpg',
+    image: prImage,
     specifications: { coolerHeightMm: 159, supportedSockets: ['AM4', 'AM5', 'LGA1700'] },
   },
   {
@@ -231,7 +232,7 @@ export const coolers: Component[] = [
     price: 849.9,
     performanceScore: 97,
     powerDrawWatts: 9,
-    image: '/assets/images/Coolers/821.jpg',
+    image: prImage,
     specifications: { radiatorSizeMm: 360, supportedSockets: ['AM4', 'AM5', 'LGA1700'] },
   },
   {
@@ -242,7 +243,7 @@ export const coolers: Component[] = [
     price: 399.9,
     performanceScore: 82,
     powerDrawWatts: 7,
-    image: '/assets/images/Coolers/822.jpg',
+    image: prImage,
     specifications: { radiatorSizeMm: 240, supportedSockets: ['AM4', 'AM5', 'LGA1700', 'LGA1200'] },
   },
   {
@@ -253,7 +254,7 @@ export const coolers: Component[] = [
     price: 649.9,
     performanceScore: 87,
     powerDrawWatts: 8,
-    image: '/assets/images/Coolers/823.jpg',
+    image: prImage,
     specifications: { radiatorSizeMm: 280, supportedSockets: ['AM4', 'AM5', 'LGA1700', 'LGA1200'] },
   },
   {
@@ -264,7 +265,7 @@ export const coolers: Component[] = [
     price: 79.9,
     performanceScore: 48,
     powerDrawWatts: 3,
-    image: '/assets/images/Coolers/824.jpg',
+    image: prImage,
     specifications: { coolerHeightMm: 148, supportedSockets: ['AM4', 'LGA1200', 'LGA1700'] },
   },
   {
@@ -275,7 +276,7 @@ export const coolers: Component[] = [
     price: 899.9,
     performanceScore: 95,
     powerDrawWatts: 10,
-    image: '/assets/images/Coolers/825.jpg',
+    image: prImage,
     specifications: { radiatorSizeMm: 360, supportedSockets: ['AM4', 'AM5', 'LGA1700', 'LGA1200'] },
   }
 ];

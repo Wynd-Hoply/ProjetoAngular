@@ -1,6 +1,7 @@
 import { Component } from '../models/component.model';
 
 const componentImage = 'assets/images/LogoWM.png';
+const prImage = '/assets/images/PLACA MAE/images__1_-removebg-preview.png';
 
 export const motherboards: Component[] = [
   {
@@ -11,7 +12,7 @@ export const motherboards: Component[] = [
     price: 1_199.9,
     performanceScore: 70,
     powerDrawWatts: 55,
-    image: '/assets/images/Placa mãe/301.jpg',
+    image: prImage,
     specifications: { socket: 'AM5', chipset: 'B650', formFactor: 'Micro-ATX', ramType: 'DDR5', ramSlots: 4, memorySpeedMHz: 6400 },
   },
   {
@@ -22,7 +23,7 @@ export const motherboards: Component[] = [
     price: 1_699.9,
     performanceScore: 82,
     powerDrawWatts: 65,
-    image: '/assets/images/Placa mãe/302.webp',
+    image: prImage,
     specifications: { socket: 'AM5', chipset: 'B650', formFactor: 'ATX', ramType: 'DDR5', ramSlots: 4, memorySpeedMHz: 7600 },
   },
   {
@@ -33,7 +34,7 @@ export const motherboards: Component[] = [
     price: 1_249.9,
     performanceScore: 78,
     powerDrawWatts: 60,
-    image: '/assets/images/Placa mãe/303.png',
+    image: prImage,
     specifications: { socket: 'LGA1700', chipset: 'B760', formFactor: 'Micro-ATX', ramType: 'DDR5', ramSlots: 4, memorySpeedMHz: 7600 },
   },
   {
@@ -44,7 +45,7 @@ export const motherboards: Component[] = [
     price: 2_799.9,
     performanceScore: 95,
     powerDrawWatts: 80,
-    image: '/assets/images/Placa mãe/304.webp',
+    image: prImage,
     specifications: { socket: 'LGA1700', chipset: 'Z790', formFactor: 'ATX', ramType: 'DDR5', ramSlots: 4, memorySpeedMHz: 8000 },
   },
   {
@@ -55,7 +56,7 @@ export const motherboards: Component[] = [
     price: 1_699.9,
     performanceScore: 88,
     powerDrawWatts: 70,
-    image: componentImage,
+    image: prImage,
     specifications: { socket: 'AM5', chipset: 'B650', formFactor: 'ATX', ramType: 'DDR5', ramSlots: 4, memorySpeedMHz: 7600 },
   },
   {
@@ -66,7 +67,7 @@ export const motherboards: Component[] = [
     price: 1_099.9,
     performanceScore: 72,
     powerDrawWatts: 50,
-    image: componentImage,
+    image: prImage,
     specifications: { socket: 'AM5', chipset: 'B650', formFactor: 'Micro-ATX', ramType: 'DDR5', ramSlots: 4, memorySpeedMHz: 6400 },
   },
   {
@@ -77,7 +78,7 @@ export const motherboards: Component[] = [
     price: 2_299.9,
     performanceScore: 90,
     powerDrawWatts: 75,
-    image: componentImage,
+    image: prImage,
     specifications: { socket: 'AM5', chipset: 'X670E', formFactor: 'ATX', ramType: 'DDR5', ramSlots: 4, memorySpeedMHz: 8000 },
   },
   {
@@ -88,7 +89,7 @@ export const motherboards: Component[] = [
     price: 1_399.9,
     performanceScore: 77,
     powerDrawWatts: 60,
-    image: componentImage,
+    image: prImage,
     specifications: { socket: 'LGA1700', chipset: 'B760', formFactor: 'ATX', ramType: 'DDR5', ramSlots: 4, memorySpeedMHz: 7600 },
   },
   {
@@ -99,7 +100,7 @@ export const motherboards: Component[] = [
     price: 2_149.9,
     performanceScore: 92,
     powerDrawWatts: 78,
-    image: componentImage,
+    image: prImage,
     specifications: { socket: 'LGA1700', chipset: 'Z790', formFactor: 'ATX', ramType: 'DDR5', ramSlots: 4, memorySpeedMHz: 8200 },
   },
   {
@@ -110,7 +111,7 @@ export const motherboards: Component[] = [
     price: 799.9,
     performanceScore: 68,
     powerDrawWatts: 48,
-    image: componentImage,
+    image: prImage,
     specifications: { socket: 'LGA1200', chipset: 'B560', formFactor: 'Micro-ATX', ramType: 'DDR4', ramSlots: 4, memorySpeedMHz: 4800 },
   },
   {
@@ -121,7 +122,7 @@ export const motherboards: Component[] = [
     price: 949.9,
     performanceScore: 74,
     powerDrawWatts: 55,
-    image: componentImage,
+    image: prImage,
     specifications: { socket: 'AM4', chipset: 'B550', formFactor: 'ATX', ramType: 'DDR4', ramSlots: 4, memorySpeedMHz: 4733 },
   },
   {
@@ -132,7 +133,7 @@ export const motherboards: Component[] = [
     price: 789.9,
     performanceScore: 73,
     powerDrawWatts: 50,
-    image: '/assets/images/Placa mãe/312.jpg',
+    image: prImage,
     specifications: { socket: 'AM4', chipset: 'B550', formFactor: 'Micro-ATX', ramType: 'DDR4', ramSlots: 4, memorySpeedMHz: 4733 },
   },
   {
@@ -143,7 +144,7 @@ export const motherboards: Component[] = [
     price: 849.9,
     performanceScore: 76,
     powerDrawWatts: 52,
-    image: '/assets/images/Placa mãe/313.jpg',
+    image: prImage,
     specifications: { socket: 'AM4', chipset: 'B550', formFactor: 'Micro-ATX', ramType: 'DDR4', ramSlots: 4, memorySpeedMHz: 4866 },
   },
   {
@@ -154,7 +155,7 @@ export const motherboards: Component[] = [
     price: 499.9,
     performanceScore: 58,
     powerDrawWatts: 45,
-    image: '/assets/images/Placa mãe/314.jpg',
+    image: prImage,
     specifications: { socket: 'AM4', chipset: 'B450', formFactor: 'Micro-ATX', ramType: 'DDR4', ramSlots: 4, memorySpeedMHz: 3600 },
   },
   {
@@ -165,7 +166,7 @@ export const motherboards: Component[] = [
     price: 379.9,
     performanceScore: 50,
     powerDrawWatts: 40,
-    image: '/assets/images/Placa mãe/315.jpg',
+    image: prImage,
     specifications: { socket: 'AM4', chipset: 'A520', formFactor: 'Micro-ATX', ramType: 'DDR4', ramSlots: 2, memorySpeedMHz: 4600 },
   },
   {
@@ -176,7 +177,7 @@ export const motherboards: Component[] = [
     price: 489.9,
     performanceScore: 55,
     powerDrawWatts: 42,
-    image: '/assets/images/Placa mãe/316.jpg',
+    image: prImage,
     specifications: { socket: 'LGA1700', chipset: 'H610', formFactor: 'Micro-ATX', ramType: 'DDR4', ramSlots: 2, memorySpeedMHz: 3200 },
   },
   {
@@ -187,7 +188,7 @@ export const motherboards: Component[] = [
     price: 1_149.9,
     performanceScore: 79,
     powerDrawWatts: 58,
-    image: '/assets/images/Placa mãe/317.jpg',
+    image: prImage,
     specifications: { socket: 'LGA1700', chipset: 'B760', formFactor: 'Micro-ATX', ramType: 'DDR5', ramSlots: 4, memorySpeedMHz: 7200 },
   },
   {
@@ -198,7 +199,7 @@ export const motherboards: Component[] = [
     price: 1_499.9,
     performanceScore: 81,
     powerDrawWatts: 62,
-    image: '/assets/images/Placa mãe/318.jpg',
+    image: prImage,
     specifications: { socket: 'AM5', chipset: 'B650', formFactor: 'ATX', ramType: 'DDR5', ramSlots: 4, memorySpeedMHz: 8000 },
   },
   {
@@ -209,7 +210,7 @@ export const motherboards: Component[] = [
     price: 1_899.9,
     performanceScore: 86,
     powerDrawWatts: 60,
-    image: '/assets/images/Placa mãe/319.jpg',
+    image: prImage,
     specifications: { socket: 'AM5', chipset: 'B650', formFactor: 'Mini-ITX', ramType: 'DDR5', ramSlots: 2, memorySpeedMHz: 7200 },
   },
   {
@@ -220,7 +221,7 @@ export const motherboards: Component[] = [
     price: 3_199.9,
     performanceScore: 96,
     powerDrawWatts: 85,
-    image: '/assets/images/Placa mãe/320.jpg',
+    image: prImage,
     specifications: { socket: 'AM5', chipset: 'X670E', formFactor: 'ATX', ramType: 'DDR5', ramSlots: 4, memorySpeedMHz: 8000 },
   },
   {
@@ -231,7 +232,7 @@ export const motherboards: Component[] = [
     price: 1_599.9,
     performanceScore: 84,
     powerDrawWatts: 70,
-    image: '/assets/images/Placa mãe/321.jpg',
+    image: prImage,
     specifications: { socket: 'LGA1700', chipset: 'Z790', formFactor: 'ATX', ramType: 'DDR5', ramSlots: 4, memorySpeedMHz: 6800 },
   },
   {
@@ -242,7 +243,7 @@ export const motherboards: Component[] = [
     price: 429.9,
     performanceScore: 52,
     powerDrawWatts: 42,
-    image: '/assets/images/Placa mãe/322.jpg',
+    image: prImage,
     specifications: { socket: 'AM4', chipset: 'B550', formFactor: 'Micro-ATX', ramType: 'DDR4', ramSlots: 2, memorySpeedMHz: 4000 },
   },
   {
@@ -253,7 +254,7 @@ export const motherboards: Component[] = [
     price: 529.9,
     performanceScore: 56,
     powerDrawWatts: 44,
-    image: '/assets/images/Placa mãe/323.jpg',
+    image: prImage,
     specifications: { socket: 'LGA1700', chipset: 'H610', formFactor: 'Micro-ATX', ramType: 'DDR4', ramSlots: 2, memorySpeedMHz: 3200 },
   },
   {
@@ -264,7 +265,7 @@ export const motherboards: Component[] = [
     price: 2_499.9,
     performanceScore: 93,
     powerDrawWatts: 78,
-    image: '/assets/images/Placa mãe/324.jpg',
+    image: prImage,
     specifications: { socket: 'AM5', chipset: 'X670E', formFactor: 'ATX', ramType: 'DDR5', ramSlots: 4, memorySpeedMHz: 7800 },
   },
   {
@@ -275,7 +276,7 @@ export const motherboards: Component[] = [
     price: 2_299.9,
     performanceScore: 91,
     powerDrawWatts: 75,
-    image: '/assets/images/Placa mãe/325.jpg',
+    image: prImage,
     specifications: { socket: 'LGA1700', chipset: 'Z790', formFactor: 'ATX', ramType: 'DDR5', ramSlots: 4, memorySpeedMHz: 7800 },
   }
 ];
