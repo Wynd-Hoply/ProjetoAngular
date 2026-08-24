@@ -20,7 +20,7 @@ const DEFAULT_BUILD_NAME = 'Minha configuração';
   selector: 'app-build-up',
   imports: [RouterLink],
   templateUrl: './build-up.html',
-  styleUrl: './build-up.css',
+  styleUrls: ['./build-up.css'],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class BuildUp {

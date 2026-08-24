@@ -98,3 +98,8 @@
   color: var(--text-muted, #999);
   font-size: 0.85rem;
 }
+
+.button {
+  background: var(--primary); 
+  color: #FFFFFF; 
+}

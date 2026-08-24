@@ -88,9 +88,7 @@
           aria-label="Link da build"
         />
         <button type="button" (click)="copyShareLink()">Copiar link</button>
-        <button type="button" class="permalink-box__visibility" (click)="togglePublic()">
-          {{ savedBuild()?.isPublic ? 'Tornar privada' : 'Publicar na comunidade' }}
-        </button>
+      
       </div>
       @if (linkCopyFeedback()) {
         <p class="save-message">{{ linkCopyFeedback() }}</p>

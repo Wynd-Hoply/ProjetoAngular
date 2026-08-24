@@ -5,7 +5,7 @@ interface CategoryShortcut {
   label: string;
   description: string;
   route: string;
-  icon: string;
+  image: string; // Atualizado de icon para image
 }
 
 interface BuilderStep {
@@ -23,12 +23,12 @@ interface BuilderStep {
 })
 export class Home {
   readonly categories: CategoryShortcut[] = [
-    { label: 'Processadores', description: 'Desempenho para cada tipo de uso.', route: 'cpu', icon: 'CPU' },
-    { label: 'Placas de vídeo', description: 'Mais frames para jogar e criar.', route: 'gpu', icon: 'GPU' },
-    { label: 'Placas-mãe', description: 'A base certa para sua configuração.', route: 'motherboard', icon: 'MB' },
-    { label: 'Memórias', description: 'Agilidade para suas tarefas.', route: 'ram', icon: 'RAM' },
-    { label: 'Armazenamento', description: 'Espaço e velocidade para seus arquivos.', route: 'storage', icon: 'SSD' },
-    { label: 'Fontes', description: 'Energia confiável para o seu PC.', route: 'psu', icon: 'PSU' },
+    { label: 'Processadores', description: 'Desempenho para cada tipo de uso.', route: 'cpu', image: '/assets/images/PROCESSADOR/Processador (1).png' },
+    { label: 'Placas de vídeo', description: 'Mais frames para jogar e criar.', route: 'gpu', image: '/assets/images/PLACA DE VIDEO/PlacaDeVideo (1).png' },
+    { label: 'Placas-mãe', description: 'A base certa para sua configuração.', route: 'motherboard', image: '/assets/images/PLACA MAE/images-removebg-preview.png' },
+    { label: 'Memórias', description: 'Agilidade para suas tarefas.', route: 'ram', image: '/assets/images/Ram/images__1_-removebg-preview.png' },
+    { label: 'Armazenamento', description: 'Espaço e velocidade para seus arquivos.', route: 'storage', image: '/assets/images/ARM/images__7_-removebg-preview.png' },
+    { label: 'Fontes', description: 'Energia confiável para o seu PC.', route: 'psu', image: '/assets/images/FONTE/Fonte (1).png' },
   ];
 
   readonly steps: BuilderStep[] = [
