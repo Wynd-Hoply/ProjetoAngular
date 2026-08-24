@@ -230,6 +230,8 @@
   transform: translateY(-3px); 
   border-color: var(--primary); 
 }
+
+/* Container do ícone ajustado para receber a imagem */
 .category-card__icon { 
   display: grid; 
   place-items: center; 
@@ -239,13 +241,19 @@
   border: 1px solid var(--border-color); 
   border-radius: 6px; 
   background: transparent; 
-  overflow: hidden; 
+  overflow: hidden; /* Garante que a imagem respeite as bordas arredondadas */
+  position: relative;
 }
-.category-card__icon img {
-  width: 75%;
-  height: 75%;
+
+/* Estilo da imagem interna do card */
+.category-card__icon img,
+.category-img-fit {
+  width: 65%;
+  height: 65%;
   object-fit: contain;
+  display: block;
 }
+
 .category-card__body { display: grid; flex: 1; gap: .3rem; }
 .category-card strong { color: var(--text-primary); font-size: .9rem; }
 .category-card small { color: var(--text-secondary); font-size: .74rem; line-height: 1.35; }
