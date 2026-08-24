@@ -230,3 +230,19 @@
   display: flex;
   gap: 8px;
 }
+.edit-profile-avatar__fallback {
+
+width: 96px;
+  height: 96px;
+  border-radius: 50%;
+  overflow: hidden;
+  flex-shrink: 0;
+  background: var(--surface-alt, #1f1f24);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  font-size: 2rem;
+  font-weight: 700;
+  color: var(--text-muted, #999);
+}

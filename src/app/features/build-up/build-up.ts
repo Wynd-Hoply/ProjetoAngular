@@ -1,4 +1,5 @@
-import { ChangeDetectionStrategy, Component, computed, inject, signal } from '@angular/core';
+import { isPlatformBrowser } from '@angular/common';
+import { ChangeDetectionStrategy, Component, PLATFORM_ID, computed, inject, signal } from '@angular/core';
 import { RouterLink } from '@angular/router';
 
 import { BuilderService } from '../../core/services/builder';
@@ -13,6 +14,8 @@ interface BuilderSlot {
   route: string;
 }
 
+const DEFAULT_BUILD_NAME = 'Minha configuração';
+
 @Component({
   selector: 'app-build-up',
   imports: [RouterLink],
@@ -21,10 +24,13 @@ interface BuilderSlot {
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class BuildUp {
+  private readonly platformId = inject(PLATFORM_ID);
+  private readonly isBrowser = isPlatformBrowser(this.platformId);
+
   readonly builder = inject(BuilderService);
   readonly builds = inject(BuildService);
   readonly compatibility = inject(CompatibilityService);
-  readonly buildName = signal('Minha configuração');
+  readonly buildName = signal(DEFAULT_BUILD_NAME);
   readonly saveMessage = signal('');
   readonly savedBuild = signal<SavedBuild | null>(null);
   readonly linkCopyFeedback = signal('');
@@ -64,14 +70,90 @@ export class BuildUp {
     this.saveMessage.set(savedBuild ? `Build "${savedBuild.name}" salva com sucesso.` : 'Adicione componentes e informe um nome para salvar.');
   }
 
+  // Gera (ou reexibe, se já existir) o link permanente da build.
+  generatePermalink(): void {
+    if (this.builder.selectedComponents().length === 0) {
+      this.saveMessage.set('Adicione componentes para gerar um link.');
+      return;
+    } 
+
+    
+
+    if (this.builds.activeBuildId()) {
+      const build = this.builds.activeBuild();
+      if (build) {
+        this.savedBuild.set(build);
+        this.saveMessage.set('Link pronto! Copie abaixo ou compartilhe.');
+      }
+      return;
+    }
+
+    this.saveBuild();
+  }
+
   copyShareLink(): void {
     const link = this.shareLink();
-    if (!link) return;
+    if (!link || !this.isBrowser) return;
 
     navigator.clipboard.writeText(link).then(
       () => this.linkCopyFeedback.set('Link copiado!'),
       () => this.linkCopyFeedback.set(link),
     );
+  }
+
+  // Usa a Web Share API nativa (mobile) quando disponível; senão, cai para copiar o link.
+  async shareBuild(): Promise<void> {
+    if (!this.shareLink()) {
+      this.generatePermalink();
+    }
+
+    const link = this.shareLink();
+    if (!link) return;
+
+    const canNativeShare = this.isBrowser && typeof navigator !== 'undefined' && !!navigator.share;
+    if (canNativeShare) {
+      try {
+        await navigator.share({ title: this.buildName(), text: 'Confira minha build no PC Builder', url: link });
+        return;
+      } catch {
+        // usuário cancelou o compartilhamento nativo — cai para copiar o link
+      }
+    }
+
+    this.copyShareLink();
+  }
+
+  sendByEmail(): void {
+    if (!this.isBrowser) return;
+    if (!this.shareLink()) {
+      this.generatePermalink();
+    }
+
+    const link = this.shareLink();
+    const subject = encodeURIComponent(`Build: ${this.buildName()}`);
+    const body = encodeURIComponent(
+      link
+        ? `Dá uma olhada na build que eu montei:\n${link}`
+        : `Build: ${this.buildName()}\nTotal: ${this.formatPrice(this.builder.total())}`
+    );
+
+    window.location.href = `mailto:?subject=${subject}&body=${body}`;
+  }
+
+  reportBug(): void {
+    if (!this.isBrowser) return;
+    const subject = encodeURIComponent('Reportar bug — PC Builder');
+    const body = encodeURIComponent(`Descreva o problema encontrado:\n\n\n---\nPágina: Montar PC\nBuild atual: ${this.buildName()}`);
+    window.location.href = `mailto:suporte@pcbuilder.com?subject=${subject}&body=${body}`;
+  }
+
+  startNewBuild(): void {
+    this.builder.clear();
+    this.builds.clearActive();
+    this.buildName.set(DEFAULT_BUILD_NAME);
+    this.savedBuild.set(null);
+    this.saveMessage.set('');
+    this.linkCopyFeedback.set('');
   }
 
   togglePublic(): void {

@@ -1,9 +1,19 @@
 import { Routes } from '@angular/router';
 
 import { authGuard } from './core/guards/auth.guard';
+import { adminGuard } from './core/guards/admin.guard';
 import { BuildUp } from './features/build-up/build-up';
 
 export const routes: Routes = [
+  {
+    path: 'admin/login',
+    loadComponent: () => import('./features/admin/admin-login/admin-login').then((m) => m.AdminLogin),
+  },
+  {
+    path: 'admin',
+    canActivate: [adminGuard],
+    loadComponent: () => import('./features/admin/admin-dashboard/admin-dashboard').then((m) => m.AdminDashboard),
+  },
   {
     path: '',
     loadComponent: () => import('./features/home/home/home').then((m) => m.Home),
@@ -55,12 +65,10 @@ export const routes: Routes = [
   },
   {
     path: 'builds',
-    canActivate: [authGuard],
     loadComponent: () => import('./features/builds/builds').then((m) => m.Builds),
   },
   {
     path: 'builds/:id',
-    canActivate: [authGuard],
     loadComponent: () => import('./features/build-summary/build-summary').then((m) => m.BuildSummary),
   },
   {
@@ -68,13 +76,8 @@ export const routes: Routes = [
     loadComponent: () => import('./features/auto-build/auto-build').then((m) => m.AutoBuild),
   },
   {
-    path: 'pre-builds',
-    redirectTo: 'builds',
-  },
-  {
     path: 'builder',
-    canActivate: [authGuard],
-    component: BuildUp,
+    loadComponent: () => import('./features/build-up/build-up').then((m) => m.BuildUp),
   },
   {
     path: 'build-up',

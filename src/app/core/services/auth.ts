@@ -199,6 +199,15 @@ export class AuthService {
     return user ? this.toSession(user) : null;
   }
 
+  getUsersForAdmin(): AuthSession[] {
+    return this.usersState().map((user) => this.toSession(user));
+  }
+
+  removeUserForAdmin(username: string): void {
+    this.usersState.update((users) => users.filter((user) => user.username !== username));
+    this.persistUsers();
+  }
+
   private toSession(user: AuthUser): AuthSession {
     return {
       username: user.username,

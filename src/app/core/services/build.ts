@@ -49,6 +49,18 @@ export class BuildService {
       .sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime());
   }
 
+  getAllForAdmin(): SavedBuild[] {
+    return this.allBuildsState();
+  }
+
+  removeForAdmin(id: string): void {
+    this.allBuildsState.update((builds) => builds.filter((build) => build.id !== id));
+    if (this.activeBuildId() === id) {
+      this.activeBuildId.set(null);
+    }
+    this.persist();
+  }
+
   save(name: string, id?: string | null): SavedBuild | null {
     const owner = this.auth.currentUser()?.username;
     const normalizedName = name.trim();

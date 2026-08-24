@@ -1,0 +1,59 @@
+<main class="admin-page" aria-labelledby="admin-title">
+  <header class="admin-header">
+    <div>
+      <p class="eyebrow">PC Builder · Controle local</p>
+      <h1 id="admin-title">Painel administrativo</h1>
+      <p>Visão rápida das contas e configurações salvas no navegador.</p>
+    </div>
+    <div class="admin-actions">
+      <a routerLink="/home">Voltar ao site</a>
+      <button type="button" (click)="logout()">Sair</button>
+    </div>
+  </header>
+
+  <section class="stats-grid" aria-label="Indicadores">
+    <article class="stat-card"><span>Usuários</span><strong>{{ adminService.users().length }}</strong></article>
+    <article class="stat-card"><span>Builds salvas</span><strong>{{ adminService.builds().length }}</strong></article>
+    <article class="stat-card"><span>Builds públicas</span><strong>{{ adminService.builds().filter(build => build.isPublic).length }}</strong></article>
+    <article class="stat-card"><span>Valor em builds</span><strong>{{ formatPrice(adminService.builds().reduce((total, build) => total + build.total, 0)) }}</strong></article>
+  </section>
+
+  <section class="admin-section" aria-labelledby="users-title">
+    <div class="section-heading"><div><p class="eyebrow">Contas cadastradas</p><h2 id="users-title">Usuários</h2></div></div>
+    @if (adminService.users().length === 0) {
+      <p class="empty-state">Nenhum usuário cadastrado ainda.</p>
+    } @else {
+      <div class="table-wrap">
+        <table>
+          <thead><tr><th>Usuário</th><th>Email</th><th>Entrada</th><th>Ação</th></tr></thead>
+          <tbody>
+            @for (user of adminService.users(); track user.username) {
+              <tr>
+                <td><strong>{{ user.name }}</strong><small>{{ '@' + user.username }}</small></td>
+                <td>{{ user.email }}</td>
+                <td>{{ formatDate(user.joinedAt) }}</td>
+                <td><button class="danger-button" type="button" (click)="removeUser(user.username)">Remover</button></td>
+              </tr>
+            }
+          </tbody>
+        </table>
+      </div>
+    }
+  </section>
+
+  <section class="admin-section" aria-labelledby="builds-title">
+    <div class="section-heading"><div><p class="eyebrow">Conteúdo salvo</p><h2 id="builds-title">Builds</h2></div></div>
+    @if (adminService.builds().length === 0) {
+      <p class="empty-state">Nenhuma build salva ainda.</p>
+    } @else {
+      <div class="build-list">
+        @for (build of adminService.builds(); track build.id) {
+          <article class="build-row">
+            <div><strong>{{ build.name }}</strong><span>{{ '@' + build.owner }} · {{ componentCount(build) }} componentes · {{ formatDate(build.date) }}</span></div>
+            <div class="build-row__actions"><strong>{{ formatPrice(build.total) }}</strong><button class="danger-button" type="button" (click)="removeBuild(build.id, build.name)">Remover</button></div>
+          </article>
+        }
+      </div>
+    }
+  </section>
+</main>
