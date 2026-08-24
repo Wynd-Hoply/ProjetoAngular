@@ -5,7 +5,7 @@
 
   <header class="builder-header">
     <div class="builder-header__title-group">
-      <p class="eyebrow">PC Builder</p>
+      <p class="eyebrow">PCraft</p>
       <h1 id="builder-title">Montagem do computador</h1>
       <p class="subtitle">
         Escolha uma peça por categoria. Ao adicionar pelo catálogo, ela aparece automaticamente
@@ -88,9 +88,7 @@
           aria-label="Link da build"
         />
         <button type="button" (click)="copyShareLink()">Copiar link</button>
-        <button type="button" class="permalink-box__visibility" (click)="togglePublic()">
-          {{ savedBuild()?.isPublic ? 'Tornar privada' : 'Publicar na comunidade' }}
-        </button>
+      
       </div>
       @if (linkCopyFeedback()) {
         <p class="save-message">{{ linkCopyFeedback() }}</p>

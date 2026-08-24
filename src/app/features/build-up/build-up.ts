@@ -113,7 +113,7 @@ export class BuildUp {
     const canNativeShare = this.isBrowser && typeof navigator !== 'undefined' && !!navigator.share;
     if (canNativeShare) {
       try {
-        await navigator.share({ title: this.buildName(), text: 'Confira minha build no PC Builder', url: link });
+        await navigator.share({ title: this.buildName(), text: 'Confira minha build no PCraft', url: link });
         return;
       } catch {
         // usuário cancelou o compartilhamento nativo — cai para copiar o link
@@ -142,7 +142,7 @@ export class BuildUp {
 
   reportBug(): void {
     if (!this.isBrowser) return;
-    const subject = encodeURIComponent('Reportar bug — PC Builder');
+    const subject = encodeURIComponent('Reportar bug — PCraft');
     const body = encodeURIComponent(`Descreva o problema encontrado:\n\n\n---\nPágina: Montar PC\nBuild atual: ${this.buildName()}`);
     window.location.href = `mailto:suporte@pcbuilder.com?subject=${subject}&body=${body}`;
   }

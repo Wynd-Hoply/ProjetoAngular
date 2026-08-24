@@ -29,11 +29,7 @@
 
     <div class="share-actions">
       <button type="button" class="share-copy-button" (click)="copyLink()">Copiar link</button>
-      @if (isOwner()) {
-        <button type="button" class="share-visibility-button" (click)="togglePublic()">
-          {{ build()!.isPublic ? 'Tornar privada' : 'Publicar na comunidade' }}
-        </button>
-      }
+      
       <button type="button" class="share-use-button" (click)="useThisBuild()">Usar esta build</button>
     </div>
 
