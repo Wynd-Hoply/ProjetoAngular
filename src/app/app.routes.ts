@@ -5,6 +5,7 @@ import { adminGuard } from './core/guards/admin.guard';
 import { BuildUp } from './features/build-up/build-up';
 
 export const routes: Routes = [
+  // Rota de administração — apenas para usuários com permissão de admin.
   {
     path: 'admin',
     canActivate: [adminGuard],
@@ -59,13 +60,16 @@ export const routes: Routes = [
     path: 'builds-comunidade',
     loadComponent: () => import('./features/builds-comunidade/builds-comunidade').then((m) => m.BuildsComunidade),
   },
+  // rota de builds do usuário logado — requer login.
   {
     path: 'builds',
     loadComponent: () => import('./features/builds/builds').then((m) => m.Builds),
+    canActivate: [authGuard],
   },
   {
     path: 'builds/:id',
     loadComponent: () => import('./features/build-summary/build-summary').then((m) => m.BuildSummary),
+    canActivate: [authGuard],
   },
   {
     path: 'auto-build',
