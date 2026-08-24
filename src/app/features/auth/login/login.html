@@ -12,12 +12,12 @@
 
 		<form class="auth-form" [formGroup]="form" (ngSubmit)="submit()">
 			<label>
-				<span>Email</span>
-				<input type="email" formControlName="email" placeholder="voce@exemplo.com" autocomplete="email" />
+				<span>Email ou nome de usuário</span>
+				<input type="text" formControlName="identifier" placeholder="voce@exemplo.com ou seu usuario" autocomplete="username" />
 			</label>
 
-			@if (form.controls.email.invalid && (form.controls.email.dirty || form.controls.email.touched || submitted())) {
-				<small class="field-error">Informe um email válido.</small>
+			@if (form.controls.identifier.invalid && (form.controls.identifier.dirty || form.controls.identifier.touched || submitted())) {
+				<small class="field-error">Informe seu email ou nome de usuário.</small>
 			}
 
 			<label>

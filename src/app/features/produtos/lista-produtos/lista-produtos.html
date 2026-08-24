@@ -81,7 +81,7 @@
 						<span role="columnheader">Preço</span>
 						<span role="columnheader">Ação</span>
 					</div>
-					@for (component of results(); track component.id) {
+					@for (component of pagedResults(); track component.id) {
 						<div class="table-row" role="row">
 							<label class="compare-check" [attr.aria-label]="'Comparar ' + component.name">
 								<input type="checkbox" [checked]="isCompared(component.id)" (change)="toggleComparison(component)" />
@@ -103,6 +103,36 @@
 					}
 				</div>
 			</div>
+
+			@if (totalPages() > 1) {
+				<nav class="pagination" aria-label="Paginação de resultados">
+					<button
+						type="button"
+						class="page-nav"
+						(click)="previousPage()"
+						[disabled]="page() === 1"
+					>‹ Anterior</button>
+
+					<div class="page-numbers">
+						@for (pageNumber of pageNumbers(); track pageNumber) {
+							<button
+								type="button"
+								class="page-number"
+								[class.active]="pageNumber === page()"
+								[attr.aria-current]="pageNumber === page() ? 'page' : null"
+								(click)="goToPage(pageNumber)"
+							>{{ pageNumber }}</button>
+						}
+					</div>
+
+					<button
+						type="button"
+						class="page-nav"
+						(click)="nextPage()"
+						[disabled]="page() === totalPages()"
+					>Próximo ›</button>
+				</nav>
+			}
 		</div>
 	</div>
 </section>

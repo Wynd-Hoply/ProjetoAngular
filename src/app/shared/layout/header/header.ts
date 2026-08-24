@@ -2,14 +2,16 @@ import { Component, ElementRef, inject, signal } from '@angular/core';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatButtonModule } from '@angular/material/button';
 import { MatDialog, MatDialogModule } from '@angular/material/dialog';
-import { RouterLink } from '@angular/router';
+import { Router, RouterLink } from '@angular/router';
 import { ThemeService } from '../../../core/services/theme';
 import { AuthService } from '../../../core/services/auth';
 import { Login } from '../../../features/auth/login/login';
+import { Profile } from '../../../features/profile/profile';
+
 
 @Component({
   selector: 'app-header',
-  imports: [MatToolbarModule, MatButtonModule, MatDialogModule, RouterLink],
+  imports: [MatToolbarModule, MatButtonModule, MatDialogModule, RouterLink, Profile],
   templateUrl: './header.html',
   styleUrl: './header.css',
   host: {
@@ -19,6 +21,7 @@ import { Login } from '../../../features/auth/login/login';
 })
 export class Header {
   private readonly elementRef = inject(ElementRef<HTMLElement>);
+  private readonly router = inject(Router);
   themeService = inject(ThemeService);
   authService = inject(AuthService);
   private readonly dialog = inject(MatDialog);
@@ -83,5 +86,15 @@ export class Header {
       panelClass: 'login-dialog-panel',
       autoFocus: 'input',
     });
+  }
+
+  logout(): void {
+    this.authService.logout();
+    this.closeMobileMenu();
+    void this.router.navigate(['/']);
+  }
+
+  initials(name: string): string {
+    return name.trim().charAt(0).toUpperCase() || '?';
   }
 }

@@ -1,0 +1,36 @@
+<main class="admin-login-page">
+  <section class="admin-login-card" aria-labelledby="admin-login-title">
+    <p class="eyebrow">PC Builder · Área restrita</p>
+    <h1 id="admin-login-title">Painel administrativo</h1>
+    <p class="intro">Acompanhe usuários e builds armazenados neste navegador.</p>
+
+    @if (statusMessage()) {
+      <p class="feedback" role="alert">{{ statusMessage() }}</p>
+    }
+
+    <form [formGroup]="form" (ngSubmit)="submit()">
+      <label>
+        <span>Usuário administrador</span>
+        <input type="text" formControlName="username" autocomplete="username" />
+      </label>
+      @if (form.controls.username.invalid && submitted()) {
+        <small>Informe o usuário administrativo.</small>
+      }
+
+      <label>
+        <span>Senha</span>
+        <input type="password" formControlName="password" autocomplete="current-password" />
+      </label>
+      @if (form.controls.password.invalid && submitted()) {
+        <small>Informe a senha.</small>
+      }
+
+      <button type="submit" [disabled]="loading()">
+        {{ loading() ? 'Entrando...' : 'Entrar no painel' }}
+      </button>
+    </form>
+
+    <p class="demo-note"><strong>Acesso de demonstração:</strong> admin / admin123</p>
+    <a routerLink="/home">Voltar para o PC Builder</a>
+  </section>
+</main>

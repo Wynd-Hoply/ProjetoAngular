@@ -50,6 +50,36 @@ const categoryLabels: Record<ComponentCategory, string> = {
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class AutoBuild {
+  readonly isGenerating = computed(() => this.autoBuildService.status() === 'generating');
+
+generateBuild(): void {
+  if (this.isGenerating()) return; // trava contra clique duplo, mesmo sendo rápido agora
+
+  const budget = this.resolveBudget();
+  if (budget <= 0) {
+    this.feedback.set('Informe um orçamento válido para gerar a build.');
+    this.result.set(null);
+    return;
+  }
+
+  const preferences: AutoBuildPreferences = {
+    budget,
+    purpose: this.purpose(),
+    cpuPreference: this.cpuPreference(),
+    gpuPreference: this.gpuPreference(),
+    priority: this.priority(),
+  };
+
+  const result = this.autoBuildService.generateBuild(preferences, this.attempt());
+  this.result.set(result);
+  this.feedback.set(result.message);
+
+  if (result.feasible) {
+    this.attempt.update((value) => value + 1);
+  }
+}
+
+
   private readonly router = inject(Router);
   private readonly autoBuildService = inject(AutoBuildService);
 
@@ -104,31 +134,6 @@ export class AutoBuild {
     const currentResult = this.result();
     return currentResult ? (Object.entries(currentResult.components) as Array<[ComponentCategory, CatalogComponent]>) : [];
   });
-
-  generateBuild(): void {
-    const budget = this.resolveBudget();
-    if (budget <= 0) {
-      this.feedback.set('Informe um orçamento válido para gerar a build.');
-      this.result.set(null);
-      return;
-    }
-
-    const preferences: AutoBuildPreferences = {
-      budget,
-      purpose: this.purpose(),
-      cpuPreference: this.cpuPreference(),
-      gpuPreference: this.gpuPreference(),
-      priority: this.priority(),
-    };
-
-    const result = this.autoBuildService.generateBuild(preferences, this.attempt());
-    this.result.set(result);
-    this.feedback.set(result.message);
-
-    if (result.feasible) {
-      this.attempt.update((value) => value + 1);
-    }
-  }
 
   useBuild(): void {
     const result = this.result();

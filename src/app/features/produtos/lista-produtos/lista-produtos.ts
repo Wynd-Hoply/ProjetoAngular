@@ -1,5 +1,7 @@
-import { ChangeDetectionStrategy, Component, computed, inject, signal } from '@angular/core';
+import { ChangeDetectionStrategy, Component, computed, effect, inject, signal, untracked } from '@angular/core';
+import { toSignal } from '@angular/core/rxjs-interop';
 import { ActivatedRoute, Router, RouterLink } from '@angular/router';
+import { map } from 'rxjs';
 
 import { BuilderService } from '../../../core/services/builder';
 import { CatalogService } from '../../../core/services/catalog';
@@ -32,7 +34,16 @@ export class ListaProdutos {
   readonly builder = inject(BuilderService);
   readonly comparison = inject(ComparisonService);
 
-  readonly category = signal<ComponentCategory | undefined>(this.readCategory());
+  // Antes era um signal() lido só na criação do componente, o que travava
+  // o valor quando o Router reaproveitava a mesma instância entre categorias.
+  // Agora reage a toda mudança do parâmetro :category na URL.
+  readonly category = toSignal(
+    this.route.paramMap.pipe(
+      map((params) => this.parseCategory(params.get('category')))
+    ),
+    { initialValue: this.parseCategory(this.route.snapshot.paramMap.get('category')) }
+  );
+
   readonly search = signal('');
   readonly brand = signal('');
   readonly minPrice = signal<number | undefined>(undefined);
@@ -46,6 +57,48 @@ export class ListaProdutos {
   readonly title = computed(() => this.category() ? categoryLabels[this.category()!] : 'Componentes');
   readonly brands = computed(() => this.catalog.getBrands(this.category()));
   readonly results = computed(() => this.catalog.query(this.currentFilters(), this.sort()));
+
+  // --- Paginação ---
+  readonly pageSize = 9;
+  readonly currentPage = signal(1);
+  readonly totalPages = computed(() => Math.max(1, Math.ceil(this.results().length / this.pageSize)));
+  readonly page = computed(() => Math.min(this.currentPage(), this.totalPages()));
+  readonly pageNumbers = computed(() => Array.from({ length: this.totalPages() }, (_, i) => i + 1));
+  readonly pagedResults = computed(() => {
+    const start = (this.page() - 1) * this.pageSize;
+    return this.results().slice(start, start + this.pageSize);
+  });
+
+  constructor() {
+    // Sempre que a categoria ou os filtros mudarem, volta para a primeira página
+    effect(() => {
+      this.category();
+      this.search();
+      this.brand();
+      this.minPrice();
+      this.maxPrice();
+      this.minVram();
+      this.minCapacity();
+      this.minWattage();
+      untracked(() => this.currentPage.set(1));
+    });
+  }
+
+  goToPage(page: number): void {
+    this.currentPage.set(page);
+  }
+
+  nextPage(): void {
+    if (this.page() < this.totalPages()) {
+      this.currentPage.set(this.page() + 1);
+    }
+  }
+
+  previousPage(): void {
+    if (this.page() > 1) {
+      this.currentPage.set(this.page() - 1);
+    }
+  }
 
   updateSearch(event: Event): void {
     this.search.set((event.target as HTMLInputElement).value);
@@ -124,8 +177,7 @@ export class ListaProdutos {
     };
   }
 
-  private readCategory(): ComponentCategory | undefined {
-    const value = this.route.snapshot.paramMap.get('category');
-    return value && value in categoryLabels ? value as ComponentCategory : undefined;
+  private parseCategory(value: string | null): ComponentCategory | undefined {
+    return value && value in categoryLabels ? (value as ComponentCategory) : undefined;
   }
 }

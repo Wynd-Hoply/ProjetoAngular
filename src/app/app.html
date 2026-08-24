@@ -3,22 +3,7 @@
 
 <main class="container-principal">
   <section class="bloco-controle">
-    @if (auth.isAuthenticated()) {
-      <div class="bloco-controle__card bloco-controle__card--active">
-        <div>
-          <p class="bloco-controle__eyebrow">Sessão ativa</p>
-          <h2>Olá, {{ auth.displayName() }}</h2>
-          <p>Seu acesso está salvo neste navegador via localStorage.</p>
-        </div>
-
-        <div class="bloco-controle__actions">
-          <a class="bloco-controle__action" routerLink="/build-up">Continuar montando</a>
-          <button type="button" class="bloco-controle__action bloco-controle__action--ghost" (click)="auth.logout()">
-            Sair
-          </button>
-        </div>
-      </div>
-    } 
+    
   </section>
 
   <hr />
