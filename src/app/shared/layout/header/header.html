@@ -11,13 +11,7 @@
     <button mat-button routerLink="/auto-build">Auto Build</button>
 
     <div class="pieces-menu" [class.pieces-menu--open]="piecesMenuOpen()">
-      <button
-        mat-button
-        type="button"
-        class="pieces-menu__trigger"
-        [class.active-tab]="piecesMenuOpen()"
-        (click)="togglePiecesMenu()"
-      >
+      <button mat-button type="button" class="pieces-menu__trigger" [class.active-tab]="piecesMenuOpen()" (click)="togglePiecesMenu()">
         Peças <span class="arrow">▾</span>
       </button>
 
@@ -48,14 +42,8 @@
     
 
     @if (authService.isAuthenticated()) {
-      <a class="auth-profile-chip" [routerLink]="['/perfil', authService.currentUser()?.username]">
-        @if (authService.currentUser()?.avatar) {
-          <img [src]="authService.currentUser()?.avatar" alt="" class="auth-profile-avatar" />
-        } @else {
-          <span class="profile-avatar__fallback">{{ initials(authService.currentUser()!.name) }}</span>
-        }
-      </a>
-      <button mat-stroked-button class="btn-outline" (click)="logout()">Sair</button>
+      <span class="auth-badge">{{ authService.displayName() }}</span>
+      <button mat-stroked-button class="btn-outline" routerLink="/auth/login" (click)="authService.logout()">Sair</button>
     } @else {
       <button mat-stroked-button class="btn-outline" (click)="openLogin()">Entrar</button>
       <button mat-flat-button class="btn-primary" routerLink="/auth/register">Cadastre-se</button>
@@ -69,7 +57,7 @@
   <!-- BOTÃO MENU HAMBÚRGUER (Apenas no celular) -->
   <button class="hamburger-btn mobile-only" (click)="toggleMobileMenu()" aria-label="Abrir menu">
     <svg viewBox="0 0 24 24" width="28" height="28" fill="currentColor">
-      <path d="M3 18h18v-2H3v2zm0-5h18v-2H3v2zm0-7v2h18V6H3z" />
+      <path d="M3 18h18v-2H3v2zm0-5h18v-2H3v2zm0-7v2h18V6H3z"/>
     </svg>
   </button>
 </mat-toolbar>
@@ -77,19 +65,18 @@
 <!-- GAVETA LATERAL (SIDEBAR MOBILE) -->
 @if (mobileMenuOpen()) {
   <div class="mobile-backdrop" (click)="closeMobileMenu()"></div>
-
+  
   <aside class="mobile-sidebar">
     <div class="mobile-sidebar__header">
       <img src="assets/images/LogoWM.png" alt="Logo" class="sidebar-logo" />
       <button class="close-btn" (click)="closeMobileMenu()">✕</button>
     </div>
-
+    
     <nav class="mobile-nav">
       <a class="mobile-nav__link" routerLink="/home" (click)="closeMobileMenu()">Home</a>
-      <a class="mobile-nav__link" routerLink="/build-up" (click)="closeMobileMenu()"
-        >Montar seu PC</a
-      >
-
+      <a class="mobile-nav__link" routerLink="/build-up" (click)="closeMobileMenu()">Montar seu PC</a>
+      
+      <!-- Lista aninhada idêntica à referência -->
       <div class="mobile-nav__group">
         <span class="mobile-nav__group-title">Peças</span>
         <div class="mobile-nav__sublinks">
@@ -101,32 +88,17 @@
         </div>
       </div>
 
-      <a class="mobile-nav__link" routerLink="/builds" (click)="closeMobileMenu()">Minhas Builds</a>
-      <a class="mobile-nav__link" routerLink="/compare" (click)="closeMobileMenu()"
-        >Comparar componentes</a
-      >
-      <a class="mobile-nav__link" routerLink="/admin/login" (click)="closeMobileMenu()">Área administrativa</a>
-      
+      <a class="mobile-nav__link" routerLink="/builds" (click)="closeMobileMenu()">Builds dos usuários</a>
+      <a class="mobile-nav__link" routerLink="/compare" (click)="closeMobileMenu()">Comparar componentes</a>
 
-      <hr class="mobile-divider" />
+      <hr class="mobile-divider">
 
       @if (authService.isAuthenticated()) {
-        <a
-          class="mobile-nav__link"
-          [routerLink]="['/perfil', authService.currentUser()?.username]"
-          (click)="closeMobileMenu()"
-        >
-          Meu perfil ({{ authService.displayName() }})
-        </a>
-        <button class="mobile-nav__link" (click)="logout()">Sair</button>
+        <div class="mobile-auth-info">Logado como: {{ authService.displayName() }}</div>
+        <button class="mobile-nav__link" (click)="authService.logout(); closeMobileMenu()">Sair</button>
       } @else {
         <button class="mobile-nav__link" (click)="openLogin()">Entrar</button>
-        <a
-          class="mobile-nav__link mobile-nav__link--highlight"
-          routerLink="/auth/register"
-          (click)="closeMobileMenu()"
-          >Cadastre-se</a
-        >
+        <a class="mobile-nav__link mobile-nav__link--highlight" routerLink="/auth/register" (click)="closeMobileMenu()">Cadastre-se</a>
       }
 
       <button class="mobile-nav__link" (click)="themeService.toggleTheme()">

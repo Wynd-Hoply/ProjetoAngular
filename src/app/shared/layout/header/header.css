@@ -340,36 +340,3 @@
   .mobile-only { display: flex !important; }
   .custom-toolbar { padding: 0 1rem !important; }
 }
-
-.auth-profile-avatar, .profile-edit-avatar img,
-.profile-edit-avatar .profile-avatar__fallback {
-  margin-top: 5px;
-  width: 52px;
-  height: 52px;
-  border-radius: 50%;
-  object-fit: cover;
-}
-
-.auth-profile-chip {
-  width: 52px;
-  height: 52px;
-  border-radius: 50%;
-  overflow: hidden;
-  flex-shrink: 0;
-  background: var(--surface-alt, #1f1f24);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-   text-decoration: none;
-   color: inherit;               /* Mantém a cor do texto pai em vez do azul padrão */
-  text-decoration: none;        /* Remove o sublinhado */
-  outline: none;                /* Remove a borda/brilho de foco ao clicar */
-  -webkit-tap-highlight-color: transparent; /* Remove o destaque cinza/azul no mobile */
-}
-
-.admin-link {
-  color: var(--text-secondary);
-  font-size: .75rem;
-  font-weight: 700;
-  text-decoration: none;
-}

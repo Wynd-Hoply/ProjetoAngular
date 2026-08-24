@@ -10,6 +10,24 @@ import { ThemeService } from './core/services/theme';
   imports: [RouterOutlet, RouterLink, Header],
   template: `
     <app-header />
+    
+    @if (authService.isAuthenticated()) {
+      <div class="container-principal">
+        <section class="bloco-controle">
+          <div class="bloco-controle__card bloco-controle__card--active">
+            <div>
+              <p class="bloco-controle__eyebrow">Sessão ativa</p>
+              <h2>Olá, {{ authService.displayName() }}</h2>
+              <p>Seu acesso está salvo neste navegador via localStorage.</p>
+            </div>
+            <div class="bloco-controle__actions">
+              <a class="bloco-controle__action" routerLink="/build-up">Continuar montando</a>
+              <button type="button" class="bloco-controle__action bloco-controle__action--ghost" (click)="authService.logout()">Sair</button>
+            </div>
+          </div>
+        </section>
+      </div>
+    }
 
     <main>
       <router-outlet />
@@ -30,7 +48,7 @@ import { ThemeService } from './core/services/theme';
           <nav class="footer-nav">
             <a routerLink="/home">Início</a>
             <a routerLink="/build-up">Montar PC</a>
-            <a routerLink="/builds">Minhas Builds</a>
+            <a routerLink="/builds">Builds de Usuários</a>
             <a routerLink="/compare">Comparar</a>
           </nav>
         </div>
