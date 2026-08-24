@@ -1,5 +1,21 @@
 <main class="home-page">
-    <!-- ... (Seção Hero mantida igual) ... -->
+    <section class="hero" aria-labelledby="hero-title">
+        <div class="hero__content">
+            <p class="eyebrow">PC Builder · montagem inteligente</p>
+            <h1 id="hero-title">Monte o PC ideal<br /><em>para você.</em></h1>
+            <p class="hero__lead">Escolha componentes, confira a compatibilidade e monte uma configuração que faz sentido para o seu orçamento e seu jeito de usar.</p>
+            <div class="hero__actions">
+                <a class="button button--primary" routerLink="/builder">Começar montagem <span aria-hidden="true">→</span></a>
+                <a class="button button--text" routerLink="/components">Explorar componentes</a>
+            </div>
+        </div>
+        <div class="hero__visual" aria-hidden="true">
+            <div class="hero__visual-top"><span>CONFIGURAÇÃO ATUAL</span><b>READY</b></div>
+            <div class="pc-frame"><div class="pc-frame__glow"></div><div class="pc-frame__line"></div><div class="pc-frame__chip">PC<br />BUILDER</div></div>
+            <div class="hero__spec hero__spec--top"><span>DESEMPENHO</span><strong>96 pts</strong></div>
+            <div class="hero__spec hero__spec--bottom"><span>COMPATIBILIDADE</span><strong>100%</strong></div>
+        </div>
+    </section>
 
     <section class="catalog-preview" aria-labelledby="categories-title">
         <div class="section-intro">
@@ -11,28 +27,44 @@
         </div>
         <div class="category-grid">
             @for (category of categories; track category.route) {
-                <!-- Link da Categoria -->
                 <a class="category-card" [routerLink]="['/components', category.route]">
-                    
-                    <!-- Container do Ícone/Imagem (Corrigido) -->
                     <div class="category-card__icon" aria-hidden="true">
-                        <!-- A TAG IMG AQUI É O SEU PROBLEMA NA IMAGEM -->
-                        <!-- O Angular faz o bind com [src] e [alt] -->
                         <img [src]="category.image" [alt]="category.label" class="category-img-fit" />
                     </div>
-                    
-                    <!-- Corpo do Card -->
                     <span class="category-card__body">
                         <strong>{{ category.label }}</strong>
                         <small>{{ category.description }}</small>
                     </span>
-                    
-                    <!-- Seta -->
                     <span class="category-card__arrow" aria-hidden="true">↗</span>
                 </a>
             }
         </div>
     </section>
 
-    <!-- ... (Seções How It Works e Cta mantidas) ... -->
+    <section class="how-it-works" aria-labelledby="steps-title">
+        <div class="section-intro section-intro--light">
+            <div>
+                <p class="eyebrow">Do primeiro clique à configuração final</p>
+                <h2 id="steps-title">Monte com clareza.</h2>
+            </div>
+            <p>Uma experiência simples para você tomar decisões melhores em cada etapa.</p>
+        </div>
+        <div class="steps-grid">
+            @for (step of steps; track step.number) {
+                <article class="step">
+                    <span class="step__number">{{ step.number }}</span>
+                    <h3>{{ step.title }}</h3>
+                    <p>{{ step.description }}</p>
+                </article>
+            }
+        </div>
+    </section>
+
+    <section class="closing-cta" aria-labelledby="closing-title">
+        <div>
+            <p class="eyebrow">Sua próxima configuração começa aqui</p>
+            <h2 id="closing-title">Pronto para montar?</h2>
+        </div>
+        <a class="button button--primary" routerLink="/builder">Começar agora <span aria-hidden="true">→</span></a>
+    </section>
 </main>
