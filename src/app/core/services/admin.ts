@@ -1,44 +1,17 @@
-import { isPlatformBrowser } from '@angular/common';
-import { computed, inject, Injectable, PLATFORM_ID, signal } from '@angular/core';
+import { computed, inject, Injectable } from '@angular/core';
 
 import { AuthService } from './auth';
 import { BuildService } from './build';
 
-export interface AdminResult {
-  success: boolean;
-  message: string;
-}
-
 @Injectable({ providedIn: 'root' })
 export class AdminService {
-  private readonly sessionKey = 'pc-builder-admin-session';
-  private readonly platformId = inject(PLATFORM_ID);
-  private readonly isBrowser = isPlatformBrowser(this.platformId);
   private readonly auth = inject(AuthService);
   private readonly buildService = inject(BuildService);
 
-  readonly isAuthenticated = signal(this.readSession());
+  // Acesso ao painel = estar logado (login normal) E a conta ter isAdmin.
+  readonly isAuthenticated = computed(() => this.auth.isAdmin());
   readonly users = computed(() => this.auth.getUsersForAdmin());
   readonly builds = computed(() => this.buildService.getAllForAdmin());
-
-  async login(username: string, password: string): Promise<AdminResult> {
-    if (username.trim().toLowerCase() !== 'admin' || password !== 'admin123') {
-      return { success: false, message: 'Credenciais administrativas inválidas.' };
-    }
-
-    this.isAuthenticated.set(true);
-    if (this.isBrowser) {
-      localStorage.setItem(this.sessionKey, 'true');
-    }
-    return { success: true, message: 'Acesso administrativo autorizado.' };
-  }
-
-  logout(): void {
-    this.isAuthenticated.set(false);
-    if (this.isBrowser) {
-      localStorage.removeItem(this.sessionKey);
-    }
-  }
 
   removeUser(username: string): void {
     this.auth.removeUserForAdmin(username);
@@ -53,7 +26,13 @@ export class AdminService {
     this.buildService.removeForAdmin(id);
   }
 
-  private readSession(): boolean {
-    return this.isBrowser && localStorage.getItem(this.sessionKey) === 'true';
+  // Concede/revoga acesso admin a outra conta.
+  setAdmin(username: string, isAdmin: boolean): void {
+    this.auth.setAdminForAdmin(username, isAdmin);
+  }
+
+  // Não existe mais sessão administrativa separada: sair do painel é sair da conta.
+  logout(): void {
+    this.auth.logout();
   }
 }

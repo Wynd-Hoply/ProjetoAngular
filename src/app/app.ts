@@ -46,7 +46,7 @@ import { ThemeService } from './core/services/theme';
       </div>
 
       <div class="footer-bottom">
-        <p>&copy; 2026 PC Builder. Todos os direitos reservados.</p>
+        <p>&copy; 2026 PCraft. Todos os direitos reservados.</p>
       </div>
     </footer>
   `,

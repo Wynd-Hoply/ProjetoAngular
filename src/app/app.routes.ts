@@ -6,10 +6,6 @@ import { BuildUp } from './features/build-up/build-up';
 
 export const routes: Routes = [
   {
-    path: 'admin/login',
-    loadComponent: () => import('./features/admin/admin-login/admin-login').then((m) => m.AdminLogin),
-  },
-  {
     path: 'admin',
     canActivate: [adminGuard],
     loadComponent: () => import('./features/admin/admin-dashboard/admin-dashboard').then((m) => m.AdminDashboard),

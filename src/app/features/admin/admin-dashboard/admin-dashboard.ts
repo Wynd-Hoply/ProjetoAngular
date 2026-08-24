@@ -2,6 +2,7 @@ import { ChangeDetectionStrategy, Component, inject } from '@angular/core';
 import { Router, RouterLink } from '@angular/router';
 
 import { AdminService } from '../../../core/services/admin';
+import { AuthService } from '../../../core/services/auth';
 import { SavedBuild } from '../../../core/models/saved-build.model';
 
 @Component({
@@ -13,6 +14,7 @@ import { SavedBuild } from '../../../core/models/saved-build.model';
 })
 export class AdminDashboard {
   protected readonly adminService = inject(AdminService);
+  protected readonly authService = inject(AuthService);
   private readonly router = inject(Router);
 
   protected formatDate(date: string): string {
@@ -39,8 +41,17 @@ export class AdminDashboard {
     }
   }
 
+  // Promove/revoga acesso administrativo de outra conta.
+  protected toggleAdmin(username: string, current: boolean): void {
+    const action = current ? 'remover o acesso admin de' : 'tornar admin';
+    if (window.confirm(`Deseja ${action} ${username}?`)) {
+      this.adminService.setAdmin(username, !current);
+    }
+  }
+
+  // Sair do painel agora é sair da conta, já que é o mesmo login do site.
   protected logout(): void {
     this.adminService.logout();
-    void this.router.navigate(['/admin/login']);
+    void this.router.navigate(['/home']);
   }
 }

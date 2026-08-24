@@ -8,6 +8,7 @@
   <!-- AÇÕES DESKTOP (Escondidas no celular) -->
   <div class="header-actions desktop-only">
     <button mat-button routerLink="/home">Início</button>
+    <button mat-button routerLink="/build-up">Monte seu PC</button>
     <button mat-button routerLink="/auto-build">Auto Build</button>
 
     <div class="pieces-menu" [class.pieces-menu--open]="piecesMenuOpen()">
@@ -20,7 +21,7 @@
       >
         Peças <span class="arrow">▾</span>
       </button>
-
+      
       @if (piecesMenuOpen()) {
         <div class="pieces-menu__panel" role="menu">
           <div class="pieces-menu__section">
@@ -41,10 +42,13 @@
       }
     </div>
 
-    <button mat-button routerLink="/build-up">Monte seu PC</button>
     <button mat-button routerLink="/builds">Minhas Builds</button>
     <button mat-button routerLink="/compare">Comparar</button>
-    <a class="admin-link" routerLink="/admin/login">Admin</a>
+
+    
+    @if (authService.isAdmin()) {
+  <a class="admin-link" routerLink="/admin">Admin</a>
+}
     
 
     @if (authService.isAuthenticated()) {
@@ -105,7 +109,9 @@
       <a class="mobile-nav__link" routerLink="/compare" (click)="closeMobileMenu()"
         >Comparar componentes</a
       >
-      <a class="mobile-nav__link" routerLink="/admin/login" (click)="closeMobileMenu()">Área administrativa</a>
+      @if (authService.isAdmin()) {
+  <a class="mobile-nav__link" routerLink="/admin" (click)="closeMobileMenu()">Área administrativa</a>
+}
       
 
       <hr class="mobile-divider" />
