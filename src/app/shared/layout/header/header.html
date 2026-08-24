@@ -44,7 +44,8 @@
     <button mat-button routerLink="/build-up">Monte seu PC</button>
     <button mat-button routerLink="/builds">Minhas Builds</button>
     <button mat-button routerLink="/compare">Comparar</button>
-    <button mat-button routerLink="/builds-comunidade">Comunidade</button>
+    <a class="admin-link" routerLink="/admin/login">Admin</a>
+    
 
     @if (authService.isAuthenticated()) {
       <a class="auth-profile-chip" [routerLink]="['/perfil', authService.currentUser()?.username]">
@@ -104,7 +105,7 @@
       <a class="mobile-nav__link" routerLink="/compare" (click)="closeMobileMenu()"
         >Comparar componentes</a
       >
-      <a class="mobile-nav__link" routerLink="/builds-comunidade" (click)="closeMobileMenu()">Builds da comunidade</a>
+      <a class="mobile-nav__link" routerLink="/admin/login" (click)="closeMobileMenu()">Área administrativa</a>
       
 
       <hr class="mobile-divider" />

@@ -75,9 +75,9 @@ export class BuildUp {
     if (this.builder.selectedComponents().length === 0) {
       this.saveMessage.set('Adicione componentes para gerar um link.');
       return;
-    }
+    } 
 
-    i
+    
 
     if (this.builds.activeBuildId()) {
       const build = this.builds.activeBuild();

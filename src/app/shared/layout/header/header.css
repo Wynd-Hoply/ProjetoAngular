@@ -366,3 +366,10 @@
   outline: none;                /* Remove a borda/brilho de foco ao clicar */
   -webkit-tap-highlight-color: transparent; /* Remove o destaque cinza/azul no mobile */
 }
+
+.admin-link {
+  color: var(--text-secondary);
+  font-size: .75rem;
+  font-weight: 700;
+  text-decoration: none;
+}

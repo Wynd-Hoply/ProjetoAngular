@@ -1,9 +1,19 @@
 import { Routes } from '@angular/router';
 
 import { authGuard } from './core/guards/auth.guard';
+import { adminGuard } from './core/guards/admin.guard';
 import { BuildUp } from './features/build-up/build-up';
 
 export const routes: Routes = [
+  {
+    path: 'admin/login',
+    loadComponent: () => import('./features/admin/admin-login/admin-login').then((m) => m.AdminLogin),
+  },
+  {
+    path: 'admin',
+    canActivate: [adminGuard],
+    loadComponent: () => import('./features/admin/admin-dashboard/admin-dashboard').then((m) => m.AdminDashboard),
+  },
   {
     path: '',
     loadComponent: () => import('./features/home/home/home').then((m) => m.Home),
