@@ -1,7 +1,13 @@
 <mat-toolbar class="custom-toolbar">
   <button class="logo-btn" routerLink="/home" aria-label="Ir para a página inicial">
-    <img src="assets/images/LogoWM.png" alt="Logo" class="logo" />
+
+    @if (themeService.isDarkMode()) {
+    <img src="assets/images/LogoDM.png" alt="Logo" class="logo" />
+    } @else {
+      <img src="assets/images/LogoWM.png" alt="Logo" class="logo" />
+    }
   </button>
+  
 
   <span class="flex-spacer"></span>
 
