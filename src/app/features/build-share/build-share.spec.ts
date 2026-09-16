@@ -1,4 +1,5 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { provideRouter } from '@angular/router';
 
 import { BuildShare } from './build-share';
 
@@ -9,6 +10,7 @@ describe('BuildShare', () => {
   beforeEach(async () => {
     await TestBed.configureTestingModule({
       imports: [BuildShare],
+      providers: [provideRouter([])],
     }).compileComponents();
 
     fixture = TestBed.createComponent(BuildShare);

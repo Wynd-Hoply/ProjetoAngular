@@ -1,5 +1,6 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { ActivatedRoute, Router, convertToParamMap, provideRouter } from '@angular/router';
+import { of } from 'rxjs';
 import { vi } from 'vitest';
 
 import { ListaProdutos } from './lista-produtos';
@@ -19,6 +20,7 @@ describe('ListaProdutos', () => {
         {
           provide: ActivatedRoute,
           useValue: {
+            paramMap: of(convertToParamMap({})),
             snapshot: {
               paramMap: convertToParamMap({}),
             },

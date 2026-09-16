@@ -11,9 +11,9 @@ describe('CatalogService', () => {
   });
 
   it('should aggregate all mocked component categories', () => {
-    expect(service.getAll()).toHaveLength(83);
-    expect(service.getByCategory('cpu')).toHaveLength(12);
-    expect(service.getByCategory('gpu')).toHaveLength(10);
+    expect(service.getAll()).toHaveLength(200);
+    expect(service.getByCategory('cpu')).toHaveLength(25);
+    expect(service.getByCategory('gpu')).toHaveLength(25);
   });
 
   it('should filter components by search and price', () => {
@@ -27,7 +27,7 @@ describe('CatalogService', () => {
     const cheapest = service.query({ category: 'storage' }, 'price-asc');
     const bestProcessor = service.query({ category: 'cpu' }, 'performance-desc');
 
-    expect(cheapest[0].price).toBe(399.9);
-    expect(bestProcessor[0].name).toBe('Intel Core i7-14700K');
+    expect(cheapest[0].price).toBe(219.9);
+    expect(bestProcessor[0].name).toBe('AMD Ryzen 9 7950X3D');
   });
 });

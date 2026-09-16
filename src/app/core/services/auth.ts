@@ -350,7 +350,16 @@ export class AuthService {
         item.username.toLowerCase() === normalized
     );
 
-    return user ? this.toSession(user) : null;
+    // O perfil público expõe somente dados de apresentação, nunca credenciais ou permissões.
+    return user
+      ? {
+          username: user.username,
+          name: user.name,
+          bio: user.bio,
+          avatar: user.avatar,
+          joinedAt: user.joinedAt,
+        }
+      : null;
   }
 
   // =========================
