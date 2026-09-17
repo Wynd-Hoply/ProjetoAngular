@@ -31,6 +31,8 @@
     "@angular/build": "^21.2.19",
     "@angular/cli": "^21.2.19",
     "@angular/compiler-cli": "^21.2.0",
+    "@testing-library/angular": "^19.5.0",
+    "@testing-library/jest-dom": "^7.0.1",
     "@types/express": "^5.0.1",
     "@types/node": "^20.17.19",
     "@vitest/coverage-v8": "^4.1.11",
