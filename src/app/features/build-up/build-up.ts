@@ -1,7 +1,9 @@
 import { isPlatformBrowser } from '@angular/common';
 import { ChangeDetectionStrategy, Component, PLATFORM_ID, computed, inject, signal } from '@angular/core';
+import { finalize } from 'rxjs';
 import { RouterLink } from '@angular/router';
 
+import { Endereco, ViacepService } from '../../core/services/API/viacep.service';
 import { BuilderService } from '../../core/services/builder';
 import { BuildService } from '../../core/services/build';
 import { CompatibilityService } from '../../core/services/compatibility';
@@ -34,6 +36,21 @@ export class BuildUp {
   readonly saveMessage = signal('');
   readonly savedBuild = signal<SavedBuild | null>(null);
   readonly linkCopyFeedback = signal('');
+  readonly cep = signal('');
+  readonly endereco = signal<Endereco | null>(null);
+  readonly cepError = signal('');
+  readonly buscandoCep = signal(false);
+  readonly freteConsulta = computed(() => {
+    const endereco = this.endereco();
+    return endereco
+      ? {
+          cepDestino: endereco.cep.replace(/\D/g, ''),
+          endereco,
+        }
+      : null;
+  });
+
+  private readonly viacep = inject(ViacepService);
 
   readonly slots: BuilderSlot[] = [
     { category: 'cpu', label: 'Processador', route: 'cpu' },
@@ -53,6 +70,35 @@ export class BuildUp {
 
   formatPrice(price: number): string {
     return price.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' });
+  }
+
+  consultarCep(): void {
+    const cepLimpo = this.cep().replace(/\D/g, '');
+    this.cep.set(cepLimpo);
+    this.endereco.set(null);
+    this.cepError.set('');
+
+    if (cepLimpo.length !== 8) {
+      this.cepError.set('Digite um CEP válido.');
+      return;
+    }
+
+    this.buscandoCep.set(true);
+    this.viacep.buscarCep(cepLimpo)
+      .pipe(finalize(() => this.buscandoCep.set(false)))
+      .subscribe({
+        next: (endereco) => {
+          if (endereco.erro) {
+            this.cepError.set('CEP não encontrado.');
+            return;
+          }
+
+          this.endereco.set(endereco);
+        },
+        error: () => {
+          this.cepError.set('CEP não encontrado.');
+        },
+      });
   }
 
   statusLabel(status: 'compatible' | 'incompatible' | 'pending'): string {
