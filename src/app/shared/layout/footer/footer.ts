@@ -12,7 +12,7 @@ import { Profile } from '../../../features/profile/profile';
 
 @Component({
   selector: 'app-footer',
-  imports: [RouterLink, MatToolbarModule, MatButtonModule, MatDialogModule, Login, Profile],
+  imports: [RouterLink, MatToolbarModule, MatButtonModule, MatDialogModule],
   templateUrl: './footer.html',
   styleUrl: './footer.css',
 })

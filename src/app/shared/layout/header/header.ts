@@ -11,7 +11,7 @@ import { Profile } from '../../../features/profile/profile';
 
 @Component({
   selector: 'app-header',
-  imports: [MatToolbarModule, MatButtonModule, MatDialogModule, RouterLink, Profile],
+  imports: [MatToolbarModule, MatButtonModule, MatDialogModule, RouterLink],
   templateUrl: './header.html',
   styleUrl: './header.css',
   host: {

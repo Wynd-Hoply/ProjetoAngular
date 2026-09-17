@@ -8,7 +8,7 @@ import { Footer } from "./shared/layout/footer/footer";
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [RouterOutlet, RouterLink, Header, Footer],
+  imports: [RouterOutlet, Header, Footer],
   template: `
     <app-header />
 

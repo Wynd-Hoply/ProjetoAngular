@@ -9,7 +9,7 @@ import { AuthService } from '../../../core/services/auth';
 
 @Component({
   selector: 'app-register',
-  imports: [CommonModule, ReactiveFormsModule, MatDialogModule, RouterLink],
+  imports: [CommonModule, ReactiveFormsModule, MatDialogModule],
   templateUrl: './register.html',
   styleUrl: './register.css',
   changeDetection: ChangeDetectionStrategy.OnPush,
