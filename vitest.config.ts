@@ -4,7 +4,7 @@ export default defineConfig({
         globals: true,
         environment: 'jsdom',
         include: ['src/**/*.spec.ts'],
-        setupFiles: 'src/test.ts',
+        setupFiles: ['vitest.setup.ts'],
         deps: {
             inline: [
                 '@angular/core',
