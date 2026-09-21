@@ -341,7 +341,9 @@ h2 {
 }
 
 .summary-panel {
-  
+  grid-column: 2;
+  grid-row: 1 / span 2;
+  align-self: stretch;
   top: 1rem;
 }
 
@@ -597,6 +599,8 @@ h2 {
   }
 
   .summary-panel {
+    grid-column: auto;
+    grid-row: auto;
     position: static;
   }
 }

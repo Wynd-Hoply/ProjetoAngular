@@ -1,8 +1,9 @@
 
 .profile-page {
-  max-width: 960px;
+  max-width: 1120px;
+  min-height: calc(100vh - 220px);
   margin: 0 auto;
-  padding: 24px 16px 64px;
+  padding: 32px clamp(1rem, 4vw, 3rem) 72px;
   color: var(--text-primary);
 }
 
@@ -23,7 +24,12 @@
   display: flex;
   align-items: center;
   gap: 20px;
-  margin: 24px 0 32px;
+  margin: 24px 0 28px;
+  padding: clamp(1.25rem, 3vw, 2rem);
+  border: 1px solid var(--border-color);
+  border-radius: 16px;
+  background: var(--card-bg);
+  box-shadow: 0 12px 28px rgba(0, 0, 0, .06);
   flex-wrap: wrap;
 }
 
@@ -243,13 +249,13 @@
 
 .profile-tabs {
   display: flex;
-  gap: 8px;
+  gap: 4px;
   border-bottom: 1px solid var(--border-color);
-  margin-bottom: 24px;
+  margin: 0 0 20px;
 }
 
 .profile-tab {
-  padding: 10px 16px;
+  padding: 12px 18px;
   text-decoration: none;
   color: var(--text-secondary);
   border-bottom: 2px solid transparent;
@@ -259,6 +265,33 @@
 .profile-tab--active {
   color: var(--text-primary);
   border-bottom-color: var(--primary);
+}
+
+.profile-current-build,
+.profile-builds-list {
+  min-height: 260px;
+  padding: clamp(1.25rem, 3vw, 2rem);
+  border: 1px solid var(--border-color);
+  border-radius: 14px;
+  background: var(--card-bg);
+}
+
+.profile-current-build h2,
+.profile-builds-list h2 {
+  margin: 0 0 .65rem;
+  color: var(--text-primary);
+  font-size: 1.25rem;
+}
+
+.profile-empty {
+  display: grid;
+  min-height: 150px;
+  place-items: center;
+  margin: 0;
+  border: 1px dashed var(--border-color);
+  border-radius: 10px;
+  color: var(--text-secondary);
+  text-align: center;
 }
 
 .profile-build-table {
@@ -285,10 +318,6 @@
   color: var(--primary);
   font-weight: 600;
   text-decoration: none;
-}
-
-.profile-empty {
-  color: var(--text-secondary);
 }
 
 .build-list {
@@ -327,4 +356,65 @@
 .build-actions {
   display: flex;
   gap: 8px;
+}
+
+.open-button,
+.delete-button {
+  min-height: 36px;
+  padding: 0 .8rem;
+  border-radius: 6px;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+.open-button {
+  border: 1px solid var(--primary);
+  background: var(--primary);
+  color: #fff;
+}
+
+.delete-button {
+  border: 1px solid rgba(239, 68, 68, .4);
+  background: transparent;
+  color: #ef4444;
+}
+
+@media (max-width: 620px) {
+  .profile-page {
+    padding-top: 20px;
+  }
+
+  .profile-header {
+    align-items: flex-start;
+  }
+
+  .profile-edit-button {
+    width: 100%;
+    margin-left: 0;
+  }
+
+  .profile-identity {
+    min-width: 0;
+  }
+
+  .profile-identity h1 {
+    font-size: 1.35rem;
+  }
+
+  .profile-tabs {
+    overflow-x: auto;
+  }
+
+  .profile-tab {
+    white-space: nowrap;
+  }
+
+  .build-actions {
+    width: 100%;
+  }
+
+  .open-button,
+  .delete-button {
+    flex: 1;
+  }
 }

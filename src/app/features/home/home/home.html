@@ -1,20 +1,117 @@
 <main class="home-page">
-	<section class="hero" aria-labelledby="hero-title">
-		<div class="hero__content">
-			<p class="eyebrow">PCraft · montagem inteligente</p>
-			<h1 id="hero-title">Monte o PC ideal<br /><em>para você.</em></h1>
-			<p class="hero__lead">Escolha componentes, confira a compatibilidade e monte uma configuração que faz sentido para o seu orçamento e seu jeito de usar.</p>
-			<div class="hero__actions">
-				<a class="button button--primary" routerLink="/builder">Começar montagem <span aria-hidden="true">→</span></a>
-				<a class="button button--text" routerLink="/components">Explorar componentes</a>
+	<section
+		class="promo-carousel"
+		aria-label="Destaques PCraft"
+		aria-roledescription="carrossel"
+		(keydown.arrowleft)="previousSlide()"
+		(keydown.arrowright)="nextSlide()"
+		tabindex="0"
+	>
+		<div
+			class="promo-carousel__track"
+			[style.transform]="'translateX(-' + activeSlide() * 100 + '%)'"
+		>
+			@for (slide of slides; track slide.title) {
+				<article class="promo-slide" [class]="'promo-slide promo-slide--' + slide.accent">
+					<div class="promo-slide__content">
+						<p class="eyebrow">{{ slide.eyebrow }}</p>
+						<h1>{{ slide.title }}</h1>
+						<p>{{ slide.description }}</p>
+						@if (slide.kind === 'product') {
+							<strong class="promo-slide__price">{{ formatPrice(slide.product.price) }}</strong>
+						}
+						<a class="button button--primary" [routerLink]="slide.route">
+							{{ slide.action }} <span aria-hidden="true">→</span>
+						</a>
+					</div>
+					<div class="promo-slide__art" aria-hidden="true">
+						@if (slide.kind === 'product') {
+							<img class="promo-slide__product" [src]="slide.product.image" [alt]="slide.product.name" />
+						} @else {
+							<span class="promo-slide__orb promo-slide__orb--large"></span>
+							<span class="promo-slide__orb promo-slide__orb--small"></span>
+							<div class="promo-slide__card">
+								<strong>PC<span>RAFT</span></strong>
+								<small>BUILD SMART</small>
+							</div>
+						}
+					</div>
+				</article>
+			}
+		</div>
+
+		<button class="promo-carousel__control promo-carousel__control--previous" type="button" (click)="previousSlide()" aria-label="Destaque anterior">
+			<span aria-hidden="true">‹</span>
+		</button>
+		<button class="promo-carousel__control promo-carousel__control--next" type="button" (click)="nextSlide()" aria-label="Próximo destaque">
+			<span aria-hidden="true">›</span>
+		</button>
+
+		<div class="promo-carousel__dots" aria-label="Selecionar destaque">
+			@for (slide of slides; track slide.title; let index = $index) {
+				<button
+					type="button"
+					[class.promo-carousel__dot--active]="activeSlide() === index"
+					[attr.aria-label]="'Ir para o destaque ' + (index + 1)"
+					[attr.aria-current]="activeSlide() === index ? 'true' : null"
+					(click)="selectSlide(index)"
+				></button>
+			}
+		</div>
+	</section>
+
+	<section class="featured-products" aria-labelledby="featured-products-title">
+		<div class="section-intro">
+			<div>
+				<p class="eyebrow">Destaques do catálogo</p>
+				<h2 id="featured-products-title">Peças para sua próxima build</h2>
 			</div>
+			<a routerLink="/components">Ver todos os produtos <span aria-hidden="true">→</span></a>
 		</div>
-		<div class="hero__visual" aria-hidden="true">
-			<div class="hero__visual-top"><span>CONFIGURAÇÃO ATUAL</span><b>READY</b></div>
-			<div class="pc-frame"><div class="pc-frame__glow"></div><div class="pc-frame__line"></div><div class="pc-frame__chip">PC<br />BUILDER</div></div>
-			<div class="hero__spec hero__spec--top"><span>DESEMPENHO</span><strong>96 pts</strong></div>
-			<div class="hero__spec hero__spec--bottom"><span>COMPATIBILIDADE</span><strong>100%</strong></div>
+
+		<div class="product-carousel" aria-label="Produtos em destaque">
+			<div
+				#productCarousel
+				class="product-carousel__viewport"
+			>
+				<div class="product-carousel__track">
+					@for (product of featuredProducts; track product.id; let index = $index) {
+						<a class="product-card" [routerLink]="['/components', product.category]">
+							<div class="product-card__image">
+								<span class="product-card__badge">{{ productBadge(index) }}</span>
+								<img [src]="product.image" [alt]="product.name" />
+							</div>
+							<div class="product-card__content">
+								<span>{{ product.brand }} · {{ categoryLabel(product.category) }}</span>
+								<strong>{{ product.name }}</strong>
+								<div class="product-card__meta">
+									<b>{{ formatPrice(product.price) }}</b>
+									<small>{{ product.performanceScore }}/100 desempenho</small>
+								</div>
+								<span class="product-card__action">Ver produto <span aria-hidden="true">→</span></span>
+							</div>
+						</a>
+					}
+				</div>
+			</div>
+			<button
+				class="product-carousel__control product-carousel__control--previous"
+				type="button"
+				(click)="scrollProducts('previous')"
+				aria-label="Produto anterior"
+			>
+				<span aria-hidden="true">‹</span>
+			</button>
+			<button
+				class="product-carousel__control product-carousel__control--next"
+				type="button"
+				(click)="scrollProducts('next')"
+				aria-label="Próximo produto"
+			>
+				<span aria-hidden="true">›</span>
+			</button>
 		</div>
+
 	</section>
 
     <section class="catalog-preview" aria-labelledby="categories-title">
