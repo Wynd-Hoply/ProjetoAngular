@@ -125,57 +125,6 @@
       </div>
     </section>
 
-    <section class="cep-panel" aria-labelledby="cep-title">
-      <div class="cep-panel__heading">
-        <div>
-          <p class="eyebrow">Entrega</p>
-          <h2 id="cep-title">Consulte seu endereço</h2>
-        </div>
-        <span class="cep-panel__hint">Prepare o destino do frete</span>
-      </div>
-
-      <form class="cep-form" (submit)="$event.preventDefault(); consultarCep()">
-        <label for="cep">Digite seu CEP</label>
-        <div class="cep-form__controls">
-          <input
-            id="cep"
-            type="text"
-            inputmode="numeric"
-            autocomplete="postal-code"
-            maxlength="9"
-            placeholder="00000-000"
-            [value]="cep()"
-            (input)="cep.set($any($event.target).value)"
-            [attr.aria-invalid]="cepError() ? 'true' : null"
-            aria-describedby="cep-feedback"
-          />
-          <button type="submit" [disabled]="buscandoCep()">
-            {{ buscandoCep() ? 'Consultando...' : 'OK' }}
-          </button>
-        </div>
-      </form>
-
-      <p id="cep-feedback" class="cep-feedback" [class.cep-feedback--error]="cepError()" role="status">
-        @if (cepError()) {
-          {{ cepError() }}
-        } @else if (buscandoCep()) {
-          Consultando CEP...
-        }
-      </p>
-
-      @if (endereco(); as address) {
-        <div class="address-card" aria-live="polite">
-          <p class="address-card__title">Endereço encontrado</p>
-          <dl>
-            <div><dt>Logradouro</dt><dd>{{ address.logradouro || 'Não informado' }}</dd></div>
-            <div><dt>Bairro</dt><dd>{{ address.bairro || 'Não informado' }}</dd></div>
-            <div><dt>Cidade</dt><dd>{{ address.localidade || 'Não informado' }}</dd></div>
-            <div><dt>UF</dt><dd>{{ address.uf || 'Não informado' }}</dd></div>
-          </dl>
-        </div>
-      }
-    </section>
-
     <aside class="summary-panel" aria-labelledby="summary-title">
       <div class="panel-heading">
         <div>

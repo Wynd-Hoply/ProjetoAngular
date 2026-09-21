@@ -3,8 +3,10 @@ import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatButtonModule } from '@angular/material/button';
 import { MatDialog, MatDialogModule } from '@angular/material/dialog';
 import { Router, RouterLink } from '@angular/router';
+import { finalize } from 'rxjs';
 import { ThemeService } from '../../../core/services/theme';
 import { AuthService } from '../../../core/services/auth';
+import { Endereco, ViacepService } from '../../../core/services/API/viacep.service';
 import { Login } from '../../../features/auth/login/login';
 import { Profile } from '../../../features/profile/profile';
 
@@ -25,9 +27,15 @@ export class Header {
   themeService = inject(ThemeService);
   authService = inject(AuthService);
   private readonly dialog = inject(MatDialog);
+  private readonly viacep = inject(ViacepService);
 
   readonly piecesMenuOpen = signal(false);
   readonly mobileMenuOpen = signal(false);
+  readonly cepMenuOpen = signal(false);
+  readonly cep = signal('');
+  readonly endereco = signal<Endereco | null>(null);
+  readonly cepError = signal('');
+  readonly buscandoCep = signal(false);
 
   readonly pcComponents = [
     { label: 'Processadores', icon: 'CPU', route: '/components/cpu', image: '/assets/images/PROCESSADOR/Processador (1).png' },
@@ -66,6 +74,37 @@ export class Header {
   closeAllMenus(): void {
     this.closePiecesMenu();
     this.closeMobileMenu();
+    this.cepMenuOpen.set(false);
+  }
+
+  toggleCepMenu(): void {
+    this.cepMenuOpen.update((isOpen) => !isOpen);
+  }
+
+  consultarCep(): void {
+    const cepLimpo = this.cep().replace(/\D/g, '');
+    this.cep.set(cepLimpo);
+    this.endereco.set(null);
+    this.cepError.set('');
+
+    if (cepLimpo.length !== 8) {
+      this.cepError.set('Digite um CEP válido.');
+      return;
+    }
+
+    this.buscandoCep.set(true);
+    this.viacep.buscarCep(cepLimpo)
+      .pipe(finalize(() => this.buscandoCep.set(false)))
+      .subscribe({
+        next: (endereco) => {
+          if (endereco.erro) {
+            this.cepError.set('CEP não encontrado.');
+            return;
+          }
+          this.endereco.set(endereco);
+        },
+        error: () => this.cepError.set('Não foi possível consultar o CEP.'),
+      });
   }
 
   onDocumentClick(event: MouseEvent): void {
