@@ -7,12 +7,10 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatDialog, MatDialogModule } from '@angular/material/dialog';
 import { Router, RouterLink } from '@angular/router';
 import { AuthService } from '../../../core/services/auth';
-import { Login } from '../../../features/auth/login/login';
-import { Profile } from '../../../features/profile/profile';
 
 @Component({
   selector: 'app-footer',
-  imports: [RouterLink, MatToolbarModule, MatButtonModule, MatDialogModule, Login, Profile],
+  imports: [RouterLink, MatToolbarModule, MatButtonModule, MatDialogModule],
   templateUrl: './footer.html',
   styleUrl: './footer.css',
 })

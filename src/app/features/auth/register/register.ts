@@ -1,7 +1,7 @@
 import { CommonModule } from '@angular/common';
 import { ChangeDetectionStrategy, Component, inject, signal } from '@angular/core';
 import { FormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
-import { ActivatedRoute, Router, RouterLink } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { Login } from '../../../features/auth/login/login';
 import { MatDialog, MatDialogModule, MatDialogRef } from '@angular/material/dialog';
 
@@ -9,7 +9,7 @@ import { AuthService } from '../../../core/services/auth';
 
 @Component({
   selector: 'app-register',
-  imports: [CommonModule, ReactiveFormsModule, MatDialogModule, RouterLink],
+  imports: [CommonModule, ReactiveFormsModule, MatDialogModule],
   templateUrl: './register.html',
   styleUrl: './register.css',
   changeDetection: ChangeDetectionStrategy.OnPush,
