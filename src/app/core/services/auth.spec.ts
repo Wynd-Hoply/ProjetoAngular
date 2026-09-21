@@ -24,7 +24,7 @@ const admin: AuthUser = {
 };
 
 function createStorage(): Storage {
-  // O Map mantém o estado do storage controlado e reiniciável em cada teste.
+  // O Map mantem o estado do storage controlado e reiniciavel em cada teste.
   const values = new Map<string, string>();
   return {
     getItem: vi.fn((key: string) => values.get(key) ?? null),
@@ -45,7 +45,7 @@ describe('AuthService', () => {
     vi.restoreAllMocks();
     storage = createStorage();
     vi.stubGlobal('localStorage', storage);
-    // O serviço detecta o navegador pelo PLATFORM_ID e acessa o storage global.
+    // O serviço deteccta o navegador pelo PLATFORM_ID e acessa o storage global.
     TestBed.configureTestingModule({
       providers: [{ provide: PLATFORM_ID, useValue: 'browser' }],
     });

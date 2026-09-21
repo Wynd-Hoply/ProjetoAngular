@@ -17,7 +17,7 @@ describe('CompatibilityService', () => {
     builder.clear();
   });
 
-  it('should approve matching CPU, motherboard and RAM data', () => {
+  it('deve aprovar dados correspondentes de CPU, placa-mãe e RAM', () => {
     builder.add(catalog.getById(101)!);
     builder.add(catalog.getById(301)!);
     builder.add(catalog.getById(402)!);
@@ -26,7 +26,7 @@ describe('CompatibilityService', () => {
     expect(service.checks().find((check) => check.key === 'ram-motherboard')?.status).toBe('compatible');
   });
 
-  it('should explain a socket incompatibility', () => {
+  it('deve explicar uma incompatibilidade de socket', () => {
     builder.add(catalog.getById(103)!);
     builder.add(catalog.getById(301)!);
 
@@ -36,7 +36,7 @@ describe('CompatibilityService', () => {
     expect(check?.message).toContain('AM5');
   });
 
-  it('should support older socket and DDR4 platforms', () => {
+  it('deve suportar plataformas mais antigas com socket e DDR4', () => {
     builder.add(catalog.getById(111)!);
     builder.add(catalog.getById(310)!);
     builder.add(catalog.getById(410)!);
@@ -47,7 +47,7 @@ describe('CompatibilityService', () => {
     expect(service.checks().find((check) => check.key === 'cpu-cooler')?.status).toBe('compatible');
   });
 
-  it('should calculate consumption with a 20 percent recommendation margin', () => {
+  it('deve calcular o consumo com uma margem de recomendação de 20 por cento', () => {
     builder.add(catalog.getById(101)!);
     builder.add(catalog.getById(201)!);
     builder.add(catalog.getById(402)!);

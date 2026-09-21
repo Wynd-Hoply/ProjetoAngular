@@ -18,11 +18,11 @@ describe('Header', () => {
     await fixture.whenStable();
   });
 
-  it('should create', () => {
+  it('deve ser criado', () => {
     expect(component).toBeTruthy();
   });
 
-  it('should toggle the pieces menu and close it from outside clicks', async () => {
+  it('deve alternar o menu de peças e fechá-lo com cliques externos', async () => {
     const compiled = fixture.nativeElement as HTMLElement;
     const trigger = compiled.querySelector('.pieces-menu__trigger') as HTMLButtonElement;
 

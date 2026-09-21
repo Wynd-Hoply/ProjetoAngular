@@ -34,11 +34,11 @@ describe('ListaProdutos', () => {
     await fixture.whenStable();
   });
 
-  it('should create', () => {
+  it('deve ser criado', () => {
     expect(component).toBeTruthy();
   });
 
-  it('should add a component to the shared builder and navigate to /builder', async () => {
+  it('deve adicionar um componente ao construtor compartilhado e navegar para /builder', async () => {
     const router = TestBed.inject(Router);
     const builder = TestBed.inject(BuilderService);
     const catalog = TestBed.inject(CatalogService);
