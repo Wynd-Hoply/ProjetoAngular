@@ -1,0 +1,27 @@
+.community-builds {
+  display: grid;
+  gap: 1rem;
+  padding: 2rem;
+}
+
+.eyebrow {
+  margin: 0;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  font-size: 0.75rem;
+  font-weight: 700;
+}
+
+.community-builds h1 {
+  margin: 0;
+  font-size: clamp(2rem, 4vw, 3rem);
+}
+
+.community-builds p {
+  margin: 0;
+  max-width: 56ch;
+}
+
+.back-link {
+  width: fit-content;
+}
