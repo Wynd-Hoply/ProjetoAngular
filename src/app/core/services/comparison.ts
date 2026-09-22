@@ -42,4 +42,9 @@ export class ComparisonService {
   isFull(): boolean {
     return this.selectedIds().length >= ComparisonService.maxItems;
   }
+
+  // Busca apenas entre os itens atualmente selecionados.
+  getById(id: number): Component | undefined {
+    return this.selected().find((component) => component.id === id);
+  }
 }
