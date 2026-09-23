@@ -40,7 +40,7 @@ export class FreteService {
       ShippingItemArray: itens,
     };
     const headers = new HttpHeaders({
-      'Content-Type': 'appication/json',
+      'Content-Type': 'application/json',
       token: token,
     });
     return this.http.post<any>(this.apiUrl, body, { headers });
