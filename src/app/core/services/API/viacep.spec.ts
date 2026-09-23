@@ -19,11 +19,7 @@ describe('ViacepService', () => {
     httpTesting = TestBed.inject(HttpTestingController);
   });
 
-  it('should be created', () => {
-    expect(service).toBeTruthy();
-  });
-
-  it('should sanitize the CEP and return the address response', () => {
+  it('deve sanitizar o CEP e retornar a resposta do endereço', () => {
     const response = {
       cep: '01001-000',
       logradouro: 'Praça da Sé',
@@ -52,7 +48,7 @@ describe('ViacepService', () => {
     expect(receivedResponse).toEqual(response);
   });
 
-  it('should preserve the API error response for an invalid CEP', () => {
+  it('deve preservar a resposta de erro da API para um CEP inválido', () => {
     const response = {
       cep: '',
       logradouro: '',
