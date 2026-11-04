@@ -15,8 +15,8 @@
    VARIÁVEIS DE TEMA (MODO CLARO)
    ========================================= */
 body.light-mode {
-  --primary: #D9005B;       
-  --accent: #2B10D9;        
+  --primary: #FF1F78;       
+  --accent: #FF1F78;        
   --bg-color: #F9F7FA;      
   --card-bg: #FFFFFF;       
   --border-color: #E8E3ED;  

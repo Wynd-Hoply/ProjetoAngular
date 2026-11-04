@@ -40,7 +40,7 @@ function createStorage(): Storage {
 
 describe('AuthService', () => {
   let storage: Storage;
-
+// antes de cada teste restuarar mocks e criar um novo storage controlado, injetando-o no serviço.
   beforeEach(() => {
     vi.restoreAllMocks();
     storage = createStorage();
@@ -50,7 +50,7 @@ describe('AuthService', () => {
       providers: [{ provide: PLATFORM_ID, useValue: 'browser' }],
     });
   });
-
+//   depois de cada teste restaurar os stubs globais para não afetar outros testes.
   afterEach(() => vi.unstubAllGlobals());
 
   function injectService(users: AuthUser[] = [user, admin], session?: object): AuthService {
@@ -61,6 +61,8 @@ describe('AuthService', () => {
     return TestBed.inject(AuthService);
   }
 
+
+  
   it('faz login por email e persiste uma sessão sem senha', async () => {
     const service = injectService();
 

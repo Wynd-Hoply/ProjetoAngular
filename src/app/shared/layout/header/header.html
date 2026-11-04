@@ -6,7 +6,62 @@
     } @else {
       <img src="assets/images/LogoWM.png" alt="Logo" class="logo" />
     }
+    <span class="brand-name">PC<span>RAFT</span></span>
   </button>
+
+  <div class="cep-location" [class.cep-location--open]="cepMenuOpen()">
+    <button
+      type="button"
+      class="cep-location__trigger"
+      (click)="toggleCepMenu()"
+      aria-haspopup="dialog"
+      [attr.aria-expanded]="cepMenuOpen()"
+    >
+      <span class="cep-location__pin" aria-hidden="true">⌖</span>
+      <span>
+        <small>Enviar para:</small>
+        <strong>{{ endereco() ? endereco()!.localidade + '/' + endereco()!.uf : 'Digite o CEP' }}</strong>
+      </span>
+      <span class="cep-location__arrow" aria-hidden="true">⌄</span>
+    </button>
+
+    @if (cepMenuOpen()) {
+      <div class="cep-location__panel" role="dialog" aria-label="Consultar endereço de entrega">
+        <strong>Para onde você quer enviar?</strong>
+        <p>Digite seu CEP para consultar o endereço.</p>
+        <form class="cep-location__form" (submit)="$event.preventDefault(); consultarCep()">
+          <label for="header-cep">CEP</label>
+          <div>
+            <input
+              id="header-cep"
+              type="text"
+              inputmode="numeric"
+              autocomplete="postal-code"
+              maxlength="9"
+              placeholder="00000-000"
+              [value]="cep()"
+              (input)="cep.set($any($event.target).value)"
+              [attr.aria-invalid]="cepError() ? 'true' : null"
+              aria-describedby="header-cep-feedback"
+            />
+            <button type="submit" [disabled]="buscandoCep()">
+              {{ buscandoCep() ? '...' : 'OK' }}
+            </button>
+          </div>
+        </form>
+        @if (cepError() || buscandoCep()) {
+          <p id="header-cep-feedback" class="cep-location__feedback" [class.cep-location__feedback--error]="cepError()" role="status">
+            {{ cepError() || 'Consultando CEP...' }}
+          </p>
+        }
+        @if (endereco(); as address) {
+          <p class="cep-location__result" aria-live="polite">
+            {{ address.logradouro || 'Endereço localizado' }}{{ address.bairro ? ' · ' + address.bairro : '' }}
+          </p>
+        }
+      </div>
+    }
+  </div>
   
 
   <span class="flex-spacer"></span>
@@ -43,13 +98,16 @@
                 </a>
               }
             </div>
+            <a class="pieces-menu__catalog-link" routerLink="/components" (click)="closePiecesMenu()">
+              Catálogo completo <span aria-hidden="true">→</span>
+            </a>
           </div>
         </div>
       }
     </div>
 
     <button mat-button routerLink="/builds">Minhas Builds</button>
-    
+
 
     
     @if (authService.isAdmin()) {
@@ -112,6 +170,40 @@
       </div>
 
       <a class="mobile-nav__link" routerLink="/builds" (click)="closeMobileMenu()">Minhas Builds</a>
+
+      <div class="mobile-cep">
+        <p class="mobile-nav__group-title">Consultar entrega</p>
+        <form class="mobile-cep__form" (submit)="$event.preventDefault(); consultarCep()">
+          <label for="mobile-cep-input">CEP</label>
+          <div>
+            <input
+              id="mobile-cep-input"
+              type="text"
+              inputmode="numeric"
+              autocomplete="postal-code"
+              maxlength="9"
+              placeholder="00000-000"
+              [value]="cep()"
+              (input)="cep.set($any($event.target).value)"
+              [attr.aria-invalid]="cepError() ? 'true' : null"
+              aria-describedby="mobile-cep-feedback"
+            />
+            <button type="submit" [disabled]="buscandoCep()">
+              {{ buscandoCep() ? '...' : 'OK' }}
+            </button>
+          </div>
+        </form>
+        @if (cepError() || buscandoCep()) {
+          <p id="mobile-cep-feedback" class="mobile-cep__feedback" [class.mobile-cep__feedback--error]="cepError()" role="status">
+            {{ cepError() || 'Consultando CEP...' }}
+          </p>
+        }
+        @if (endereco(); as address) {
+          <p class="mobile-cep__result" aria-live="polite">
+            Entrega para <strong>{{ address.localidade }}/{{ address.uf }}</strong>
+          </p>
+        }
+      </div>
       
       @if (authService.isAdmin()) {
   <a class="mobile-nav__link" routerLink="/admin" (click)="closeMobileMenu()">Área administrativa</a>

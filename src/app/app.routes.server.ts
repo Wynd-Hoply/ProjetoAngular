@@ -10,6 +10,22 @@ export const serverRoutes: ServerRoute[] = [
     renderMode: RenderMode.Client,
   },
   {
+    path: 'components/item/:id',
+    renderMode: RenderMode.Client,
+  },
+  {
+    path: 'perfil/:username',
+    renderMode: RenderMode.Client,
+  },
+  {
+    path: 'perfil/:username/builds',
+    renderMode: RenderMode.Client,
+  },
+  {
+    path: 'build/:shareId',
+    renderMode: RenderMode.Client,
+  },
+  {
     path: '**',
     renderMode: RenderMode.Prerender
   }

@@ -55,7 +55,7 @@
 }
 
 .share-feedback {
-  color: var(--primary, #6c5ce7);
+  color: var(--primary, #FF1F78);
   font-size: 0.9rem;
 }
 
@@ -63,8 +63,8 @@
   display: inline-block;
   padding: 4px 10px;
   border-radius: 999px;
-  background: rgba(108, 92, 231, 0.15);
-  color: var(--primary, #6c5ce7);
+  background: rgba(255, 31, 120, 0.15);
+  color: var(--primary, #FF1F78);
   font-size: 0.8rem;
   margin-bottom: 16px;
 }
