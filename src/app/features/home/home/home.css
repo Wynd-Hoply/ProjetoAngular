@@ -5,6 +5,40 @@
   max-width: 1440px; 
   margin: 0 auto; 
   color: var(--text-primary); 
+
+  --promo-carousel-bg: #120d20;
+  --promo-slide-bg-default: linear-gradient(110deg, #171027 0%, #2c1551 55%, #11101f 100%);
+  --promo-slide-bg-components: linear-gradient(110deg, #101b2c 0%, #123e5b 55%, #11101f 100%);
+  --promo-slide-bg-builds: linear-gradient(110deg, #251126 0%, #632044 55%, #11101f 100%);
+  --promo-slide-bg-product: linear-gradient(110deg, #151126 0%, #40206c 55%, #17122a 100%);
+  --promo-title: #fff;
+  --promo-description: #d6cce6;
+  --promo-price: #fff;
+  --promo-control-border: rgba(255,255,255,.35);
+  --promo-control-bg: rgba(10, 7, 20, .45);
+  --promo-control-color: #fff;
+  --promo-dot-bg: rgba(255,255,255,.4);
+  --promo-card-border: rgba(255,255,255,.3);
+  --promo-card-bg: rgba(20, 13, 35, .72);
+  --promo-card-small: #c9bddb;
+}
+
+:host-context(.light-mode) .home-page {
+  --promo-carousel-bg: #fff;
+  --promo-slide-bg-default: linear-gradient(115deg, #ffffff 0%, #f7f1ff 60%, #f2ecff 100%);
+  --promo-slide-bg-components: linear-gradient(115deg, #ffffff 0%, #edf7ff 60%, #e7f2ff 100%);
+  --promo-slide-bg-builds: linear-gradient(115deg, #ffffff 0%, #ffeef8 60%, #fde9f4 100%);
+  --promo-slide-bg-product: linear-gradient(115deg, #ffffff 0%, #f1ecff 60%, #ece6ff 100%);
+  --promo-title: var(--text-primary);
+  --promo-description: var(--text-secondary);
+  --promo-price: var(--text-primary);
+  --promo-control-border: var(--border-color);
+  --promo-control-bg: rgba(255,255,255,.9);
+  --promo-control-color: var(--text-primary);
+  --promo-dot-bg: rgba(26, 18, 40, .28);
+  --promo-card-border: rgba(29, 20, 46, .18);
+  --promo-card-bg: rgba(255,255,255,.88);
+  --promo-card-small: var(--text-secondary);
 }
 
 .promo-carousel {
@@ -14,7 +48,7 @@
   margin: 1rem 0 0;
   border: 1px solid var(--border-color);
   border-radius: 18px;
-  background: #120d20;
+  background: var(--promo-carousel-bg);
   outline: none;
 }
 
@@ -42,20 +76,20 @@
   position: absolute;
   inset: 0;
   z-index: -2;
-  background: linear-gradient(110deg, #171027 0%, #2c1551 55%, #11101f 100%);
+  background: var(--promo-slide-bg-default);
   content: '';
 }
 
 .promo-slide--components::before {
-  background: linear-gradient(110deg, #101b2c 0%, #123e5b 55%, #11101f 100%);
+  background: var(--promo-slide-bg-components);
 }
 
 .promo-slide--builds::before {
-  background: linear-gradient(110deg, #251126 0%, #632044 55%, #11101f 100%);
+  background: var(--promo-slide-bg-builds);
 }
 
 .promo-slide--product::before {
-  background: linear-gradient(110deg, #151126 0%, #40206c 55%, #17122a 100%);
+  background: var(--promo-slide-bg-product);
 }
 
 .promo-slide__content {
@@ -67,7 +101,7 @@
 .promo-slide h1 {
   max-width: 600px;
   margin: 0;
-  color: #fff;
+  color: var(--promo-title);
   font-size: clamp(1.8rem, 4vw, 3.35rem);
   line-height: 1.05;
   letter-spacing: -.03em;
@@ -76,14 +110,14 @@
 .promo-slide__content > p:not(.eyebrow) {
   max-width: 500px;
   margin: 1rem 0 1.5rem;
-  color: #d6cce6;
+  color: var(--promo-description);
   line-height: 1.55;
 }
 
 .promo-slide__price {
   display: block;
   margin: -0.5rem 0 1.25rem;
-  color: #fff;
+  color: var(--promo-price);
   font-size: 1.35rem;
 }
 
@@ -138,9 +172,9 @@
   min-height: 120px;
   padding: 1rem;
   transform: translateY(-50%) rotate(8deg);
-  border: 1px solid rgba(255,255,255,.3);
+  border: 1px solid var(--promo-card-border);
   border-radius: 12px;
-  background: rgba(20, 13, 35, .72);
+  background: var(--promo-card-bg);
   box-shadow: 0 20px 50px rgba(0,0,0,.28);
   backdrop-filter: blur(8px);
 }
@@ -157,7 +191,7 @@
 
 .promo-slide__card small {
   align-self: end;
-  color: #c9bddb;
+  color: var(--promo-card-small);
   font-size: .6rem;
   letter-spacing: .18em;
 }
@@ -170,10 +204,10 @@
   height: 36px;
   place-items: center;
   transform: translateY(-50%);
-  border: 1px solid rgba(255,255,255,.35);
+  border: 1px solid var(--promo-control-border);
   border-radius: 50%;
-  background: rgba(10, 7, 20, .45);
-  color: #fff;
+  background: var(--promo-control-bg);
+  color: var(--promo-control-color);
   cursor: pointer;
   font-size: 1.7rem;
   line-height: 1;
@@ -201,7 +235,7 @@
   padding: 0;
   border: 0;
   border-radius: 50%;
-  background: rgba(255,255,255,.4);
+  background: var(--promo-dot-bg);
   cursor: pointer;
 }
 

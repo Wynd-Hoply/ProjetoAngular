@@ -22,7 +22,12 @@ const FALLBACK_IMAGE = 'assets/images/LogoWM.png';
 
 // ---------------------------------------------------------------- utilidades
 
-const num = (s) => Number(String(s).replace(/\.(?=\d{3}\b)/g, '').replace(',', '.'));
+const num = (s) =>
+  Number(
+    String(s)
+      .replace(/\.(?=\d{3}\b)/g, '')
+      .replace(',', '.'),
+  );
 const first = (text, regex) => regex.exec(text)?.[1];
 const normSocket = (s) => s.toUpperCase().replace(/[\s-]/g, '');
 
@@ -31,16 +36,83 @@ const AMD_SOCKETS = ['AM4', 'AM5'];
 const INTEL_SOCKETS = ['LGA1150', 'LGA1151', 'LGA1155', 'LGA1200', 'LGA1700', 'LGA1851'];
 
 const BRANDS = [
-  'Cooler Master', 'Rise Mode', 'Lian Li', 'Western Digital', 'Team Group', 'Be Quiet', 'Super Flower',
-  'ASUS', 'MSI', 'Gigabyte', 'ASRock', 'Biostar', 'Colorful', 'AMD', 'Intel', 'NVIDIA', 'XFX', 'PNY',
-  'Galax', 'Zotac', 'Sapphire', 'PowerColor', 'Palit', 'Gainward', 'Inno3D', 'Afox', 'Corsair', 'Kingston',
-  'Husky', 'Redragon', 'Montech', 'DeepCool', 'Thermaltake', 'NZXT', 'Noctua', 'Pichau', 'Gamdias',
-  'Mancer', 'Fortrek', 'EVGA', 'WD', 'Seagate', 'Crucial', 'Samsung', 'SanDisk', 'Adata', 'XPG', 'Patriot',
-  'G.Skill', 'Lexar', 'HyperX', 'Netac', 'Goldenfir', 'Toshiba', 'Acer', 'Predator', 'Seasonic', 'Antec',
-  'Gamemax', 'Bluecase', 'Hayom', 'Knup', 'MACH1', 'FSP', 'Aigo', 'Hikvision', 'Mushkin', 'Ocelot',
-  'Aerocool', 'Duex', 'Kalkan', 'C3Tech',
+  'Cooler Master',
+  'Rise Mode',
+  'Lian Li',
+  'Western Digital',
+  'Team Group',
+  'Be Quiet',
+  'Super Flower',
+  'ASUS',
+  'MSI',
+  'Gigabyte',
+  'ASRock',
+  'Biostar',
+  'Colorful',
+  'AMD',
+  'Intel',
+  'NVIDIA',
+  'XFX',
+  'PNY',
+  'Galax',
+  'Zotac',
+  'Sapphire',
+  'PowerColor',
+  'Palit',
+  'Gainward',
+  'Inno3D',
+  'Afox',
+  'Corsair',
+  'Kingston',
+  'Husky',
+  'Redragon',
+  'Montech',
+  'DeepCool',
+  'Thermaltake',
+  'NZXT',
+  'Noctua',
+  'Pichau',
+  'Gamdias',
+  'Mancer',
+  'Fortrek',
+  'EVGA',
+  'WD',
+  'Seagate',
+  'Crucial',
+  'Samsung',
+  'SanDisk',
+  'Adata',
+  'XPG',
+  'Patriot',
+  'G.Skill',
+  'Lexar',
+  'HyperX',
+  'Netac',
+  'Goldenfir',
+  'Toshiba',
+  'Acer',
+  'Predator',
+  'Seasonic',
+  'Antec',
+  'Gamemax',
+  'Bluecase',
+  'Hayom',
+  'Knup',
+  'MACH1',
+  'FSP',
+  'Aigo',
+  'Hikvision',
+  'Mushkin',
+  'Ocelot',
+  'Aerocool',
+  'Duex',
+  'Kalkan',
+  'C3Tech',
 ];
-const BRAND_RE = BRANDS.map((b) => ({ brand: b, re: new RegExp(`(?<![\\w])${b.replace('.', '\\.')}(?![\\w])`, 'i') }));
+const BRAND_RE = BRANDS.map((b) => ({
+  brand: b,
+  re: new RegExp(`(?<![\\w])${b.replace('.', '\\.')}(?![\\w])`, 'i'),
+}));
 
 function detectBrand(name) {
   let best;
@@ -63,7 +135,8 @@ function chipVendor(category, name) {
 // Os nomes da Kabum começam pelo tipo do produto ("Placa-Mãe ...", "SSD ...").
 // Por isso ancoramos no início — "TRIPLE FAN" no meio do nome de uma GPU não deve excluí-la.
 
-const NOT_FOR_BUILDER = /notebook|sodimm|so-dimm|servidor|server|\becc\b|rdimm|quadro|tesla|radeon pro|workstation|\bnas\b|xeon|externo|port[aá]til|\busb\b/i;
+const NOT_FOR_BUILDER =
+  /notebook|sodimm|so-dimm|servidor|server|\becc\b|rdimm|quadro|tesla|radeon pro|workstation|\bnas\b|xeon|externo|port[aá]til|\busb\b/i;
 
 function classify(name) {
   const n = name.trim();
@@ -76,7 +149,8 @@ function classify(name) {
   if (/^(ssd|hd|hdd|disco)\b/i.test(n)) return 'storage';
   if (/^fonte/i.test(n) && !/teste|carregador|adaptador/i.test(n)) return 'psu';
   if (/^(water ?cooler|air cooler|dissipador)/i.test(n)) return 'cooler';
-  if (/^cooler/i.test(n) && !/para gabinete/i.test(n) && /AM[45]|LGA|intel|amd|socket/i.test(n)) return 'cooler';
+  if (/^cooler/i.test(n) && !/para gabinete/i.test(n) && /AM[45]|LGA|intel|amd|socket/i.test(n))
+    return 'cooler';
   return 'outro';
 }
 
@@ -122,7 +196,16 @@ function extract(category, name) {
       s.vramGB = Number(vram);
       const mem = first(name, /\b(GDDR\d+X?)\b/i);
       if (mem) s.memoryType = mem.toUpperCase();
-      const watts = s.vramGB <= 4 ? 75 : s.vramGB <= 8 ? 150 : s.vramGB <= 12 ? 200 : s.vramGB <= 16 ? 250 : 320;
+      const watts =
+        s.vramGB <= 4
+          ? 75
+          : s.vramGB <= 8
+            ? 150
+            : s.vramGB <= 12
+              ? 200
+              : s.vramGB <= 16
+                ? 250
+                : 320;
       return { specs: s, powerDrawWatts: watts };
     }
     case 'ram': {
@@ -184,38 +267,66 @@ function extract(category, name) {
 const wb = XLSX.readFile(INPUT);
 const rows = XLSX.utils.sheet_to_json(wb.Sheets[wb.SheetNames[0]]);
 
-const stats = { lidas: rows.length, duplicadas: 0, semEstoque: 0, kits: 0, foraDoEscopo: 0, semSpecs: 0 };
+const stats = {
+  lidas: rows.length,
+  duplicadas: 0,
+  semEstoque: 0,
+  kits: 0,
+  foraDoEscopo: 0,
+  semSpecs: 0,
+};
 const seen = new Set();
 const products = [];
 
 for (const row of rows) {
   const id = Number(row['ID']);
-  if (seen.has(id)) { stats.duplicadas++; continue; }
+  if (seen.has(id)) {
+    stats.duplicadas++;
+    continue;
+  }
   seen.add(id);
 
-  if (!INCLUDE_OUT_OF_STOCK && !(Number(row['Quantity Available']) > 0)) { stats.semEstoque++; continue; }
+  if (!INCLUDE_OUT_OF_STOCK && !(Number(row['Quantity Available']) > 0)) {
+    stats.semEstoque++;
+    continue;
+  }
 
   const name = String(row['Name']).replace(/\s+/g, ' ').trim();
   const category = classify(name);
-  if (category === 'kit') { stats.kits++; continue; }
-  if (category === 'excluido' || category === 'outro') { stats.foraDoEscopo++; continue; }
+  if (category === 'kit') {
+    stats.kits++;
+    continue;
+  }
+  if (category === 'excluido' || category === 'outro') {
+    stats.foraDoEscopo++;
+    continue;
+  }
 
   const extracted = extract(category, name);
-  if (!extracted) { stats.semSpecs++; continue; }
+  if (!extracted) {
+    stats.semSpecs++;
+    continue;
+  }
 
   // Preço pago de fato (com desconto), caindo para o preço cheio se não houver.
   const discounted = Number(row['Price with Discount']);
   const price = Math.round((discounted > 0 ? discounted : Number(row['Price'])) * 100) / 100;
-  if (!(price > 0)) { stats.foraDoEscopo++; continue; }
+  if (!(price > 0)) {
+    stats.foraDoEscopo++;
+    continue;
+  }
 
   // Coluna "Photos (g)" é uma lista em texto; o model só tem uma imagem.
-  const image = first(String(row['Photos (g)'] ?? ''), /(https?:\/\/[^'"\s,\]]+)/) ?? FALLBACK_IMAGE;
+  const image =
+    first(String(row['Photos (g)'] ?? ''), /(https?:\/\/[^'"\s,\]]+)/) ?? FALLBACK_IMAGE;
 
   products.push({
     id,
     name,
     category,
-    brand: (b => (b === 'Outras marcas' ? chipVendor(category, name) ?? b : b))(detectBrand(name)),
+    brand: ((b) => (b === 'Outras marcas' ? (chipVendor(category, name) ?? b) : b))(
+      detectBrand(name),
+    ),
     price,
     performanceScore: 0, // calculado abaixo
     powerDrawWatts: extracted.powerDrawWatts,
@@ -256,7 +367,10 @@ const porCategoria = {};
 for (const [category, [file, exportName]] of Object.entries(TARGETS)) {
   const group = products.filter((p) => p.category === category).sort((a, b) => a.price - b.price);
   porCategoria[category] = group.length;
-  if (!group.length) { ignorados.push(`${file}.ts (0 produtos na planilha — mantido como está)`); continue; }
+  if (!group.length) {
+    ignorados.push(`${file}.ts (0 produtos na planilha — mantido como está)`);
+    continue;
+  }
 
   const path = `${OUTPUT_DIR}/${file}.ts`;
   // Guarda o mock original uma única vez (se o arquivo atual não for um gerado por este script).
@@ -265,7 +379,9 @@ for (const [category, [file, exportName]] of Object.entries(TARGETS)) {
   }
 
   const body = group.map((p) => `  ${JSON.stringify(p)},`).join('\n');
-  writeFileSync(path, `// ARQUIVO GERADO por scripts/import-products.mjs — não edite à mão.
+  writeFileSync(
+    path,
+    `// ARQUIVO GERADO por scripts/import-products.mjs — não edite à mão.
 // Fonte: ${origem}.
 // performanceScore é uma ESTIMATIVA (posição do preço na categoria), não um benchmark.
 import { Component } from '../models/component.model';
@@ -273,7 +389,8 @@ import { Component } from '../models/component.model';
 export const ${exportName}: Component[] = [
 ${body}
 ];
-`);
+`,
+  );
   gerados.push(`${file}.ts (${group.length})`);
 }
 
@@ -283,4 +400,5 @@ console.log('Gerados:', gerados.join(', '));
 if (ignorados.length) console.log('Não alterados:', ignorados.join(', '));
 console.log('Produtos por categoria:', porCategoria, `| total: ${products.length}`);
 const semMarca = products.filter((p) => p.brand === 'Outras marcas').length;
-if (semMarca) console.log(`Atenção: ${semMarca} produto(s) sem marca reconhecida ("Outras marcas").`);
+if (semMarca)
+  console.log(`Atenção: ${semMarca} produto(s) sem marca reconhecida ("Outras marcas").`);
